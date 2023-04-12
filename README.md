@@ -8,3 +8,7 @@ Man next to the window holding phone in his hand:
 https://www.pexels.com/pl-pl/zdjecie/mezczyzna-w-czerwonej-koszuli-z-okraglym-dekoltem-trzymajac-smartfon-obok-kobiety-w-bialym-podkoszulku-bez-rekawow-6140463/
 Man with phone showing something to woman:
 https://www.pexels.com/pl-pl/zdjecie/mezczyzna-w-czerwonej-koszuli-z-okraglym-dekoltem-trzymajac-smartfon-obok-kobiety-w-bialym-podkoszulku-bez-rekawow-6140463/
+People in circle:
+https://easyvectors.com/download/community-team-teamwork-people-1404
+Laptop:
+https://easyvectors.com/download/laptop-notebook-computer-black-1723
