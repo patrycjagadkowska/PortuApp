@@ -1,7 +1,7 @@
 import { RouterProvider, Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 
 import Welcome from "./pages/Welcome";
-import Layout from "./components/Layout";
+import Layout from "./components/Layout/Layout";
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />} >
