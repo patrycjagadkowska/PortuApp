@@ -1,9 +1,11 @@
 import  { Outlet } from 'react-router';
 
+import Header from './Header';
+
 const Layout = () => {
     return (
         <>
-            <header />
+            <Header />
             <main>
                 <Outlet />
             </main>

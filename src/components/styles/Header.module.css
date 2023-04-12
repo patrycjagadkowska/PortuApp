@@ -1,4 +1,40 @@
+.header {
+    display: -moz-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+    align-items: center;;
+}
+
 .header__logo {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.header__nav a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0.25rem 1rem;
+    margin-left: 1rem;
+    border-radius: 1rem;
+    border: 2px solid #EE818A;
+}
+
+.header__nav a:first-child {
+    background-color: #EE818A;
+    display: none;
+    color: #F5DBCB;
+}
+
+.header__nav a:last-child {
+    color: #EE818A;
+}
+
+@media (min-width: 776px) {
+    .header__nav a:first-child {
+        display: inline;
+    }
 }
