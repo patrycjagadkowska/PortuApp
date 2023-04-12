@@ -119,4 +119,8 @@
         flex-direction: row;
         justify-content: center;
     }
+
+    .stats-wrapper__item {
+        width: 33%;
+    }
 }
