@@ -2,9 +2,24 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   background-color: #F5DBCB;
   font-family: 'Montserrat', sans-serif;
   color: #0B3954;
+  min-height: 100%;
+}
+
+main {
+  min-height: calc(100vh - 4.25rem - 8rem);
+}
+
+@media (min-width: 992px) {
+  main {
+    min-height: calc(100vh - 4.25rem - 5.625rem);
+  }
 }
