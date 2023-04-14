@@ -1,5 +1,23 @@
+.auth {
+    padding: 2rem 1rem;
+    background-color: #D6D5B3;
+    margin: 0 1rem;
+}
+
 .auth__header {
     margin: 0;
-    padding: 1rem;
     text-align: center;
+}
+
+@media (min-width: 576px) {
+    .auth {
+        margin: 0 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .auth {
+        margin: 0 auto;
+        width: 80%;
+    }
 }
