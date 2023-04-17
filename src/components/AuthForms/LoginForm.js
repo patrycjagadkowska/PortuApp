@@ -1,12 +1,25 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
+import { auth } from '../../api/auth-api';
+import AuthContext from '../../context/AuthContext';
 
 import classes from './AuthForm.module.css';
 
 const LoginForm = () => {
     const email = useRef();
     const password = useRef();
+    const authCtx = useContext(AuthContext);
+
     const submitHandler = (event) => {
         event.preventDefault();
+        signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                authCtx.login(user.uid);
+            }).catch((err) => {
+                console.log(err);
+            });
     };
     
     return (
