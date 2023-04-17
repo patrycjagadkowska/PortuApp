@@ -15,6 +15,16 @@
     font-size: 1.5rem;
 }
 
+.header__logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header__logo a:hover,
+.header__logo a:active {
+    color: #7EB77F;
+}
+
 .header__nav a {
     text-decoration: none;
     padding: 0.25rem 1rem;
