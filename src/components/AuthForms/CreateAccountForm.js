@@ -68,7 +68,7 @@ const CreateAccountForm = () => {
           id="repeat-password"
           ref={repeatedPassword}
         />
-        <button className={classes["form__submit-btn"]}>Submit</button>
+        <button className={classes["form__submit-btn"]}>Create account</button>
       </form>
     );
 };

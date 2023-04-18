@@ -1,5 +1,6 @@
 import { useRef, useContext } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router';
 
 import { auth } from '../../api/auth-api';
 import AuthContext from '../../context/AuthContext';
@@ -10,6 +11,7 @@ const LoginForm = () => {
     const email = useRef();
     const password = useRef();
     const authCtx = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -17,6 +19,7 @@ const LoginForm = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 authCtx.login(user.uid);
+                navigate('/learn');
             }).catch((err) => {
                 console.log(err);
             });
@@ -42,7 +45,7 @@ const LoginForm = () => {
           id="password"
           ref={password}
         />
-        <button className={classes["form__submit-btn"]}>Submit</button>
+        <button className={classes["form__submit-btn"]}>Login</button>
       </form>
     );
 };
