@@ -1,7 +1,14 @@
+import Panel from '../components/Learn/Panel';
+
+import classes from './styles/Learn.module.css';
+
 const Learn = () => {
     return (
-        <div >
-            <h1>Here is Learn</h1>
+        <div>
+            <div className={classes.header}>
+                <h1>Choose your lesson</h1>
+            </div>
+            <Panel />
         </div>
     );
 };
