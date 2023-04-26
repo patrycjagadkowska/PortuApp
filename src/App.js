@@ -17,7 +17,7 @@ const App = () => {
         <Route index element={<Welcome />} />
         <Route path="/login" element={<Authentication />} />
         <Route path="/createAccount" element={<Authentication />} />
-        {isLoggedIn && <Route path="learn" element={<Learn />} />}
+        {isLoggedIn && <Route path="/learn" element={<Learn />} />}
       </Route>
     )
   );
