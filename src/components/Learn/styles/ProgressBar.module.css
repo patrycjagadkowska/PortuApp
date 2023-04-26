@@ -1,0 +1,24 @@
+.progress-bar {
+    padding: 1rem 0.25rem;
+    display: -moz-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bar-container {
+    width: 90%;
+    height: 1.5rem;
+    border-radius: 1rem;
+    border: 2px solid #7EB77F;
+}
+
+.bar {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    width: 40%;
+    background-color: #7EB77F;
+    height: 100%;
+}

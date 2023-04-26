@@ -15,5 +15,11 @@
     display: -webkit-flex;
     display: flex;
     justify-content: space-between;
-    padding: 0.25rem;
+    padding: 0.5rem;
+}
+
+.unit a:hover .unit__item,
+.unit a:active .unit__item {
+    background-color: #EE818A;
+    color: #F5DBCB;
 }

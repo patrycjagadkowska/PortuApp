@@ -2,4 +2,19 @@
     background-color: #D6D5B3;
     width: 80%;
     margin: 0 auto;
+    border-radius: 1rem;
+}
+
+.panel h3 {
+    margin: 0;
+    padding: 1rem 0.5rem;
+    background-color: #7EB77F;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+@media (min-width: 992px) {
+    .panel {
+        width: 90%;
+    }
 }

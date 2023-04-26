@@ -1,0 +1,24 @@
+.test {
+    padding: 0.5rem;
+    background-color: #7EB77F;
+    display: -moz-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.test a {
+    text-decoration: none;
+    color: #F5DBCB;
+    background-color: #EE818A;
+    padding: 0.375rem 0.75rem;
+    border-radius: 1rem;
+}
+
+.test a:hover, 
+.test a:active {
+    background-color: #F5DBCB;
+    color: #EE818A;
+}

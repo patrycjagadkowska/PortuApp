@@ -8,7 +8,10 @@ const Learn = () => {
             <div className={classes.header}>
                 <h1>Choose your lesson</h1>
             </div>
-            <Panel />
+            <div className={classes.panels}>
+                <Panel />
+                <Panel />
+            </div>
         </div>
     );
 };
