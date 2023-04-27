@@ -14,7 +14,7 @@ const Learn = () => {
             await getDocs(collection(database, "lessons"))
             .then(unitsData => {
                 unitsData.forEach(unit => {
-                    unitsArr.push(<Panel unit={unit} />);
+                    unitsArr.push(<Panel key={unit.id} unit={unit} />);
                 });
                 setUnits(unitsArr);
             })
@@ -22,7 +22,6 @@ const Learn = () => {
         };
         getUnits();
     }, []);
-    console.log(units);
     return (
         <div>
             <div className={classes.header}>
