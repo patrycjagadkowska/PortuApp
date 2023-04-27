@@ -30,34 +30,3 @@ const Unit = (props) => {
 };
 
 export default Unit;
-
-{/* <Link to='/'>
-                <li className={classes['unit__item']}>
-                    <span className={classes['unit__item--title']}>Lesson 1</span>
-                    <span className={classes['unit__item--badge']}>badge</span>
-                </li>
-            </Link>
-            <Link to='/'>
-                <li className={classes['unit__item']}>
-                    <span className={classes['unit__item--title']}>Lesson 2</span>
-                    <span className={classes['unit__item--badge']}>badge</span>
-                </li>
-            </Link>
-            <Link to='/'>
-                <li className={classes['unit__item']}>
-                    <span className={classes['unit__item--title']}>Lesson 3</span>
-                    <span className={classes['unit__item--badge']}>badge</span>
-                </li>
-            </Link>
-            <Link to='/'>
-                <li className={classes['unit__item']}>
-                    <span className={classes['unit__item--title']}>Lesson 4</span>
-                    <span className={classes['unit__item--badge']}>badge</span>
-                </li>
-            </Link>
-            <Link to='/'>
-                <li className={classes['unit__item']}>
-                    <span className={classes['unit__item--title']}>Lesson 5</span>
-                    <span className={classes['unit__item--badge']}>badge</span>
-                </li>
-            </Link> */}

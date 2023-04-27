@@ -6,6 +6,7 @@ import Layout from "./components/Layout/Layout";
 import Authentication from "./pages/Authentication";
 import AuthContext from "./context/AuthContext";
 import Learn from "./pages/Learn";
+import Lesson from "./pages/Lesson";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
@@ -17,7 +18,12 @@ const App = () => {
         <Route index element={<Welcome />} />
         <Route path="/login" element={<Authentication />} />
         <Route path="/createAccount" element={<Authentication />} />
-        {isLoggedIn && <Route path="/learn" element={<Learn />} />}
+        {isLoggedIn && (
+          <Route path="/learn" element={<Learn />} />
+        )}
+        {isLoggedIn && (
+          <Route path="/learn/:unitId/:lessonId" element={<Lesson />} />
+        )}
       </Route>
     )
   );
