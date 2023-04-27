@@ -1,18 +1,18 @@
-import Unit from './Unit';
-import Test from './Test';
-import ProgressBar from './ProgressBar';
+import { useContext } from 'react';
+
+import DataContext from '../../context/DataContext';
 
 import classes from './styles/Panel.module.css';
+import Unit from './Unit';
 
-const Panel = (props) => {
-    const unit = props.unit.data();
-    const { title, test, lessons, id } = unit;
+const Panel  = () => {
+    const dataCtx = useContext(DataContext);
+    const content = dataCtx.data.map(unit => {
+        return <Unit key={unit.id} unitId={unit.id} />
+    });
     return (
         <div className={classes.panel}>
-            <h3>{title}</h3>
-            <Unit lessons={lessons} unitId={id} />
-            <Test test={test} unitId={id} />
-            <ProgressBar />
+            {content}
         </div>
     );
 };

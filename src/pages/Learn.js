@@ -1,34 +1,20 @@
-import { collection, getDocs } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 
 import Panel from '../components/Learn/Panel';
-import { database } from '../api/database-api';
+import DataContext from '../context/DataContext';
 
 import classes from './styles/Learn.module.css';
 
 const Learn = () => {
-    const [units, setUnits] = useState();
-    useEffect(() => {
-        const getUnits = async () => {
-            const unitsArr = [];
-            await getDocs(collection(database, "lessons"))
-            .then(unitsData => {
-                unitsData.forEach(unit => {
-                    unitsArr.push(<Panel key={unit.id} unit={unit} />);
-                });
-                setUnits(unitsArr);
-            })
-            .catch(err => console.log(err));
-        };
-        getUnits();
-    }, []);
+    const dataCtx = useContext(DataContext);
     return (
         <div>
             <div className={classes.header}>
                 <h1>Choose your lesson</h1>
             </div>
             <div className={classes.panels}>
-                {units && units}
+               {dataCtx.data.length > 0 && <Panel />}
+               {dataCtx.data.length <= 0 && <h3>Something went wrong</h3>}
             </div>
         </div>
     );

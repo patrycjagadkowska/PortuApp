@@ -1,31 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 
-import { Link } from 'react-router-dom';
+import Lessons from './Lessons';
+import Test from './Test';
+import ProgressBar from './ProgressBar';
+import DataContext from '../../context/DataContext';
 
 import classes from './styles/Unit.module.css';
 
 const Unit = (props) => {
-    const { lessons, unitId } = props;
-    const [ lessonsList, setLessonsList] = useState();
+    const dataCtx = useContext(DataContext);
+    const { unitId } = props;
     
-    useEffect(() => {
-        const lessonsArr = [];
-        lessons.forEach(lesson => {
-            const lessonLink = 
-                (<Link to={`${unitId}/${lesson.id}`} key={`${unitId}/${lesson.id}`}>
-                    <li className={classes['unit__item']}>
-                    <span className={classes['unit__item--title']}>{lesson.title}</span>
-                    <span className={classes['unit__item--badge']}>badge</span>
-                </li>
-                </Link>);
-            lessonsArr.push(lessonLink);
-        });
-        setLessonsList(lessonsArr);
-    }, [lessons, unitId]);
+
+    const unitData = dataCtx.getUnit(unitId);
+    console.log(unitData);
+    const { title, lessons, test } = unitData;
     return (
-        <ul className={classes.unit}>
-            {lessonsList}
-        </ul>
+        <div className={classes.panel}>
+            <h3>{title}</h3>
+            <Lessons lessons={lessons} unitId={unitId} />
+            <Test test={test} unitId={unitId} />
+            <ProgressBar />
+        </div>
     );
 };
 

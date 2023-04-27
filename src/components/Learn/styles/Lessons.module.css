@@ -1,0 +1,25 @@
+.unit {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
+.unit a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.unit__item {
+    display: -moz-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.unit a:hover .unit__item,
+.unit a:active .unit__item {
+    background-color: #EE818A;
+    color: #F5DBCB;
+}

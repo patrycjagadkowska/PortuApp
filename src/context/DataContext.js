@@ -1,8 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+
+import { database } from "../api/database-api";
 
 const initialData = {
     data: [],
-    setData: (data) => {},
     getUnit: (unitId) => {},
     getLesson: (unitId, lessonId) => {},
     clearData: () => {}
@@ -12,17 +14,25 @@ const DataContext = createContext(initialData);
 
 export const DataContextProvider = (props) => {
     const [unitsData, setUnitsData] = useState();
-    
-    const setData = (data) => {
-        setUnitsData(data);
-    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const unitsArr = [];
+            const fetchedData = await getDocs(collection(database, "lessons"));
+            fetchedData.forEach(unit => {
+                unitsArr.push(unit.data());
+            });
+            setUnitsData(unitsArr);
+        }
+        fetchData();
+    }, [setUnitsData]);
 
     const clearData = () => {
         setUnitsData(null);
     };
 
     const getUnit = (unitId) => {
-        return unitsData.find(unit => unit.unit.id === unitId);
+        return unitsData.find(unit => unit.id === unitId);
     };
 
     const getLesson = (unitId, lessonId) => {
@@ -32,7 +42,6 @@ export const DataContextProvider = (props) => {
 
     const ctxValue = {
         data: unitsData,
-        setData: setData,
         getUnit: getUnit,
         getLesson: getLesson,
         clearData: clearData
