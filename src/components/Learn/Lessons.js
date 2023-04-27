@@ -13,7 +13,7 @@ const Lessons = (props) => {
         lessons.forEach(lesson => {
             const lessonLink = 
                 (<Link to={`${unitId}/${lesson.id}`} key={`${unitId}/${lesson.id}`}>
-                    <li className={classes['unit__item']}>
+                    <li className={classes['lesson']}>
                     <span className={classes['unit__item--title']}>{lesson.title}</span>
                     <span className={classes['unit__item--badge']}>badge</span>
                 </li>
@@ -23,7 +23,7 @@ const Lessons = (props) => {
         setLessonsList(lessonsArr);
     }, [lessons, unitId]);
     return (
-        <ul className={classes.unit}>
+        <ul className={classes.lessons}>
             {lessonsList}
         </ul>
     );

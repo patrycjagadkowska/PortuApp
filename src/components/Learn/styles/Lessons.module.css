@@ -1,15 +1,15 @@
-.unit {
+.lessons {
     padding: 0;
     list-style-type: none;
     margin: 0;
 }
 
-.unit a {
+.lessons a {
     text-decoration: none;
     color: inherit;
 }
 
-.unit__item {
+.lesson {
     display: -moz-box;
     display: -webkit-box;
     display: -webkit-flex;
@@ -18,8 +18,8 @@
     padding: 0.5rem;
 }
 
-.unit a:hover .unit__item,
-.unit a:active .unit__item {
+.lessons a:hover .lesson,
+.lessons a:active .lesson {
     background-color: #EE818A;
     color: #F5DBCB;
 }

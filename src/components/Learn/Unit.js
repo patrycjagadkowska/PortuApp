@@ -13,10 +13,9 @@ const Unit = (props) => {
     
 
     const unitData = dataCtx.getUnit(unitId);
-    console.log(unitData);
     const { title, lessons, test } = unitData;
     return (
-        <div className={classes.panel}>
+        <div className={classes.unit}>
             <h3>{title}</h3>
             <Lessons lessons={lessons} unitId={unitId} />
             <Test test={test} unitId={unitId} />

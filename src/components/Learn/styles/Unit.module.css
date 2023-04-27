@@ -1,11 +1,11 @@
-.panel {
+.unit {
     background-color: #D6D5B3;
     width: 80%;
     margin: 0 auto;
     border-radius: 1rem;
 }
 
-.panel h3 {
+.unit h3 {
     margin: 0;
     padding: 1rem 0.5rem;
     background-color: #7EB77F;
@@ -14,7 +14,7 @@
 }
 
 @media (min-width: 992px) {
-    .panel {
+    .unit {
         width: 90%;
     }
 }
