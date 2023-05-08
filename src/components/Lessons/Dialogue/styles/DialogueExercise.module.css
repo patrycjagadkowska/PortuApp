@@ -1,0 +1,34 @@
+.exercise {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.exercise h3 {
+    text-align: center;
+    color: #7EB77F;
+}
+
+.exercise__radios {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.exercise__submitBtn {
+    width: 6rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    padding: 0.25rem 1rem;
+    border: 2px #EE818A solid;
+    background-color: #EE818A;
+    color: #F5DBCB;
+    cursor: pointer;
+}
+
+.exercise__submitBtn:hover,
+.exercise__submitBtn:active {
+    border-color: #fdf3eb;
+    background-color: #7EB77F;
+}

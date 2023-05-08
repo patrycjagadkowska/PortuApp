@@ -4,7 +4,7 @@ import classes from './styles/StatementPair.module.css';
 
 const StatementPair = props => {
     const { portuguese, english, float } = props;
-    console.log(float);
+
     return (
         <div className={`${classes.pair} ${classes[float ? "left" : "right"]}`}>
             <Statement lang="pt">{portuguese}</Statement>

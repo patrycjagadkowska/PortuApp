@@ -1,6 +1,8 @@
 import { useParams } from 'react-router';
+import { Fragment } from 'react';
 
 import Conversation from './Conversation';
+import DialogueExercise from './DialogueExercise';
 
 import classes from './styles/Dialogue.module.css';
 
@@ -10,7 +12,8 @@ const Dialogue = (props) => {
     const { unitId, lessonId } = useParams();
     
     const dialogueContent = data.map((dialoguePart, index) => {
-        return <Conversation conversation={dialoguePart.conversation} meaning={dialoguePart.meaning} key={`${unitId}/${lessonId}/${index}`} />
+        return (<Fragment key={`${unitId}/${lessonId}/${index}`}><Conversation conversation={dialoguePart.conversation} meaning={dialoguePart.meaning} />
+        <DialogueExercise exercise={dialoguePart.exercise} /></Fragment>)
     });
 
     return (
