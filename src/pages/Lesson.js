@@ -5,7 +5,7 @@ import DataContext from '../context/DataContext';
 import Dialogue from '../components/Lessons/Dialogue/Dialogue';
 import Conjugation from '../components/Lessons/Conjugation';
 import FillIn from '../components/Lessons/FillIn';
-import Flashcard from '../components/Lessons/Flashcard';
+import Flashcard from '../components/Lessons/Flashcard/Flashcard';
 import Connect from '../components/Lessons/Connect';
 
 import classes from './styles/Lesson.module.css';
