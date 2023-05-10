@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import DataContext from '../context/DataContext';
 import Dialogue from '../components/Lessons/Dialogue/Dialogue';
 import Conjugation from '../components/Lessons/Conjugation/Conjugation';
-import FillIn from '../components/Lessons/FillIn';
+import Translate from '../components/Lessons/Translate/Translate';
 import Flashcard from '../components/Lessons/Flashcard/Flashcard';
 import Connect from '../components/Lessons/Connect/Connect';
 
@@ -24,7 +24,7 @@ const Lesson = () => {
             {type === "flashcard" && <Flashcard data={content} />}
             {type === "conjugation" && <Conjugation data={content} />}
             {type === "connect" && <Connect data={content} />}
-            {type === "fillIn" && <FillIn data={content} />}
+            {type === "translate" && <Translate data={content} />}
         </div>
     );
 };
