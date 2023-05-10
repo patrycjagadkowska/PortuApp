@@ -6,7 +6,7 @@ import Dialogue from '../components/Lessons/Dialogue/Dialogue';
 import Conjugation from '../components/Lessons/Conjugation/Conjugation';
 import FillIn from '../components/Lessons/FillIn';
 import Flashcard from '../components/Lessons/Flashcard/Flashcard';
-import Connect from '../components/Lessons/Connect';
+import Connect from '../components/Lessons/Connect/Connect';
 
 import classes from './styles/Lesson.module.css';
 
