@@ -1,0 +1,14 @@
+.connect {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.connect h3 {
+    text-align: center;
+    color: #7EB77F;
+}
+
+.connect__lists {
+    display: flex;
+    justify-content: space-evenly;
+}

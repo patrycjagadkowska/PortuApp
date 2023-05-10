@@ -29,6 +29,10 @@ const Connect = props => {
             setFirstClicked(id);
             setFirstLang(lang);
         }
+        if(firstClicked && firstClicked === id && firstLang === lang) {
+            setFirstClicked(undefined);
+            setFirstLang(undefined);
+        }
         if(firstClicked && firstClicked !== id && firstLang === lang) {
             setFirstClicked(id);
         }
@@ -44,14 +48,32 @@ const Connect = props => {
         }
    }
 
+   if(foundPairs.length === pt.length) {
+    alert("All found!");
+   }
+
     return (
-        <div className={classes.connect}>
-            <h3>{title}</h3>
-            <div className={classes["connect__lists"]}>
-                <WordsList list={ptShuffled} lang="pt" checkClickedWord={checkClickedWord} />
-                <WordsList list={engShuffled} lang="eng" checkClickedWord={checkClickedWord} />
-            </div>
+      <div className={classes.connect}>
+        <h3>{title}</h3>
+        <div className={classes["connect__lists"]}>
+          <WordsList
+            list={ptShuffled}
+            lang="pt"
+            checkClickedWord={checkClickedWord}
+            foundPairs={foundPairs}
+            firstClicked={firstClicked}
+            firstLang={firstLang}
+          />
+          <WordsList
+            list={engShuffled}
+            lang="eng"
+            checkClickedWord={checkClickedWord}
+            foundPairs={foundPairs}
+            firstClicked={firstClicked}
+            firstLang={firstLang}
+          />
         </div>
+      </div>
     );
 };
 
