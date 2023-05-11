@@ -19,7 +19,7 @@ const Connect = props => {
     useEffect(() => {
         setEngShuffled(shuffleArray(eng));
         setPtShuffled(shuffleArray(pt));
-    }, []);
+    }, [pt, eng]);
 
    const checkClickedWord = (id, lang) => {
         if(foundPairs.includes(id)) {
