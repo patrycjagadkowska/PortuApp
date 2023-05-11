@@ -1,0 +1,12 @@
+.panel {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    .panel {
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 0;
+    }
+}

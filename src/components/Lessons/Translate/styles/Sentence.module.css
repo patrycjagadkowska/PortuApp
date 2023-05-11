@@ -1,0 +1,14 @@
+.sentence {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.sentence label {
+    margin-bottom: 0.25rem;
+}
+
+.sentence textarea {
+    font-family: inherit;
+    resize: none;
+}
