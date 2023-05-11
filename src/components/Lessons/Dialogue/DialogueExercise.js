@@ -24,7 +24,7 @@ const DialogueExercise = props => {
     const radios = answers.map((answer, index) => {
         const id = unitId + "/" + lessonId + "/radio/" + index;
         return (
-            <div className={classes['exercise__radio']}>
+            <div className={classes['exercise__radio']} key={id}>
                 <input type="radio" id={id} value={answer} onChange={changeHandler} name='dialogue-exercise' />
                 <label htmlFor={id}>{answer}</label>
             </div>
