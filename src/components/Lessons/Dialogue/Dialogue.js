@@ -13,7 +13,7 @@ const Dialogue = (props) => {
     
     const dialogueContent = data.map((dialoguePart, index) => {
         return (<Fragment key={`${unitId}/${lessonId}/${index}`}><Conversation conversation={dialoguePart.conversation} meaning={dialoguePart.meaning} />
-        <DialogueExercise exercise={dialoguePart.exercise} /></Fragment>)
+        <DialogueExercise animationDelay={dialoguePart.conversation.length * 2} exercise={dialoguePart.exercise} /></Fragment>)
     });
 
     return (

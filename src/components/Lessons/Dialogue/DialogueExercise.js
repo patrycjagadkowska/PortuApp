@@ -5,6 +5,7 @@ import classes from './styles/DialogueExercise.module.css';
 
 const DialogueExercise = props => {
     const { answers, correct, title } = props.exercise;
+    const { animationDelay } = props;
     const { unitId, lessonId } = useParams();
     const [chosenAnswer, setChosenAnswer] = useState();
 
@@ -33,7 +34,7 @@ const DialogueExercise = props => {
 
 
     return (
-        <form className={classes.exercise} onSubmit={checkAnswer}>
+        <form className={classes.exercise} onSubmit={checkAnswer} style={{animationDelay: `${animationDelay}s`}}>
             <h3>{title}</h3>
             <div className={classes['exercise__radios']}>
             {radios}

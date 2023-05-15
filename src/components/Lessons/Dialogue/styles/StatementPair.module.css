@@ -6,6 +6,10 @@
     padding: 0.5rem;
     margin: 0.5rem 0;
     max-width: 50%;
+    position: relative;
+    transform: translateY(1rem);
+    visibility: hidden;
+    animation: pair 0.2s ease-in-out forwards;
 }
 
 .left {
@@ -16,4 +20,13 @@
 .right {
     align-self: flex-end;
     text-align: right;
+}
+
+@keyframes pair {
+    80% {
+        transform: scale(1.1);
+    } 100% {
+        visibility: visible;
+        transform: scale(1) translateY(0);
+    }
 }

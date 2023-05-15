@@ -22,6 +22,7 @@ const Conversation = (props) => {
             float={float}
             portuguese={conversation[i]}
             english={meaning[i]}
+            animationDelay={i + i}
           />
         );
         float = !float;
