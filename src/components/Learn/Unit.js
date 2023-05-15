@@ -19,7 +19,7 @@ const Unit = (props) => {
             <h3>{title}</h3>
             <Lessons lessons={lessons} unitId={unitId} />
             <Test test={test} unitId={unitId} />
-            <ProgressBar />
+            <ProgressBar unitId={unitId} numOfLessons={lessons.length} />
         </div>
     );
 };
