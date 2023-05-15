@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { auth } from '../../api/auth-api';
 import AuthContext from '../../context/AuthContext';
+import UserProgressContext from '../../context/UserProgressContext';
 
 import classes from './AuthForm.module.css';
 
@@ -11,6 +12,7 @@ const LoginForm = () => {
     const email = useRef();
     const password = useRef();
     const authCtx = useContext(AuthContext);
+    const userCtx = useContext(UserProgressContext);
     const navigate = useNavigate();
 
     const submitHandler = (event) => {
@@ -19,6 +21,7 @@ const LoginForm = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 authCtx.login(user.uid);
+                userCtx.fetchUserData(user.uid);
                 navigate('/learn');
             }).catch((err) => {
                 console.log(err);

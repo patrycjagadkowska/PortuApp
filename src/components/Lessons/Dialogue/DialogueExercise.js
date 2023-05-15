@@ -1,5 +1,7 @@
 import { useParams } from 'react-router';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+import UserProgressContext from '../../../context/UserProgressContext';
 
 import classes from './styles/DialogueExercise.module.css';
 
@@ -8,11 +10,12 @@ const DialogueExercise = props => {
     const { animationDelay } = props;
     const { unitId, lessonId } = useParams();
     const [chosenAnswer, setChosenAnswer] = useState();
+    const userCtx = useContext(UserProgressContext);
 
     const checkAnswer = (event) => {
         event.preventDefault();
         if (chosenAnswer === correct) {
-            alert("Good job!");
+            userCtx.updateData(unitId, lessonId, true);
         } else {
             alert("Wrong answer");
         }
