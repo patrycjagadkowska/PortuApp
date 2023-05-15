@@ -1,0 +1,8 @@
+.sentence {
+    margin: 0.5rem 0;
+}
+
+.sentence input:active,
+.sentence input:focus-visible {
+    outline-color: #7EB77F;
+}
