@@ -2,9 +2,11 @@ import classes from './styles/FlashcardExercise.module.css';
 
 const FlashcardExercise = (props) => {
     const { question, answers, correct } = props.data;
+    const { onCorrect } = props;
+    
     const checkAnswer = event => {
         if (event.target.textContent === correct) {
-            alert('Correct answer!');
+            onCorrect();
         } else {
             alert('Wrong answer!');
         }

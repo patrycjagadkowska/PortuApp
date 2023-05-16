@@ -37,10 +37,8 @@ export const UserProgressContextProvider = (props) => {
             });
         } else {
             await updateDoc(doc(database, "users", userId), {
-                [unitId]: {
-                    [lessonId]: {
-                        value
-                    }
+                [`${unitId}.${lessonId}`]: {
+                    value
                 }
             });
         }

@@ -3,12 +3,12 @@ import { useRef } from 'react';
 import classes from './styles/Sentence.module.css';
 
 const Sentence = props => {
-    const  { translate, translated, id } = props;
+    const  { translate, translated, id, onCorrect } = props;
     const textareaRef = useRef();
 
     const checkAnswer = () => {
         if (textareaRef.current.value === translated) {
-            alert("Good answer!");
+            onCorrect();
         } else {
             alert("Wrong answer!");
         }

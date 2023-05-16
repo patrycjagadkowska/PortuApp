@@ -1,21 +1,18 @@
 import { useParams } from 'react-router';
-import { useState, useContext } from 'react';
-
-import UserProgressContext from '../../../context/UserProgressContext';
+import { useState } from 'react';
 
 import classes from './styles/DialogueExercise.module.css';
 
 const DialogueExercise = props => {
     const { answers, correct, title } = props.exercise;
-    const { animationDelay } = props;
+    const { animationDelay, onCorrect } = props;
     const { unitId, lessonId } = useParams();
     const [chosenAnswer, setChosenAnswer] = useState();
-    const userCtx = useContext(UserProgressContext);
 
     const checkAnswer = (event) => {
         event.preventDefault();
         if (chosenAnswer === correct) {
-            userCtx.updateData(unitId, lessonId, true);
+            onCorrect();
         } else {
             alert("Wrong answer");
         }

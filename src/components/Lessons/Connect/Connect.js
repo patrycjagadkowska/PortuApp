@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 
 import WordsList from './WordsList';
+import { useDoneExercise } from '../../../hooks/useDoneExercise';
 
 import classes from './styles/Connect.module.css';
 
@@ -11,6 +13,8 @@ const Connect = props => {
     const [ foundPairs, setFoundPairs ] = useState([]);
     const [ firstClicked, setFirstClicked ] = useState();
     const [ firstLang, setFirstLang ] = useState();
+    const { unitId, lessonId } = useParams();
+    const updateDoneExercise = useDoneExercise(ptShuffled.length, unitId, lessonId);
 
     const shuffleArray = (array) => {
         return array.sort(() => Math.random() - 0.5);
@@ -42,14 +46,11 @@ const Connect = props => {
             setFoundPairs(copiedArray);
             setFirstLang(undefined);
             setFirstClicked(undefined);
+            updateDoneExercise();
         }
         if(firstClicked && firstLang !== lang && firstClicked !== id) {
             alert("Wrong answer!");
         }
-   }
-
-   if(foundPairs.length === pt.length) {
-    alert("All found!");
    }
 
     return (

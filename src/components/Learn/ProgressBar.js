@@ -13,7 +13,7 @@ const ProgressBar = (props) => {
     if (unitProgressData) {
         Object.entries(unitProgressData).forEach(([key, value]) => {
             if (value.value === true) {
-                totalProgress = +1;
+                totalProgress++;
             }
         });
     }
