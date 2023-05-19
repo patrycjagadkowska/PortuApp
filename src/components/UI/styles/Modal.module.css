@@ -31,8 +31,34 @@
     padding: 1rem 0;
 }
 
-.modal__text {
-    font-style: italic;
+.modal__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50%;
+}
+
+.modal__actions {
+    text-align: right;
+}
+
+.modal__actions a,
+.modal__actions button {
+    background-color: #7EB77F;
+    color:#fdf3eb;
+    text-decoration: none;
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    border: none;
+    margin: 0 0.25rem;
+}
+
+.modal__actions a:hover,
+.modal__actions a:active,
+.modal__actions button:hover,
+.modal__actions button:active {
+    background-color: #EE818A;
 }
 
 .backdrop {
@@ -42,5 +68,5 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
 }

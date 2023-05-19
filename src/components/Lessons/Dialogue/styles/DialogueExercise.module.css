@@ -19,7 +19,7 @@
 }
 
 .exercise__submitBtn {
-    width: 6rem;
+    min-width: 9rem;
     margin: 1rem;
     border-radius: 1rem;
     font-size: 1rem;
