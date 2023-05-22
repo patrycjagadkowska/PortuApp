@@ -3,7 +3,7 @@ import Word from './Word';
 import classes from './styles/WordsList.module.css';
 
 const WordsList = props => {
-    const { list, lang, checkClickedWord, foundPairs, firstClicked, firstLang } = props;
+    const { list, lang, checkClickedWord, foundPairs, firstClicked, firstLang, wrongAnswer } = props;
 
     const checkAnswer = (id) => {
         checkClickedWord(id, lang);
@@ -18,6 +18,7 @@ const WordsList = props => {
         foundPairs={foundPairs}
         firstClicked={firstClicked}
         firstLang={firstLang}
+        wrongAnswer={wrongAnswer}
       />
     ));
 
