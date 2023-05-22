@@ -9,7 +9,7 @@ const Sentence = (props) => {
 
     const dividedSentence = sentence.split('$');
 
-    const checkAnswer = (event) => {
+    const checkAnswer = () => {
         setWrongAnswer(false);
         if(inputRef.current.value === correct) {
             onCorrect();
@@ -17,7 +17,7 @@ const Sentence = (props) => {
         }
     };
 
-    const checkWrongAnswer = (event) => {
+    const checkWrongAnswer = () => {
         if (inputRef.current.value !== correct) {
             setWrongAnswer(true);
         }
