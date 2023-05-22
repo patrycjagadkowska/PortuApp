@@ -1,5 +1,5 @@
 import { useParams } from 'react-router';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import DataContext from '../context/DataContext';
 import Dialogue from '../components/Lessons/Dialogue/Dialogue';
@@ -16,6 +16,10 @@ const Lesson = () => {
     const dataCtx = useContext(DataContext);
     const lesson = dataCtx.getLesson(unitId, lessonId);
     const { title, content, type } = lesson;
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     
     return (
         <div className={classes.lesson}>
