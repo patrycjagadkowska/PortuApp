@@ -2,7 +2,28 @@
     margin: 0.5rem 0;
 }
 
+.sentence input {
+    text-align: center;
+}
+
 .sentence input:active,
 .sentence input:focus-visible {
     outline-color: #7EB77F;
+}
+
+span.sentence__wrong {
+    color: red;
+    font-size: 0.7rem;
+    border: 2px solid red;
+    border-radius: 1rem;
+    padding: 0.25rem;
+}
+
+.sentence input:disabled {
+    border: 2px solid #7EB77F;
+}
+
+input.sentence__wrong {
+    border-color: red;
+    border-style: solid;
 }

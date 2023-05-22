@@ -7,10 +7,13 @@ const Conjugation = props => {
     const  { verb, table, exercises, title } = props.data;
     
     return (
-        <div className={classes.conjugation}>
-            <VerbTable verb={verb} table={table} />
-            <ConjugationExercise title={title} exercises={exercises} />
-        </div>
+      <div className={classes.conjugation}>
+        <VerbTable verb={verb} table={table} />
+        <ConjugationExercise
+          title={title}
+          exercises={exercises}
+        />
+      </div>
     );
 };
 
