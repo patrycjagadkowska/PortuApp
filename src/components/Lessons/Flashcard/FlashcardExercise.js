@@ -1,28 +1,46 @@
+import { useState } from 'react';
+
 import classes from './styles/FlashcardExercise.module.css';
 
 const FlashcardExercise = (props) => {
     const { question, answers, correct } = props.data;
     const { onCorrect } = props;
+    const [ done, setDone ] = useState(false);
+
+    let flashcardClass = done
+      ? `${classes.flashcardExercise} ${classes["flashcardExercise__done"]}`
+      : classes.flashcardExercise;
     
     const checkAnswer = event => {
         if (event.target.textContent === correct) {
             onCorrect();
+            setDone(true);
+            event.target.classList.add(classes['flashcardExercise__answer--correct']);
         } else {
-            alert('Wrong answer!');
+            event.target.classList.add(classes['flashcardExercise__answer--incorrect']);
+            setTimeout(() => {
+                event.target.classList.remove(classes['flashcardExercise__answer--incorrect']);
+            }, 3000);
         }
     };
 
-    return <div className={classes.flashcardExercise}>
-        <div className={classes['flashcardExercise__question']}>
-            {question}
-            </div>
-        <div className={classes['flashcardExercise__answer']} onClick={checkAnswer}>
-            {answers[0]}
+    return (
+      <div className={flashcardClass}>
+        <div className={classes["flashcardExercise__question"]}>{question}</div>
+        <div
+          className={classes["flashcardExercise__answer"]}
+          onClick={done ? () => {} : checkAnswer}
+        >
+          {answers[0]}
         </div>
-        <div className={classes['flashcardExercise__answer']} onClick={checkAnswer}>
-            {answers[1]}
+        <div
+          className={classes["flashcardExercise__answer"]}
+          onClick={done ? () => {} : checkAnswer}
+        >
+          {answers[1]}
         </div>
-    </div>
+      </div>
+    );
 };
 
 export default FlashcardExercise;

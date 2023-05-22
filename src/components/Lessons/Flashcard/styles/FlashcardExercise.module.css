@@ -26,27 +26,55 @@
 
 .flashcardExercise__answer {
     cursor: pointer;
+    border-bottom-left-radius: 1rem;
 }
 
 .flashcardExercise__answer:last-child {
     border-left: 2px #7EB77F solid;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 0rem;
 }
 
 .flashcardExercise__answer:hover,
 .flashcardExercise__answer:active {
     background-color: #EE818A;
     color: #F5DBCB;
-    border-bottom-left-radius: 1rem;
 }
 
-.flashcardExercise__answer:last-child:hover,
-.flashcardExercise__answer:last-child:active {
-    border-bottom-right-radius: 1rem;
-    border-bottom-left-radius: 0rem;
+.flashcardExercise__answer--incorrect {
+    animation: incorrect 3s ease-in-out forwards;
+}
+
+.flashcardExercise__answer--correct, 
+.flashcardExercise__answer--correct:hover,
+.flashcardExercise__answer--correct:active {
+    background-color: #7EB77F;
+    color: #0B3954;
+    border-top: 2px solid #D6D5B3;
+}
+
+.flashcardExercise__done div {
+    cursor: default;
+}
+
+.flashcardExercise__done .flashcardExercise__answer:hover:not(.flashcardExercise__answer--correct),
+.flashcardExercise__done .flashcardExercise__answer:active:not(.flashcardExercise__answer--correct) {
+    background-color: inherit;
+    color: inherit;
 }
 
 @media (min-width: 576px) {
     .flashcardExercise {
         width: 50%;
+    }
+}
+
+@keyframes incorrect {
+    0% {
+        background-color: rgb(101, 23, 30);
+    } 40% {
+        background-color: rgba(238, 129, 138, 0.2);
+    } 100% {
+        background-color: rgba(238, 129, 138, 0);
     }
 }

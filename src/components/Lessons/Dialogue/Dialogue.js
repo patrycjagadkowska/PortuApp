@@ -10,7 +10,7 @@ import classes from './styles/Dialogue.module.css';
 const Dialogue = (props) => {
     const { data } = props;
     const { unitId, lessonId } = useParams();
-    const updateDoneExercises = useDoneExercise(data.length, unitId, lessonId);
+    const{ updateDoneExercises } = useDoneExercise(data.length, unitId, lessonId);
     
     const dialogueContent = data.map((dialoguePart, index) => {
         return (<Fragment key={`${unitId}/${lessonId}/${index}`}><Conversation conversation={dialoguePart.conversation} meaning={dialoguePart.meaning} />

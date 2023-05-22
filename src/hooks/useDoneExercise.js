@@ -17,5 +17,8 @@ export const useDoneExercise = (NUM_OF_EXERCIES, unitId, lessonId) => {
         }
     }, [numDone, NUM_OF_EXERCIES, updateData]);
 
-    return () => setNumDone(num => num + 1);
+    return {
+      updateDoneExercises: () => setNumDone((num) => num + 1),
+      numDone
+    };
 };
