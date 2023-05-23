@@ -8,7 +8,7 @@ import classes from './styles/Learn.module.css';
 const Learn = () => {
     const dataCtx = useContext(DataContext);
     return (
-        <div>
+        <div className={classes.learn}>
             <div className={classes.header}>
                 <h1>Choose your lesson</h1>
             </div>
