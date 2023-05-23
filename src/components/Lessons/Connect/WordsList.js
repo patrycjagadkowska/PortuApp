@@ -3,24 +3,32 @@ import Word from './Word';
 import classes from './styles/WordsList.module.css';
 
 const WordsList = props => {
-    const { list, lang, checkClickedWord, foundPairs, firstClicked, firstLang, wrongAnswer } = props;
+    const { checkClickedWord, data, lang } = props;
 
     const checkAnswer = (id) => {
         checkClickedWord(id, lang);
     };
 
-    const wordsList = list.map((word) => (
-      <Word
-        checkAnswer={checkAnswer}
-        word={word}
-        lang={lang}
-        key={`${lang}/${word.id}`}
-        foundPairs={foundPairs}
-        firstClicked={firstClicked}
-        firstLang={firstLang}
-        wrongAnswer={wrongAnswer}
-      />
-    ));
+    const wordsList =
+      data.ptShuffled && data.engShuffled && lang === "pt"
+        ? data.ptShuffled.map((word) => (
+            <Word
+              checkAnswer={checkAnswer}
+              lang={lang}
+              word={word}
+              key={`${lang}/${word.id}`}
+              data={data}
+            />
+          ))
+        : data.engShuffled.map((word) => (
+            <Word
+              checkAnswer={checkAnswer}
+              lang={lang}
+              word={word}
+              key={`${lang}/${word.id}`}
+              data={data}
+            />
+          ));
 
     return (
         <ul className={classes["words-list"]}>

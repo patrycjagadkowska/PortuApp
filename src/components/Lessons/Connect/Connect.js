@@ -1,107 +1,131 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useReducer, useCallback } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-import WordsList from './WordsList';
-import { useDoneExercise } from '../../../hooks/useDoneExercise';
-import Modal from '../../UI/Modal';
+import WordsList from "./WordsList";
+import { useDoneExercise } from "../../../hooks/useDoneExercise";
+import Modal from "../../UI/Modal";
+import { reducer } from "./reducerFn";
 
-import classes from './styles/Connect.module.css';
-import modalClasses from '../../UI/styles/Modal.module.css';
+import classes from "./styles/Connect.module.css";
+import modalClasses from "../../UI/styles/Modal.module.css";
 
-const Connect = props => {
-    const { pt, eng, title } = props.data;
-    const [ ptShuffled, setPtShuffled ] = useState([]);
-    const [ engShuffled, setEngShuffled ] = useState([]);
-    const [ foundPairs, setFoundPairs ] = useState([]);
-    const [ firstClicked, setFirstClicked ] = useState();
-    const [ firstLang, setFirstLang ] = useState();
-    const [ wrongAnswer, setWrongAnswer ] = useState();
-    const [ openModal, setOpenModal ] = useState(false);
-    const { unitId, lessonId } = useParams();
-    const { updateDoneExercises, numDone } = useDoneExercise(ptShuffled.length, unitId, lessonId);
+const initialState = {
+  ptShuffeled: [],
+  engShuffled: [],
+  foundPairs: [],
+  firstClicked: undefined,
+  firstLang: undefined,
+  wrongAnswer: undefined,
+};
 
-    const shuffleArray = (array) => {
-        return array.sort(() => Math.random() - 0.5);
-    };
+const Connect = (props) => {
+  const { pt, eng, title } = props.data;
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    ptShuffeled,
+    engShuffled,
+    foundPairs,
+    firstClicked,
+    firstLang,
+    wrongAnswer,
+  } = state;
+  const [openModal, setOpenModal] = useState(false);
+  const { unitId, lessonId } = useParams();
+  const [numOfExercises, setNumOfExercises] = useState();
+  const { updateDoneExercises, numDone } = useDoneExercise(
+    numOfExercises,
+    unitId,
+    lessonId
+  );
 
-    useEffect(() => {
-        setEngShuffled(shuffleArray(eng));
-        setPtShuffled(shuffleArray(pt));
-    }, [pt, eng]);
+  const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
 
-    useEffect(() => {
-      if (pt.length === numDone) {
-        setOpenModal(true);
-      }
-    }, [pt.length, setOpenModal, numDone]);
+  useEffect(() => {
+    dispatch({
+      type: "set_arrays",
+      pt: shuffleArray(pt),
+      eng: shuffleArray(eng),
+    });
+    setNumOfExercises(pt.length);
+  }, [pt, eng, setNumOfExercises]);
 
-   const checkClickedWord = (id, lang) => {
-        if(foundPairs.includes(id)) {
-            return;
-        }
-        if(!firstClicked) {
-            setFirstClicked(id);
-            setFirstLang(lang);
-        }
-        if(firstClicked && firstClicked === id && firstLang === lang) {
-            setFirstClicked(undefined);
-            setFirstLang(undefined);
-        }
-        if(firstClicked && firstClicked !== id && firstLang === lang) {
-            setFirstClicked(id);
-        }
-        if(firstClicked && firstLang !== lang && firstClicked === id) {
-            const copiedArray = [...foundPairs];
-            copiedArray.push(id);
-            setFoundPairs(copiedArray);
-            setFirstLang(undefined);
-            setFirstClicked(undefined);
-            updateDoneExercises();
-        }
-        if(firstClicked && firstLang !== lang && firstClicked !== id) {
-            setWrongAnswer({lang: lang, id: id});
-            setTimeout(() => setWrongAnswer(undefined), 3000);
-        }
-   }
+  const handleShowModal = useCallback(() => {
+    setOpenModal(true);
+  }, [setOpenModal]);
 
-    return (
-      <div className={classes.connect}>
-        <h3>{title}</h3>
-        <div className={classes["connect__lists"]}>
-          <WordsList
-            list={ptShuffled}
-            lang="pt"
-            checkClickedWord={checkClickedWord}
-            foundPairs={foundPairs}
-            firstClicked={firstClicked}
-            firstLang={firstLang}
-            wrongAnswer={wrongAnswer}
-          />
-          <WordsList
-            list={engShuffled}
-            lang="eng"
-            checkClickedWord={checkClickedWord}
-            foundPairs={foundPairs}
-            firstClicked={firstClicked}
-            firstLang={firstLang}
-            wrongAnswer={wrongAnswer}
-          />
-        </div>
-        {openModal && <Modal open={openModal} header="Well done" onClick={() => setOpenModal(false)}>
-        <div className={modalClasses["modal__content"]}>
-              All your answers are correct! You can go back and choose next
-              lesson or check again your answers.
-              <div className={modalClasses["modal__actions"]}>
-                <Link to="/learn">Go back</Link>
-                <button onClick={() => setOpenModal(false)}>
-                  Check your answers again
-                </button>
-              </div>
-            </div>
-        </Modal>}
+  useEffect(() => {
+    if (numOfExercises === numDone && numOfExercises !== 0) {
+      handleShowModal();
+    }
+  }, [numOfExercises, handleShowModal, numDone]);
+
+  useEffect(() => {
+    if (wrongAnswer) {
+      const timer = setTimeout(() => {
+        dispatch({ type: "clear_wrong_answer" });
+      }, 3000);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [wrongAnswer]);
+
+  const checkClickedWord = (id, lang) => {
+    if (foundPairs.includes(id)) {
+      return;
+    }
+    if (!firstClicked) {
+      dispatch({ type: "first_clicked", id: id, lang: lang });
+    }
+    if (firstClicked && firstClicked === id && firstLang === lang) {
+      dispatch({ type: "click_the_same" });
+    }
+    if (firstClicked && firstClicked !== id && firstLang === lang) {
+      dispatch({ type: "click_another", id: id });
+    }
+    if (firstClicked && firstLang !== lang && firstClicked === id) {
+      dispatch({ type: "found_pair", id: id });
+      updateDoneExercises();
+    }
+    if (firstClicked && firstLang !== lang && firstClicked !== id) {
+      dispatch({ type: "wrong_answer", id: id, lang: lang });
+    }
+  };
+
+  return (
+    <div className={classes.connect}>
+      <h3>{title}</h3>
+      <div className={classes["connect__lists"]}>
+        <WordsList lang="pt" data={state} checkClickedWord={checkClickedWord} />
+        <WordsList
+          lang="eng"
+          data={state}
+          checkClickedWord={checkClickedWord}
+        />
       </div>
-    );
+      {openModal && (
+        <Modal
+          open={openModal}
+          header="Well done"
+          onClick={() => setOpenModal(false)}
+        >
+          <div className={modalClasses["modal__content"]}>
+            All your answers are correct! You can go back and choose next lesson
+            or check again your answers.
+            <div className={modalClasses["modal__actions"]}>
+              <Link to="/learn">Go back</Link>
+              <button onClick={() => setOpenModal(false)}>
+                Check your answers again
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
 };
 
 export default Connect;
