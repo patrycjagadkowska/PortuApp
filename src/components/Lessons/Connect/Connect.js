@@ -1,14 +1,12 @@
 import { useState, useEffect, useReducer, useCallback } from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 
 import WordsList from "./WordsList";
 import { useDoneExercise } from "../../../hooks/useDoneExercise";
-import Modal from "../../UI/Modal";
+import LessonCompletedModal from '../LessonCompletedModal';
 import { reducer } from "./reducerFn";
 
 import classes from "./styles/Connect.module.css";
-import modalClasses from "../../UI/styles/Modal.module.css";
 
 const initialState = {
   ptShuffeled: [],
@@ -23,8 +21,6 @@ const Connect = (props) => {
   const { pt, eng, title } = props.data;
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
-    ptShuffeled,
-    engShuffled,
     foundPairs,
     firstClicked,
     firstLang,
@@ -42,6 +38,10 @@ const Connect = (props) => {
   const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
   };
+
+  const toggleModal = useCallback((bool) => {
+    setOpenModal(bool);
+  }, [setOpenModal]);
 
   useEffect(() => {
     dispatch({
@@ -106,24 +106,7 @@ const Connect = (props) => {
           checkClickedWord={checkClickedWord}
         />
       </div>
-      {openModal && (
-        <Modal
-          open={openModal}
-          header="Well done"
-          onClick={() => setOpenModal(false)}
-        >
-          <div className={modalClasses["modal__content"]}>
-            All your answers are correct! You can go back and choose next lesson
-            or check again your answers.
-            <div className={modalClasses["modal__actions"]}>
-              <Link to="/learn">Go back</Link>
-              <button onClick={() => setOpenModal(false)}>
-                Check your answers again
-              </button>
-            </div>
-          </div>
-        </Modal>
-      )}
+      {openModal && <LessonCompletedModal openModal={openModal} toggleModal={toggleModal} />}
     </div>
   );
 };
