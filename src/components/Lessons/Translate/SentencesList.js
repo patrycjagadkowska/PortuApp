@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 import Sentence from "./Sentence";
 import { useDoneExercise } from '../../../hooks/useDoneExercise';
@@ -21,7 +21,7 @@ const SentencesList = props => {
         if (NUM_OF_EXERCISES === numDone) {
             setOpenModal(true);
         }
-    }, [setOpenModal, sentences.length, numDone]);
+    }, [setOpenModal, NUM_OF_EXERCISES, numDone]);
 
     const sentencesList = sentences.map((sentence, index) => {
         const id = `${unitId}/${lessonId}/${index}`;
