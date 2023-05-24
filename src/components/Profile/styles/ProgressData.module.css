@@ -1,36 +1,22 @@
 .progressData {
-     width: 90%;
-     margin: 0 auto;
+    margin-bottom: 1rem;
 }
 
-.progressData h2 {
-    text-align: center;
-    color: #7EB77F;
-}
-
-.progressData__allCompleted {
-    background-color: #F5DBCB;
-    padding: 1rem;
-    border-radius: 1rem;
-    font-weight: 700;
-}
-
-.progressData__allCompleted h3 {
-    margin: 0;
-}
-
-.progressData__allCompleted ul {
-    margin: 0.5rem;
-}
-
-.progressData__allCompleted ul,
-.progressData__unitsList {
+.progressData ul {
     list-style-type: none;
     padding: 0;
-}
-
-.progressData__unitsList {
     margin: 1rem 0.5rem;
     border: 2px solid #7EB77F;
     border-radius: 1rem;
+}
+
+@media (min-width: 768px) {
+    .progressData {
+        grid-column: 1 / span 2;
+    }
+
+    .progressData ul {
+        width: 80%;
+        margin: 0 auto;
+    }
 }
