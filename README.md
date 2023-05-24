@@ -12,3 +12,7 @@ People in circle:
 https://easyvectors.com/download/community-team-teamwork-people-1404
 Laptop:
 https://easyvectors.com/download/laptop-notebook-computer-black-1723
+
+Profile page:
+Blank profile picture:
+https://easyvectors.com/download/blank-profile-picture-mystery-man-418

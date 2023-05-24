@@ -1,0 +1,60 @@
+.userData {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.userData h2 {
+    text-align: center;
+}
+
+.userData__photo {
+    width: 10rem;
+    height: 10rem;
+    position: relative;
+    margin: 0 auto;
+}
+
+.userData__photo img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.userData__photo button {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    background-color: #7EB77F;
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+}
+
+.userData__photo button svg {
+    width: 100%;
+    height: 100%;
+    color: #fdf3eb;
+}
+
+.userData__data--info {
+    font-weight: 700;
+}
+
+.userData__data button {
+    background-color: #7EB77F;
+    padding: 0.25rem 1rem;
+    border: none;
+    border-radius: 1rem;
+    font-size: 1rem;
+    margin: 0.25rem;
+    color: #fdf3eb;
+    cursor: pointer;
+}
+
+.userData__data button:hover,
+.userData__data button:active {
+    background-color: #EE818A;
+}

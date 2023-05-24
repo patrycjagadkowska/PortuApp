@@ -1,0 +1,20 @@
+.unitProgress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #7EB77F;
+    border-bottom: 1px solid #7EB77F;
+    padding: 0.25rem 0.5rem;
+}
+
+.unitProgress:first-child {
+    border-top: none;
+}
+
+.unitProgress:last-child {
+    border-bottom: none;
+}
+
+.unitProgress p {
+    margin: 0.25rem 0;
+}
