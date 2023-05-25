@@ -5,7 +5,7 @@ import UserProgressContext from '../../context/UserProgressContext';
 import classes from './styles/ProgressBar.module.css';
 
 const ProgressBar = (props) => {
-    const { numOfLessons, unitId } = props;
+    const { numOfLessons, unitId, shorter } = props;
     const userCtx = useContext(UserProgressContext);
     const unitProgressData = userCtx.progressData[unitId];
    
@@ -21,7 +21,7 @@ const ProgressBar = (props) => {
     const barWidth = totalProgress / numOfLessons * 100;
 
     return (
-        <div className={classes['progress-bar']}>
+        <div className={`${classes['progress-bar']} ${shorter ? classes["progress-bar__shorter"] : ""}`}>
             <div className={classes['bar-container']}>
             <div className={classes.bar} style={{width: `${barWidth}%`}}/>
             </div>

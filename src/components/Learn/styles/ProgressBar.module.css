@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.progress-bar__shorter {
+    width: 80%;
+}
+
 .bar-container {
     width: 90%;
     height: 1.5rem;
