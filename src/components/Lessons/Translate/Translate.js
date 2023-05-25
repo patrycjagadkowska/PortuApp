@@ -18,7 +18,7 @@ const Translate = props => {
 
     return (
         <div className={classes.translate}>
-            <h3>{title}</h3>
+            <h2>{title}</h2>
             <SentencesList sentences={sentences} toggleModal={toggleModal} />
             {openModal && <LessonCompletedModal openModal={openModal} toggleModal={toggleModal} />}
         </div>

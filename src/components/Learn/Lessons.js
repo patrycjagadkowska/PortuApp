@@ -28,9 +28,9 @@ const Lessons = (props) => {
                     {progressData &&
                     progressData[unitId] &&
                     progressData[unitId][lesson.id] ? (
-                    <>Completed! <HiOutlineBadgeCheck className={classes.done} /></>
+                    <><span>Completed! </span><HiOutlineBadgeCheck className={classes.done} /></>
                     ) : (
-                    <>Go to lesson <TbArrowBadgeRight className={classes.todo} /></>
+                    <><span>Go to lesson </span><TbArrowBadgeRight className={classes.todo} /></>
                     )}
                   </span>
                 </li>

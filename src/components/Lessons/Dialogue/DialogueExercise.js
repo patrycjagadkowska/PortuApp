@@ -36,7 +36,7 @@ const DialogueExercise = props => {
 
     return (
         <form className={classes.exercise} onSubmit={checkAnswer} style={{animationDelay: `${animationDelay}s`}}>
-            <h3>{title}</h3>
+            <h2>{title}</h2>
             <div className={classes['exercise__radios']}>
             {radios}
             </div>

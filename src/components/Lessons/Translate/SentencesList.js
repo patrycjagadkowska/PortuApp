@@ -24,9 +24,9 @@ const SentencesList = props => {
     });
 
     return (
-        <ol className={classes["sentences-list"]}>
+        <ul className={classes["sentences-list"]}>
             {sentencesList}
-        </ol>
+        </ul>
     );
 };
 

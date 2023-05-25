@@ -8,9 +8,8 @@
     animation: exercise 0.5s ease-in-out forwards;
 }
 
-.exercise h3 {
+.exercise h2 {
     text-align: center;
-    color: #7EB77F;
 }
 
 .exercise__radios {

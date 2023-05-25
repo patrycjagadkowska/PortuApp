@@ -39,6 +39,10 @@
     align-items: center;
 }
 
+.unit__item--badge span {
+    display: none;
+}
+
 .unit__item--badge svg {
     height: 1.5rem;
     width: 1.5rem;
@@ -50,4 +54,10 @@
 
 .todo {
     color: #EE818A;
+}
+
+@media (min-width: 576px) {
+    .unit__item--badge span {
+        display: inline;
+    }
 }

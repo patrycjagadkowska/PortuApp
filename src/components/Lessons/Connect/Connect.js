@@ -97,7 +97,7 @@ const Connect = (props) => {
 
   return (
     <div className={classes.connect}>
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       <div className={classes["connect__lists"]}>
         <WordsList lang="pt" data={state} checkClickedWord={checkClickedWord} />
         <WordsList

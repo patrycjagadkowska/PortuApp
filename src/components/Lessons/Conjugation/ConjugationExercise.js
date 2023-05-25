@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 import Sentence from './Sentence';
 import { useDoneExercise } from '../../../hooks/useDoneExercise';
 
-import classes from './styles/ConjugationExercise.module.css';
-
 const ConjugationExercise = props => {
     const { title, exercises, displayModal } = props;
     const { unitId, lessonId } = useParams();
@@ -23,9 +21,9 @@ const ConjugationExercise = props => {
     });
 
     return (
-      <div className={classes.exercises}>
-        <h3>{title}</h3>
-        <ol className={classes["exercises__list"]}>{exercisesList}</ol>
+      <div>
+        <h2>{title}</h2>
+        <ol>{exercisesList}</ol>
       </div>
     );
 };

@@ -7,10 +7,6 @@
     align-items: center;
 }
 
-.userData h2 {
-    color: #7EB77F;
-}
-
 .userData__photo {
     width: 10rem;
     height: 10rem;
