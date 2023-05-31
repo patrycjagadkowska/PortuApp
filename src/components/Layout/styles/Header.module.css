@@ -26,30 +26,18 @@
     color: #7EB77F;
 }
 
-.header__nav a {
-    text-decoration: none;
-}
-
 .header__nav a,
 .logoutBtn,
 .loggedInNavLink {
-    padding: 0.25rem 1rem;
     margin-left: 1rem;
-    border-radius: 1rem;
     border: 2px solid #EE818A;
-    font-size: 1rem;
+    background-color: #EE818A;
 }
 
 .header__nav a:first-child,
 .loggedInNavLink, 
 .logoutBtn {
-    background-color: #EE818A;
     display: none;
-    color: #F5DBCB;
-}
-
-.logoutBtn {
-    cursor: pointer;
 }
 
 .loggedInNavLink:hover, 
@@ -60,7 +48,6 @@
 .header__nav a:active {
     background-color: #7EB77F;
     border-color: #F5DBCB;
-    color: #F5DBCB;
 }
 
 @media (min-width: 576px) {
