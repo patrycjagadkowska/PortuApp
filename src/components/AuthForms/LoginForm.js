@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import { auth } from '../../api/auth-api';
 import AuthContext from '../../context/AuthContext';
 import UserProgressContext from '../../context/UserProgressContext';
+import Button from '../UI/Button';
 
 import classes from './AuthForm.module.css';
 
@@ -48,7 +49,7 @@ const LoginForm = () => {
           id="password"
           ref={password}
         />
-        <button className={classes["form__submit-btn"]}>Login</button>
+        <Button className={classes["form__submit-btn"]}>login</Button>
       </form>
     );
 };

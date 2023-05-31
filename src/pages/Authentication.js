@@ -22,7 +22,7 @@ const Authentication = () => {
     }, [pathname, navigate]);
 
     return (
-      <div className={classes.auth}>
+      <section className={classes.auth}>
         {renderLoginForm !== undefined && (
           <h1 className={classes["auth__header"]}>
             Please enter your data to{" "}
@@ -31,7 +31,7 @@ const Authentication = () => {
         )}
         {renderLoginForm && <LoginForm />}
         {renderLoginForm === false && <CreateAccountForm />}
-      </div>
+      </section>
     );
 };
 
