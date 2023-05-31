@@ -1,0 +1,14 @@
+.input-group {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.input-group label {
+    font-size: 1.2rem;
+}
+
+.input-group input[type="text"] {
+    outline-color: #7EB77F;
+}

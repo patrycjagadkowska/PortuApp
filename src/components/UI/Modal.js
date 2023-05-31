@@ -9,7 +9,7 @@ const Modal = (props) => {
       <>
         <dialog className={classes.modal} open={props.open}>
           <section>
-            <header className={classes["modal__header"]}>{props.header}</header>
+            <header className={classes["modal__header"]}><h2>{props.header}</h2></header>
             {props.children}
           </section>
         </dialog>

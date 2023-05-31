@@ -11,6 +11,7 @@
     width: 10rem;
     height: 10rem;
     position: relative;
+    margin: 0;
 }
 
 .userData__photo img {
@@ -44,6 +45,16 @@
 
 .userData__data--info {
     font-weight: 700;
+    max-width: 100%;
+    word-break: break-word;
+}
+
+.userData__data--actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    transform: translateX(-0.25rem);
+    justify-content: center;
 }
 
 .userData__data--actions button {
@@ -52,13 +63,9 @@
     border: none;
     border-radius: 1rem;
     font-size: 1rem;
-    margin: 0.25rem;
     color: #fdf3eb;
     cursor: pointer;
-}
-
-.userData__data--actions button:first-child {
-    margin-left: 0;
+    margin: 0.25rem;
 }
 
 .userData__data--actions button:hover,
@@ -68,7 +75,6 @@
 
 @media (max-width: 300px) {
     .userData__data--actions {
-        display: flex;
         flex-direction: column;
     }
 }
@@ -77,7 +83,7 @@
     .userData {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        width: 70%;
+        padding: 0 1rem;
     }
 
     .userData h2 {
@@ -98,16 +104,6 @@
 
     .userData__data--actions {
         margin-bottom: 0.5rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .userData {
-        min-width: 70%;
-        max-width: 90%;
-    }
-
-    .userData__data--actions button:last-child {
-        margin-left: 0;
+        justify-content: flex-start;
     }
 }

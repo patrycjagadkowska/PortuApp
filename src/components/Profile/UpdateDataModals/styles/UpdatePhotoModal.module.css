@@ -1,0 +1,50 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form label {
+    margin: 0.25rem 0;
+}
+
+.submitBtn {
+    max-width: fit-content;
+    margin: 1rem 0;
+}
+
+.closeBtn {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.submitBtn,
+.closeBtn {
+    padding: 0.25rem 1rem;
+    background-color: #7EB77F;
+    border: none;
+    border-radius: 1rem;
+    color: #fdf3eb;
+    font-size: 1rem;
+}
+
+.submitBtn:hover,
+.submitBtn:active,
+.closeBtn:hover,
+.closeBtn:active {
+    background-color: #EE818A;
+}
+
+.messages {
+    max-width: 50vw;
+    visibility: hidden;
+}
+
+.success-message {
+     color: #7EB77F
+}
+
+.error-message {
+    color: red;
+}
