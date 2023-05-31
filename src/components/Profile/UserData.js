@@ -5,9 +5,10 @@ import blankProfilePicutre from '../../assets/blank-profile-picture.svg'
 import UpdatePhotoModal from './UpdateDataModals/UpdatePhotoModal';
 import UpdateDataModal from './UpdateDataModals/UpdateDataModal';
 import { auth } from '../../api/auth-api';
+import ChangePasswordModal from './UpdateDataModals/ChangePasswordModal';
+import Button from '../UI/Button';
 
 import classes from './styles/UserData.module.css';
-import ChangePasswordModal from './UpdateDataModals/ChangePasswordModal';
 
 const UserData = () => {
     const [ openPhotoModal, setOpenPhotoModal ] = useState(false);
@@ -48,8 +49,8 @@ const UserData = () => {
             </span>
           </p>
           <div className={classes["userData__data--actions"]}>
-            <button onClick={() => toggleDataModal(true)}>edit data</button>
-            <button onClick={() => togglePasswordModal(true)}>change password</button>
+            <Button onClick={() => toggleDataModal(true)}>edit data</Button>
+            <Button onClick={() => togglePasswordModal(true)}>change password</Button>
           </div>
         </div>
         {openPhotoModal && (

@@ -39,6 +39,11 @@
     color: #fdf3eb;
 }
 
+.userData__photo:hover button,
+.userData__photo:active button {
+    background-color: #EE818A;
+}
+
 .userData__data {
     display: inline-block;
 }
@@ -58,19 +63,7 @@
 }
 
 .userData__data--actions button {
-    background-color: #7EB77F;
-    padding: 0.25rem 1rem;
-    border: none;
-    border-radius: 1rem;
-    font-size: 1rem;
-    color: #fdf3eb;
-    cursor: pointer;
     margin: 0.25rem;
-}
-
-.userData__data--actions button:hover,
-.userData__data--actions button:active {
-    background-color: #EE818A;
 }
 
 @media (max-width: 300px) {
