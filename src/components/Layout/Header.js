@@ -2,8 +2,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 
 import AuthContext from '../../context/AuthContext';
-import ButtonNavLink from '../UI/ButtonNavLink';
-import Button from '../UI/Button';
 
 import classes from './styles/Header.module.css';
 
@@ -23,22 +21,22 @@ const Header = () => {
           <NavLink to="/">PortuApp</NavLink>
         </div>
         <nav className={classes["header__nav"]}>
-          {!isLoggedIn && <ButtonNavLink to="/createAccount">Start learing</ButtonNavLink>}
-          {!isLoggedIn && <ButtonNavLink to="/login">Log in</ButtonNavLink>}
+          {!isLoggedIn && <NavLink to="/createAccount">Start learing</NavLink>}
+          {!isLoggedIn && <NavLink to="/login">Log in</NavLink>}
           {isLoggedIn && (
-            <ButtonNavLink to="/learn" className={classes.loggedInNavLink}>
+            <NavLink to="/learn" className={classes.loggedInNavLink}>
               Learn
-            </ButtonNavLink>
+            </NavLink>
           )}
           {isLoggedIn && (
-            <ButtonNavLink to="/profile" className={classes.loggedInNavLink}>
+            <NavLink to="/profile" className={classes.loggedInNavLink}>
               Profile
-            </ButtonNavLink>
+            </NavLink>
           )}
           {isLoggedIn && (
-            <Button onClick={logoutHandler} className={classes.logoutBtn}>
+            <button onClick={logoutHandler} className={classes.logoutBtn}>
               Logout
-            </Button>
+            </button>
           )}
         </nav>
       </header>
