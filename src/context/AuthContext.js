@@ -1,4 +1,7 @@
 import { createContext, useState } from "react";
+import { signOut } from 'firebase/auth';
+
+import { auth } from '../api/auth-api';
 
 const initialData = {
     isLoggedIn: false,
@@ -19,8 +22,12 @@ export const AuthContextProvider = props => {
     };
 
     const logout = () => {
-        setIsLoggedIn(false);
-        userToken = '';
+        signOut(auth).then(() => {
+          setIsLoggedIn(false);
+          userToken = "";
+        }).catch((error) => {
+            console.log(error.message);
+        });
     }
 
     const ctxValue = {
