@@ -5,6 +5,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import { useContext } from "react";
+import { getDocs, collection } from "firebase/firestore";
 
 import Welcome from "./pages/Welcome";
 import Layout from "./components/Layout/Layout";
@@ -14,10 +15,15 @@ import Learn from "./pages/Learn";
 import Lesson from "./pages/Lesson";
 import Profile from "./pages/Profile";
 import ErrorPage from "./pages/ErrorPage";
+import { database } from "./api/database-api";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
+
+  const fetchData = async () => {
+    return getDocs(collection(database, "lessons"));
+  };
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -27,7 +33,7 @@ const App = () => {
         {!isLoggedIn && (
           <Route path="/createAccount" element={<Authentication />} />
         )}
-        {isLoggedIn && <Route path="/learn" element={<Learn />} />}
+        {isLoggedIn && <Route path="/learn" element={<Learn />} loader={fetchData} />}
         {isLoggedIn && (
           <Route path="/learn/:unitId/:lessonId" element={<Lesson />} />
         )}
