@@ -1,7 +1,6 @@
-import { useParams } from 'react-router';
-import { useContext, useEffect } from 'react';
+import { useParams, useLoaderData } from 'react-router';
+import { useEffect, useState } from 'react';
 
-import DataContext from '../context/DataContext';
 import Dialogue from '../components/Lessons/Dialogue/Dialogue';
 import Conjugation from '../components/Lessons/Conjugation/Conjugation';
 import Translate from '../components/Lessons/Translate/Translate';
@@ -11,15 +10,23 @@ import Connect from '../components/Lessons/Connect/Connect';
 import classes from './styles/Lesson.module.css';
 
 const Lesson = () => {
-    const params = useParams();
-    const { unitId, lessonId } = params;
-    const dataCtx = useContext(DataContext);
-    const lesson = dataCtx.getLesson(unitId, lessonId);
-    const { title, content, type } = lesson;
+    const { lessonId } = useParams();
+    const [ lessonData, setLessonData ] = useState({});
+
+    const { title, content, type } = lessonData;
+
+    const fetchedData = useLoaderData();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    useEffect(() => {
+        const data = fetchedData.data().lessons.find((lesson) => {
+            return lesson.id === lessonId;
+        });
+        setLessonData(data);
+    }, [fetchedData, lessonId]);
     
     return (
         <div className={classes.lesson}>

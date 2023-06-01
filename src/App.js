@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import { useContext } from "react";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, getDoc, doc } from "firebase/firestore";
 
 import Welcome from "./pages/Welcome";
 import Layout from "./components/Layout/Layout";
@@ -21,8 +21,12 @@ const App = () => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
 
-  const fetchData = async () => {
+  const fetchAllUnitsData = async () => {
     return getDocs(collection(database, "lessons"));
+  };
+
+  const fetchLessonData = async ({ params }) => {
+        return getDoc(doc(database, "lessons", params.unitId));
   };
 
   const router = createBrowserRouter(
@@ -33,9 +37,9 @@ const App = () => {
         {!isLoggedIn && (
           <Route path="/createAccount" element={<Authentication />} />
         )}
-        {isLoggedIn && <Route path="/learn" element={<Learn />} loader={fetchData} />}
+        {isLoggedIn && <Route path="/learn" element={<Learn />} loader={fetchAllUnitsData} />}
         {isLoggedIn && (
-          <Route path="/learn/:unitId/:lessonId" element={<Lesson />} />
+          <Route path="/learn/:unitId/:lessonId" element={<Lesson />} loader={fetchLessonData} />
         )}
         {isLoggedIn && <Route path="/profile" element={<Profile />} />}
         <Route path="*" element={<ErrorPage />} />
