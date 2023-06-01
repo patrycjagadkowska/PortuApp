@@ -13,6 +13,7 @@ import AuthContext from "./context/AuthContext";
 import Learn from "./pages/Learn";
 import Lesson from "./pages/Lesson";
 import Profile from "./pages/Profile";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/learn/:unitId/:lessonId" element={<Lesson />} />
         )}
         {isLoggedIn && <Route path="/profile" element={<Profile />} />}
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     )
   );
