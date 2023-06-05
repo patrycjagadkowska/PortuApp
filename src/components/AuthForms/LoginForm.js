@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 
 import { auth } from '../../api/auth-api';
 import AuthContext from '../../context/AuthContext';
-import UserProgressContext from '../../context/UserProgressContext';
 import CustomButton from '../UI/CustomButton';
 
 import classes from './AuthForm.module.css';
@@ -13,7 +12,6 @@ const LoginForm = () => {
     const email = useRef();
     const password = useRef();
     const authCtx = useContext(AuthContext);
-    const userCtx = useContext(UserProgressContext);
     const navigate = useNavigate();
 
     const submitHandler = (event) => {
