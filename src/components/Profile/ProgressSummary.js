@@ -23,7 +23,7 @@ const ProgressSummary = () => {
     const unitLessons = data.find(unit => {
       return unit.id === key;
     });
-    const totalLessons = unitLessons.lessons.length;
+    const totalLessons = unitLessons && unitLessons.lessons.length;
     const numCompletedLessons = Object.keys(progressData[key]).length;
     lessonsCompleted = lessonsCompleted + numCompletedLessons;
     if (totalLessons === numCompletedLessons) {
