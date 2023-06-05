@@ -23,7 +23,7 @@ export const AuthContextProvider = props => {
 
     const login = async (token) => {
         const progressData = await getDoc(doc(database, "users", token));
-        setUserData(progressData, token);
+        setUserData(progressData.data(), token);
         setUserToken(token);
         setIsLoggedIn(true);
     };
