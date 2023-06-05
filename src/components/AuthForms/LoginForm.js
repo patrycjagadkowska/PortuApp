@@ -22,7 +22,6 @@ const LoginForm = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 authCtx.login(user.uid);
-                userCtx.fetchUserData(user.uid);
                 navigate('/learn');
             }).catch((err) => {
                 console.log(err);

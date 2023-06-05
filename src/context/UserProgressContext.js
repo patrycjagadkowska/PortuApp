@@ -1,11 +1,11 @@
 import { createContext, useState } from "react";
-import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 
 import { database } from "../api/database-api";
 
 const initialData = {
     userId: '',
-    fetchUserData: (userId) => {},
+    setUserData: (data, id) => {},
     progressData: [],
     updateData: (unitId, lessonId, value) => {}
 };
@@ -16,14 +16,10 @@ export const UserProgressContextProvider = (props) => {
     const [ progressData, setProgressData ] = useState([]);
     const [ userId, setUserId ] = useState('');
 
-    const fetchUserData = async (id) => {
+    const setUserData = (data, id) => {
+        setProgressData(data);
         setUserId(id);
-        const userRef = doc(database, "users", id);
-        const docSnap = await getDoc(userRef);
-        if (docSnap.exists()) {
-            setProgressData(docSnap.data());
-        }
-    }
+    };
 
     const updateData = async (unitId, lessonId, value) => {
         if (progressData.length === 0) {
@@ -45,10 +41,10 @@ export const UserProgressContextProvider = (props) => {
     }
 
     const ctxValue = {
-        userId: userId,
-        fetchUserData: fetchUserData,
-        progressData: progressData,
-        updateData: updateData
+        userId,
+        setUserData,
+        progressData,
+        updateData
     };
 
     return (
