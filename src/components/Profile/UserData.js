@@ -6,7 +6,7 @@ import UpdatePhotoModal from './UpdateDataModals/UpdatePhotoModal';
 import UpdateDataModal from './UpdateDataModals/UpdateDataModal';
 import { auth } from '../../api/auth-api';
 import ChangePasswordModal from './UpdateDataModals/ChangePasswordModal';
-import Button from '../UI/Button';
+import CustomButton from '../UI/CustomButton';
 
 import classes from './styles/UserData.module.css';
 
@@ -49,8 +49,8 @@ const UserData = () => {
             </span>
           </p>
           <div className={classes["userData__data--actions"]}>
-            <Button onClick={() => toggleDataModal(true)}>edit data</Button>
-            <Button onClick={() => togglePasswordModal(true)}>change password</Button>
+            <CustomButton onClick={() => toggleDataModal(true)}>edit data</CustomButton>
+            <CustomButton onClick={() => togglePasswordModal(true)}>change password</CustomButton>
           </div>
         </div>
         {openPhotoModal && (

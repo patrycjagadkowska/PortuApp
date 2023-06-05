@@ -5,28 +5,8 @@
 }
 
 .modal-form__submit {
-    grid-column: 1 / span 2;
-    min-width: 5rem;
-    max-width: 30%;
+    width: fit-content;
     margin: 1rem auto 0;
-}
-
-.modal-form__close,
-.modal-form__submit {
-    background-color: #7EB77F;
-    color: #fdf3eb;
-    border: none;
-    border-radius: 1rem;
-    padding: 0.25rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.modal-form__close:hover,
-.modal-form__close:active,
-.modal-form__submit:hover,
-.modal-form__submit:active {
-    background-color: #EE818A;
 }
 
 .modal-form__error {
@@ -46,5 +26,13 @@
     .modal-form {
         display: grid;
         grid-template-columns: 1fr 1fr;
+    }
+
+    .modal-form__submit {
+        grid-column: 1 / span 2;
+    }
+
+    .modal-form__spinner {
+        grid-column: 1 / span 2;
     }
 }

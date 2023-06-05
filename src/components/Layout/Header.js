@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import AuthContext from '../../context/AuthContext';
 import ButtonNavLink from '../UI/ButtonNavLink';
-import Button from '../UI/Button';
+import CustomButton from '../UI/CustomButton';
 
 import classes from './styles/Header.module.css';
 
@@ -36,9 +36,9 @@ const Header = () => {
             </ButtonNavLink>
           )}
           {isLoggedIn && (
-            <Button onClick={logoutHandler} className={classes.logoutBtn}>
+            <CustomButton onClick={logoutHandler} className={classes.logoutBtn}>
               Logout
-            </Button>
+            </CustomButton>
           )}
         </nav>
       </header>

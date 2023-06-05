@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import classes from './styles/Button.module.css';
+import classes from './styles/CustomButton.module.css';
 
 const ButtonNavLink = (props) => {
     return (
