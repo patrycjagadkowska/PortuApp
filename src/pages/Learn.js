@@ -7,19 +7,21 @@ import LoadingSpinner from '../components/UI/LoadingSpinner';
 import classes from './styles/Learn.module.css';
 
 const Learn = () => {
-    const fetchedData = useLoaderData();
+    const unitsData = useLoaderData();
     const [ units, setUnits ] = useState([]);
     const [ showSpinner, setShowSpinner ] = useState(false);
 
+    console.log(units);
+
     useEffect(() => {
-        setShowSpinner(true);
-        const unitsArr = [];
-        fetchedData.forEach((unit) => {
-            unitsArr.push(unit.data());
-        });
-        setUnits(unitsArr);
-        setShowSpinner(false);
-    }, [fetchedData]);
+      setShowSpinner(true);
+      const unitsArray = [];
+      unitsData.forEach((unit) => {
+        unitsArray.push(unit.data());
+      });
+      setUnits(unitsArray);
+      setShowSpinner(false);
+    }, [unitsData]);
 
     return (
       <div className={classes.learn}>
