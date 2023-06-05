@@ -5,6 +5,8 @@ import Modal from "../../UI/Modal";
 import UpdateName from "./UpdateName";
 import UpdateEmail from "./UpdateEmail";
 import { auth } from "../../../api/auth-api";
+import LoadingSpinner from '../../UI/LoadingSpinner';
+import CustomButton from '../../UI/CustomButton';
 
 import classes from './styles/UpdateDataModal.module.css';
 
@@ -15,6 +17,7 @@ const UpdateDataModal = (props) => {
     const [ nameError, setNameError ] = useState();
     const [ emailError, setEmailError ] = useState();
     const [ validationFeedback, setValidationFeedback] = useState();
+    const [ showSpinner, setShowSpinner ] = useState(false);
 
     const nameErrorMessage = "Please enter a valid name: no numbers, no special characters";
     const emailErrorMessage = "Please enter a valid email for example: name@domain.com";
@@ -31,6 +34,7 @@ const UpdateDataModal = (props) => {
 
     const handleUpdateData = (event) => {
         event.preventDefault();
+        setShowSpinner(true);
         setEmailError();
         setNameError();
         setValidationFeedback();
@@ -85,7 +89,7 @@ const UpdateDataModal = (props) => {
         if (!emailValue.checked && !nameValue.checked) {
             setValidationFeedback("You didn't choose any data to update");
         }
-
+          setShowSpinner(false);
     };
 
     return (
@@ -94,17 +98,18 @@ const UpdateDataModal = (props) => {
         onClick={toggleModal}
         open={openModal}
       >
-        <form onSubmit={handleUpdateData} className={classes["modal-form"]}>
+        <form className={classes["modal-form"]}>
           <UpdateName setNameValue={setNameValue} nameValue={nameValue.value} />
           <UpdateEmail setEmailValue={setEmailValue} emailValue={emailValue.value} />
           {nameError && <span className={classes["modal-form__error"]}>{nameError}</span>}
           {emailError && <span className={classes["modal-form__error"]}>{emailError}</span>}
-          <button className={classes["modal-form__submit"]} type="submit">Update data</button>
+          <CustomButton className={classes["modal-form__submit"]} onClick={handleUpdateData} type="submit">Update data</CustomButton>
           {validationFeedback && <span>{validationFeedback}</span>}
+          {showSpinner && <LoadingSpinner className={classes["modal-form__spinner"]} />}
         </form>
-        <button className={classes["modal-form__close"]} onClick={toggleModal} type="button">
+        <CustomButton className={classes["modal-form__close"]} onClick={toggleModal} type="button">
           Go back
-        </button>
+        </CustomButton>
       </Modal>
     );
 };

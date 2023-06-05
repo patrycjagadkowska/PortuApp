@@ -1,8 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
 
 import Modal from '../../UI/Modal';
 import { auth } from '../../../api/auth-api';
+import LoadingSpinner from '../../UI/LoadingSpinner';
+import CustomButton from '../../UI/CustomButton';
 
 import classes from './styles/ChangePasswordModal.module.css';
 
@@ -11,6 +13,7 @@ const ChangePasswordModal = (props) => {
     const oldPass = useRef();
     const newPass = useRef();
     const repeatPass = useRef();
+    const [ showSpinner, setShowSpinner ] = useState(false);
 
     const getCredentials = () => {
         const email = auth.currentUser.email;
@@ -27,45 +30,72 @@ const ChangePasswordModal = (props) => {
     };
 
     const handleChangePassword = (event) => {
-        event.preventDefault();
-        const passwordIsOk = verifyPassword();
-        if (passwordIsOk) {
-            const credential = getCredentials();
-            reauthenticateWithCredential(auth.currentUser, credential).then(() => {
-                updatePassword(auth.currentUser, newPass.current.value).then(() => {
-                    console.log("Password changed");
-                }).catch(error => {
-                    console.log(error.message);
-                })
-            }).catch(error => {
-                //error.message = Firebase: Error (auth/wrong-password).
-                //error.message = Firebase: Error (auth/missing-password).
+      event.preventDefault();
+      setShowSpinner(true);
+      const passwordIsOk = verifyPassword();
+      if (passwordIsOk) {
+        const credential = getCredentials();
+        reauthenticateWithCredential(auth.currentUser, credential)
+          .then(() => {
+            updatePassword(auth.currentUser, newPass.current.value)
+              .then(() => {
+                console.log("Password changed");
+              })
+              .catch((error) => {
                 console.log(error.message);
-            });
-        } else {
-            console.log("Passwords are not equal");
-        }
+              });
+          })
+          .catch((error) => {
+            //error.message = Firebase: Error (auth/wrong-password).
+            //error.message = Firebase: Error (auth/missing-password).
+            console.log(error.message);
+          });
+      } else {
+        console.log("Passwords are not equal");
+      }
+      setShowSpinner(false);
     };
 
     return (
-        <Modal open={openModal} onClick={toggleModal} header="Change your password">
-            <form onSubmit={handleChangePassword} className={classes.form}>
-                <label htmlFor="oldPass">
-                    Old password:
-                </label>
-                <input type="password" ref={oldPass} name="oldPassword" id="oldPass" />
-                <label htmlFor="newPass">
-                    New password: 
-                </label>
-                <input type="password" ref={newPass} name="newPassword" id="newPass" />
-                <label htmlFor="repeatedPass">
-                    Repeat new password:
-                </label>
-                <input type="password" ref={repeatPass} name="repeatedPassword" id="repeatedPass" />
-                <button className={classes["form__submitBtn"]}>change password</button>
-            </form>
-            <button onClick={toggleModal} className={classes["form__closeBtn"]}>go back</button>
-        </Modal>
+      <Modal
+        open={openModal}
+        onClick={toggleModal}
+        header="Change your password"
+      >
+        <form className={classes.form}>
+          <label htmlFor="oldPass">Old password:</label>
+          <input
+            type="password"
+            ref={oldPass}
+            name="oldPassword"
+            id="oldPass"
+          />
+          <label htmlFor="newPass">New password:</label>
+          <input
+            type="password"
+            ref={newPass}
+            name="newPassword"
+            id="newPass"
+          />
+          <label htmlFor="repeatedPass">Repeat new password:</label>
+          <input
+            type="password"
+            ref={repeatPass}
+            name="repeatedPassword"
+            id="repeatedPass"
+          />
+          <CustomButton className={classes["form__submitBtn"]} onClick={handleChangePassword}>
+            change password
+          </CustomButton>
+          {showSpinner && <LoadingSpinner />}
+        </form>
+        <CustomButton
+          onClick={toggleModal}
+          className={classes["form__closeBtn"]}
+        >
+          go back
+        </CustomButton>
+      </Modal>
     );
 };
 
