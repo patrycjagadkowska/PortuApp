@@ -3,8 +3,6 @@
 }
 
 .welcome__header {
-    min-height: 33vh;
-    background-color: #7EB77F;
     padding: 1rem 1rem 2rem;
     display: -moz-box;
     display: -webkit-box;
@@ -13,24 +11,35 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: #FFF;
+    background-color: #4C9F70;
+    border-bottom-right-radius: 30%;
+    border-bottom-left-radius: 30%;
+    position: relative;
 }
 
-.welcome__cta-btn {
-    background-color: #EE818A;
-    color: #F5DBCB;
+.welcome__header .welcome__cta-btn {
     text-decoration: none;
-    padding: 0.5rem 1.25rem;
-    border-radius: 1rem;
     font-size: 1.5rem;
-    max-width: 75%;
+    width: fit-content;
+    position: absolute;
+    bottom: 0.75rem;
 }
 
 .welcome__cta-btn {
     font-size: 2rem;
 }
 
-.welcome__stats h3 {
-    color: #0B3954;
+.welcome__red-link {
+    color: #BB2649;
+    transition: color 0.2s ease;
+}
+
+.welcome__red-link:hover,
+.welcome__red-linkactive {
+    color: #FFF;
 }
 
 .welcome__section--info img {
@@ -39,7 +48,12 @@
 
 .welcome__stats {
     margin-top: 1.5rem;
-    background-color: #EE818A;
+    background-color: #4C9F70;
+    color: #FFF;
+}
+
+.welcome__stats h3 {
+    color: #FFF;
 }
 
 .stats-wrapper { 
@@ -60,9 +74,11 @@
 /*tablet screens*/
 @media (min-width: 576px) {
     .welcome__header {
-        padding: 3.5rem 1rem;
+            padding: 3.5rem 1rem;
+            border-bottom-left-radius: 45%;
+            border-bottom-right-radius: 45%;
+        }
     }
-}
 
 /*laptops and bigger*/
 @media (min-width: 992px) {

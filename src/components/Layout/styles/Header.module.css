@@ -6,14 +6,16 @@
     justify-content: space-between;
     padding: 1rem 0.5rem;
     align-items: center;
-    height: 4.25rem;
-    background-color: #F5DBCB;
+    background-color: #4C9F70;
 }
 
 .header__logo {
     font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #FFF;
+    display: relative;
+    z-index: 0;
 }
 
 .header__logo a {
@@ -21,39 +23,49 @@
     color: inherit;
 }
 
-.header__logo a:hover,
-.header__logo a:active {
-    color: #7EB77F;
+.header__logo a:hover span,
+.header__logo a:active span {
+    font-weight: 700;
+}
+
+.header__logo span {
+    transition: all 0.1s ease;
+}
+
+.header__logo span:nth-child(2) {
+    transition-delay: 0.05s;
+}
+
+.header__logo span:nth-child(3) {
+    transition-delay: 0.1s;
+}
+
+.header__logo span:nth-child(4) {
+    transition-delay: 0.15s;
+}
+
+.header__logo span:nth-child(5) {
+    transition-delay: 0.2s;
+}
+
+.header__logo span:nth-child(6) {
+    transition-delay: 0.25s;
+}
+
+.header__logo span:nth-child(7) {
+    transition-delay: 0.3s;
+}
+
+.header__logo span:nth-child(8) {
+    transition-delay: 0.35s;
+}
+
+.header__nav {
+    display: flex;
 }
 
 .header__nav a,
 .logoutBtn,
 .loggedInNavLink {
     margin-left: 1rem;
-    border: 2px solid #EE818A;
-    background-color: #EE818A;
-}
-
-.header__nav a:first-child,
-.loggedInNavLink, 
-.logoutBtn {
-    display: none;
-}
-
-.loggedInNavLink:hover, 
-.loggedInNavLink:active,
-.logoutBtn:hover, 
-.logoutBtn:active,
-.header__nav a:hover,
-.header__nav a:active {
-    background-color: #7EB77F;
-    border-color: #F5DBCB;
-}
-
-@media (min-width: 576px) {
-    .header__nav a:first-child,
-    .loggedInNavLink,
-    .logoutBtn {
-        display: inline;
-    }
 }

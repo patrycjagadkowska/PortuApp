@@ -20,10 +20,21 @@ const Header = () => {
     return (
       <header className={classes.header}>
         <div className={classes["header__logo"]}>
-          <NavLink to="/">PortuApp</NavLink>
+          <NavLink to="/">
+            <span>P</span>
+            <span>o</span>
+            <span>r</span>
+            <span>t</span>
+            <span>u</span>
+            <span>A</span>
+            <span>p</span>
+            <span>p</span>
+          </NavLink>
         </div>
         <nav className={classes["header__nav"]}>
-          {!isLoggedIn && <ButtonNavLink to="/createAccount">Start learing</ButtonNavLink>}
+          {!isLoggedIn && (
+            <ButtonNavLink to="/createAccount">Start learing</ButtonNavLink>
+          )}
           {!isLoggedIn && <ButtonNavLink to="/login">Log in</ButtonNavLink>}
           {isLoggedIn && (
             <ButtonNavLink to="/learn" className={classes.loggedInNavLink}>

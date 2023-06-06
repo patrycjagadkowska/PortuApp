@@ -1,8 +1,12 @@
 .welcome__section h3 {
-    color: #7EB77F;
+    color: #BB2649;
     font-size: 1.75rem;
 }
 
 .welcome__section {
     padding: 1rem;
+}
+
+.welcome__section:last-child {
+    margin-bottom: 2rem;
 }

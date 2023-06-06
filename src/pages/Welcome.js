@@ -1,5 +1,3 @@
-import { NavLink } from "react-router-dom";
-
 import image1 from "../assets/welcome-section-image1.jpg";
 import image2 from "../assets/welcome-section-image2.jpg";
 import image3 from "../assets/welcome-section-image3.jpg";
@@ -75,11 +73,6 @@ const Welcome = () => {
           </p>
         </Card>
       </WelcomeSection>
-      <WelcomeSection title="Don't think more, just join us!">
-        <ButtonNavLink to="/" className={classes["welcome__cta-btn"]}>
-          Join PortuApp
-        </ButtonNavLink>
-      </WelcomeSection>
       <WelcomeSection
         className={classes["welcome__stats"]}
         title="PortuApp in nubmers"
@@ -116,6 +109,11 @@ const Welcome = () => {
         >
           Target image by rawpixel.com on Freepik
         </a>
+      </WelcomeSection>
+      <WelcomeSection title="Don't think more, just join us!">
+        <ButtonNavLink to="/" className={`${classes["welcome__cta-btn"]} ${classes["welcome__red-link"]}`}>
+          Join PortuApp
+        </ButtonNavLink>
       </WelcomeSection>
     </div>
   );

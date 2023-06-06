@@ -8,14 +8,10 @@ html {
 
 body {
   margin: 0;
-  background-color: #fdf3eb;
+  background-color: #FFF;
   font-family: 'Montserrat', sans-serif;
-  color: #0B3954;
+  color: #093148;
   min-height: 100%;
-}
-
-main {
-  min-height: calc(100vh - 4.25rem - 8rem);
 }
 
 @media (min-width: 992px) {
