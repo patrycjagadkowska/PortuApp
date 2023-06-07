@@ -12,21 +12,6 @@
     align-items: center;
 }
 
-.form__input {
-    border: none;
-    border-bottom: 1px solid #BB2649;
-    height: 2rem;
-}
-
-.form__input:focus,
-.form__input:focus-visible {
-    outline-color: #BB2649;
-}
-
-.form__input {
-    margin-bottom: 0.5rem;
-}
-
 .form__submit-btn {
     font-size: 2rem;
     color: #BB2649;
@@ -146,19 +131,22 @@
     animation: error 0.3s forwards;
 }
 
-@media (min-width: 576px) {
-    .form {
-            display: grid;
-            grid-template-columns: 33% auto;
-            grid-gap: 0.5rem;
-            align-items: center;
-            max-width: 75%;
-            margin: 1rem auto 0;
+@media (max-width: 360px) {
+    .form__submit-btn.create-account-button:hover::before {
+        height: 6rem;
     }
 
-    .form__submit-btn {
-        grid-column: 1 / span 2;
-        max-width: 50%;
+    .form__submit-btn.create-account-button.error:hover::before,
+    .form__submit-btn.create-account-button.spin:hover::before,
+    .form__submit-btn.create-account-button.success:hover::before {
+        height: 3rem;
+    }
+}
+
+@media (min-width: 576px) {
+    .form {
+         max-width: 75%;
+        margin: 1rem auto 0;
     }
 }
 

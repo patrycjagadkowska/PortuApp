@@ -1,19 +1,31 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { BsPerson } from 'react-icons/bs';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import { BiError } from 'react-icons/bi';
+import { useNavigate } from 'react-router';
 
 import { auth } from '../../api/auth-api';
+import AuthInput from './AuthInput';
+import { useInput } from '../../hooks/useInput';
 
-import classes from './AuthForm.module.css';
+import classes from './styles/AuthForm.module.css';
 
 const CreateAccountForm = () => {
-    const email = useRef();
-    const password = useRef();
-    const repeatedPassword = useRef();
+    const email = useInput("");
+    const password = useInput("");
+    const repeatedPassword = useInput("");
+    const [ emailError, setEmailError ] = useState();
+    const [ passError, setPassError ] = useState();
+    const [ repeatedPassError, setRepeatedPassError ] = useState();
+    const navigate = useNavigate();
 
     const submitHandler = (event) => {
         event.preventDefault();
+
+        setEmailError();
+        setPassError();
+        setRepeatedPassError();
 
         const removeSpin = () => {
           event.target.classList.remove(classes.spin)
@@ -27,74 +39,104 @@ const CreateAccountForm = () => {
         event.target.classList.remove(classes.success);
         event.target.classList.add(classes.spin);
 
-        const emailValue = email.current.value;
-        const passwordValue = password.current.value;
-        const repeatedPasswordValue = repeatedPassword.current.value;
 
-        if (emailValue.length === 0) {
+        if (email.value.length === 0) {
             removeSpin();
             addErrorClass();
-            console.log("Please enter your email");
+            setEmailError("Please enter your email");
             return;
-        } else if (passwordValue.length === 0) {
+        } else if (password.value.length === 0) {
             removeSpin();
             addErrorClass();
-            console.log("Please enter you password");
+            setPassError("Please enter you password");
             return;
-        } else if (repeatedPasswordValue.length === 0) {
+        } else if (repeatedPassword.value.length === 0) {
           removeSpin();
           addErrorClass();
-          console.log("Please repeat your password");
+          setRepeatedPassError("Please repeat your password");
             return;
-        } else if (passwordValue !== repeatedPasswordValue) {
+        } else if (password.value !== repeatedPassword.value) {
           removeSpin();
           addErrorClass();
-          console.log("Passwords are not equal");
+          setRepeatedPassError("Passwords are not equal");
             return;
         }
 
-        createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+        createUserWithEmailAndPassword(auth, email.value, password.value)
             .then((userCredential) => {
               removeSpin();
               event.target.classList.add(classes.success);
-                console.log(userCredential);
-            }).catch(err => {
+              setTimeout(() => {
+                navigate("/login");
+              }, 1000);
+            }).catch(error => {
               removeSpin();
-              event.target.classList.add(classes.success);
-                console.log(err);
+              event.target.classList.add(classes.error);
+              if (error.code === "auth/email-already-in-use") {
+                setRepeatedPassError("This email is already registered");
+              } else if (error.code === "auth/network-request-failed") {
+                setRepeatedPassError("Network error occured");
+              } else if (error.code === "auth/too-many-requests") {
+                setRepeatedPassError("We're sorry, we got too many requests. Please try again later.");
+              } else {
+                setRepeatedPassError(error.message);
+              }
             });
     };
 
     return (
       <form className={classes.form}>
-        <label className={classes["form__label"]} htmlFor="email">
-         <BsPerson /> Email
-        </label>
-        <input
-          className={classes["form__input"]}
+        <AuthInput
+          value={email.value}
+          onChange={email.onChange}
+          label={
+            <>
+              <BsPerson /> Email
+            </>
+          }
           type="email"
           id="email"
-          ref={email}
+          error={emailError &&
+            <>
+              <BiError /> {emailError}
+            </>
+          }
         />
-        <label className={classes["form__label"]} htmlFor="password">
-         <RiLockPasswordLine /> Password
-        </label>
-        <input
-          className={classes["form__input"]}
+        <AuthInput
+          value={password.value}
+          onChange={password.onChange}
+          label={
+            <>
+              <RiLockPasswordLine /> Password
+            </>
+          }
           type="password"
           id="password"
-          ref={password}
+          error={passError &&
+            <>
+              <BiError /> {passError}
+            </>
+          }
         />
-        <label className={classes["form__label"]} htmlFor="repeat-password">
-        <RiLockPasswordLine />  Repeat password
-        </label>
-        <input
-          className={classes["form__input"]}
+        <AuthInput
+          value={repeatedPassword.value}
+          onChange={repeatedPassword.onChange}
+          label={
+            <>
+              <RiLockPasswordLine /> Repeat password
+            </>
+          }
           type="password"
-          id="repeat-password"
-          ref={repeatedPassword}
+          id="repeated-password"
+          error={repeatedPassError && 
+            <>
+              <BiError /> {repeatedPassError}
+            </>
+          }
         />
-        <button onClick={submitHandler} className={classes["form__submit-btn"]}>Create account</button>
+        <button onClick={submitHandler} className={`${classes["form__submit-btn"]} ${classes["create-account-button"]}`}>
+          Create account
+        </button>
       </form>
     );
 };
