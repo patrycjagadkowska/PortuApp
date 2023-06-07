@@ -1,7 +1,4 @@
-import { createContext, useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
-
-import { database } from "../api/database-api";
+import { createContext, useState } from "react";
 
 const initialData = {
     data: [],
@@ -14,18 +11,6 @@ const DataContext = createContext(initialData);
 
 export const DataContextProvider = (props) => {
     const [unitsData, setUnitsData] = useState();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const unitsArr = [];
-            const fetchedData = await getDocs(collection(database, "lessons"));
-            fetchedData.forEach(unit => {
-                unitsArr.push(unit.data());
-            });
-            setUnitsData(unitsArr);
-        }
-        fetchData();
-    }, [setUnitsData]);
 
     const clearData = () => {
         setUnitsData(null);
