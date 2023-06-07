@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 
 import { auth } from '../../api/auth-api';
 import AuthContext from '../../context/AuthContext';
-import CustomButton from '../UI/CustomButton';
 
 import classes from './AuthForm.module.css';
 
@@ -16,18 +15,26 @@ const LoginForm = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();
+        event.target.classList.remove(classes.success);
+        event.target.classList.remove(classes.error);
+        event.target.classList.add(classes.spin);
+
         signInWithEmailAndPassword(auth, email.current.value, password.current.value)
             .then((userCredential) => {
+              event.target.classList.remove(classes.spin);
+              event.target.classList.add(classes.success);
                 const user = userCredential.user;
                 authCtx.login(user.uid);
                 navigate('/learn');
             }).catch((err) => {
+              event.target.classList.remove(classes.spin);
+              event.target.classList.add(classes.error);
                 console.log(err);
             });
     };
     
     return (
-      <form className={classes.form} onSubmit={submitHandler}>
+      <form className={classes.form}>
         <label className={classes["form__label"]} htmlFor="email">
           Email
         </label>
@@ -46,7 +53,7 @@ const LoginForm = () => {
           id="password"
           ref={password}
         />
-        <CustomButton className={classes["form__submit-btn"]}>login</CustomButton>
+        <button onClick={submitHandler} className={classes["form__submit-btn"]}>login</button>
       </form>
     );
 };

@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { BsPerson } from 'react-icons/bs';
+import { RiLockPasswordLine } from 'react-icons/ri';
 
 import { auth } from '../../api/auth-api';
 
@@ -13,36 +15,60 @@ const CreateAccountForm = () => {
     const submitHandler = (event) => {
         event.preventDefault();
 
+        const removeSpin = () => {
+          event.target.classList.remove(classes.spin)
+        };
+
+        const addErrorClass = () => {
+          event.target.classList.add(classes.error);
+        };
+
+        event.target.classList.remove(classes.error);
+        event.target.classList.remove(classes.success);
+        event.target.classList.add(classes.spin);
+
         const emailValue = email.current.value;
         const passwordValue = password.current.value;
         const repeatedPasswordValue = repeatedPassword.current.value;
 
         if (emailValue.length === 0) {
-            alert("Please enter your email");
+            removeSpin();
+            addErrorClass();
+            console.log("Please enter your email");
             return;
         } else if (passwordValue.length === 0) {
-            alert("Please enter your password");
+            removeSpin();
+            addErrorClass();
+            console.log("Please enter you password");
             return;
         } else if (repeatedPasswordValue.length === 0) {
-            alert("Please repeat your password");
+          removeSpin();
+          addErrorClass();
+          console.log("Please repeat your password");
             return;
         } else if (passwordValue !== repeatedPasswordValue) {
-            alert("Passwords are not equal")
+          removeSpin();
+          addErrorClass();
+          console.log("Passwords are not equal");
             return;
         }
 
         createUserWithEmailAndPassword(auth, emailValue, passwordValue)
             .then((userCredential) => {
+              removeSpin();
+              event.target.classList.add(classes.success);
                 console.log(userCredential);
             }).catch(err => {
+              removeSpin();
+              event.target.classList.add(classes.success);
                 console.log(err);
             });
     };
 
     return (
-      <form className={classes.form} onSubmit={submitHandler}>
+      <form className={classes.form}>
         <label className={classes["form__label"]} htmlFor="email">
-          Email
+         <BsPerson /> Email
         </label>
         <input
           className={classes["form__input"]}
@@ -51,7 +77,7 @@ const CreateAccountForm = () => {
           ref={email}
         />
         <label className={classes["form__label"]} htmlFor="password">
-          Password
+         <RiLockPasswordLine /> Password
         </label>
         <input
           className={classes["form__input"]}
@@ -60,7 +86,7 @@ const CreateAccountForm = () => {
           ref={password}
         />
         <label className={classes["form__label"]} htmlFor="repeat-password">
-          Repeat password
+        <RiLockPasswordLine />  Repeat password
         </label>
         <input
           className={classes["form__input"]}
@@ -68,7 +94,7 @@ const CreateAccountForm = () => {
           id="repeat-password"
           ref={repeatedPassword}
         />
-        <button className={classes["form__submit-btn"]}>Create account</button>
+        <button onClick={submitHandler} className={classes["form__submit-btn"]}>Create account</button>
       </form>
     );
 };

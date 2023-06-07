@@ -1,7 +1,8 @@
 .auth {
     padding: 2rem 1rem;
-    background-color: #D6D5B3;
-    margin: 0 1rem;
+    margin: 2rem 1rem 2rem;
+    border: 2px solid #BB2649;
+    border-radius: 1rem;
 }
 
 .auth__header {

@@ -7,26 +7,143 @@
     flex-direction: column;
 }
 
+.form__label {
+    display: flex;
+    align-items: center;
+}
+
 .form__input {
-    border: 2px solid #7EB77F;
-    border-radius: 1rem;
-    height: 1.375rem;
+    border: none;
+    border-bottom: 1px solid #BB2649;
+    height: 2rem;
 }
 
 .form__input:focus,
 .form__input:focus-visible {
-    outline: none;
-    border-color: #F5DBCB;
+    outline-color: #BB2649;
 }
 
 .form__input {
-    margin: 0.25rem 0 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-button.form__submit-btn {
-    margin: 0.5rem auto 0;
-    font-size: 1.5rem;
-    font-family: inherit;;
+.form__submit-btn {
+    font-size: 2rem;
+    color: #BB2649;
+    background-color: transparent;
+    width: fit-content;
+    margin: 1rem auto 0;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    padding: 0 0.5rem;
+    cursor: pointer;
+}
+
+.form__submit-btn::before {
+    content: '';
+    width: 3rem;
+    height: 3rem;
+    display: inline-block;
+    background-color: rgba(187, 38, 73, 0.25);
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border-radius: 28px;
+    transition: all 0.3s ease;
+}
+
+.form__submit-btn:hover::before {
+    background-color: #BB2649;
+    width: 100%;
+}
+
+.form__submit-btn:hover {
+    color: #FFF;
+}
+
+.form__submit-btn.spin,
+.form__submit-btn.success,
+.form__submit-btn.error {
+    color: transparent;
+}
+
+.form__submit-btn.spin:hover::before,
+.form__submit-btn.success:hover::before,
+.form__submit-btn.error:hover::before {
+    width: 3rem;
+}
+
+.spin::before {
+    width: 3rem;
+    height: 3rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #BB2649;
+    transition: width 0.2s ease;
+}
+
+.spin::after {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 4px solid #FFF;
+    border-left-color: transparent;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 0.5s linear infinite;
+}
+
+.success::before,
+.error::before {
+    background-color: #4C9F70;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error::before {
+    background-color: #BB2649;
+}
+
+.form__submit-btn.success::after {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 0.5rem;
+    top: 33%;
+    left: 50%;
+    border: 4px solid #FFF;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    position: absolute;
+    transform: translate(-50%, -33%);
+    animation: success 0.3s linear forwards;
+    z-index: 2;
+}
+
+.form__submit-btn.success:hover::before {
+    background-color: #4C9F70;
+}
+
+.error::after {
+    content: 'X';
+    color: #FFF;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 2;
+    animation: error 0.3s forwards;
 }
 
 @media (min-width: 576px) {
@@ -42,5 +159,29 @@ button.form__submit-btn {
     .form__submit-btn {
         grid-column: 1 / span 2;
         max-width: 50%;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    } 100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes success {
+    0% {
+        transform: translate(-50%, -33%) rotate(0deg) scale(0);
+    } 100% {
+        transform: translate(-50%, -33%) rotate(-45deg) scale(1);
+    }
+}
+
+@keyframes error {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(0);
+    } 100% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(1);
     }
 }
