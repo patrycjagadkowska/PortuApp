@@ -2,8 +2,7 @@ import { createContext, useState } from "react";
 
 const initialData = {
     data: [],
-    getUnit: (unitId) => {},
-    getLesson: (unitId, lessonId) => {},
+    setData: (data) => {},
     clearData: () => {}
 };
 
@@ -12,24 +11,18 @@ const DataContext = createContext(initialData);
 export const DataContextProvider = (props) => {
     const [unitsData, setUnitsData] = useState();
 
+    const setData = (data) => {
+        setUnitsData(data);
+    };
+
     const clearData = () => {
         setUnitsData(null);
     };
 
-    const getUnit = (unitId) => {
-        return unitsData.find(unit => unit.id === unitId);
-    };
-
-    const getLesson = (unitId, lessonId) => {
-        const unitData = getUnit(unitId);
-        return unitData.lessons.find(lesson => lesson.id === lessonId);
-    };
-
     const ctxValue = {
         data: unitsData,
-        getUnit: getUnit,
-        getLesson: getLesson,
-        clearData: clearData
+        setData,
+        clearData
     };
 
     return (
