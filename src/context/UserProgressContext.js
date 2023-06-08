@@ -7,7 +7,8 @@ const initialData = {
     userId: '',
     setUserData: (data, id) => {},
     progressData: [],
-    updateData: (unitId, lessonId, value) => {}
+    updateData: (unitId, lessonId, value) => {},
+    clearProgressData: () => {}
 };
 
 const UserProgressContext = createContext(initialData);
@@ -40,11 +41,16 @@ export const UserProgressContextProvider = (props) => {
         }
     }
 
+    const clearProgressData = () => {
+        setProgressData([]);
+    };
+
     const ctxValue = {
         userId,
         setUserData,
         progressData,
-        updateData
+        updateData,
+        clearProgressData
     };
 
     return (
