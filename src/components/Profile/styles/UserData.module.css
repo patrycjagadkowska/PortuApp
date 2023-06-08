@@ -66,6 +66,7 @@
     margin: 0.25rem;
     color: #BB2649;
     font-weight: bold;
+    text-align: left;
 }
 
 .userData__data--actions button:hover,
@@ -105,5 +106,9 @@
     .userData__data--actions {
         margin-bottom: 0.5rem;
         justify-content: flex-start;
+    }
+
+    .userData__data--actions button {
+        margin: 1rem 0;
     }
 }
