@@ -21,11 +21,13 @@
     height: 3rem;
     transition: all 0.3s ease;
     z-index: -1;
+    pointer-events: none;
 }
 
 button.button {
     border: none;
     cursor: pointer;
+    background-color: transparent;
 }
 
 a.button {
@@ -42,8 +44,4 @@ button > * {
 .button:hover::before {
     width: 100%;
     background-color: rgba(187, 38, 73, 1);
-}
-
-.button:active {
-    transform: scale(0.96);
 }
