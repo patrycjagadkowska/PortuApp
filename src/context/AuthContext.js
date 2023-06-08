@@ -1,7 +1,9 @@
 import { createContext, useState, useContext } from "react";
 import { signOut } from 'firebase/auth';
 import { doc, getDoc } from "firebase/firestore";
+
 import UserProgressContext from "./UserProgressContext";
+import DataContext from "./DataContext";
 
 import { auth } from '../api/auth-api';
 import { database } from "../api/database-api";
@@ -19,7 +21,8 @@ export const AuthContextProvider = props => {
     const [ isLoggedIn, setIsLoggedIn ] = useState();
     const [ userToken, setUserToken ] = useState();
 
-    const { setUserData } = useContext(UserProgressContext);
+    const { setUserData, clearProgressData } = useContext(UserProgressContext);
+    const { clearData } = useContext(DataContext);
 
     const login = async (token) => {
         const progressData = await getDoc(doc(database, "users", token));
@@ -32,6 +35,8 @@ export const AuthContextProvider = props => {
         signOut(auth).then(() => {
           setIsLoggedIn(false);
           setUserToken("");
+          clearData();
+          clearProgressData();
         }).catch((error) => {
             console.log(error.message);
         });
