@@ -11,7 +11,8 @@
 }
 
 .progressSummary__allCompleted {
-    background-color: #F5DBCB;
+    border: 4px solid #BB2649;
+    color: #BB2649;
     padding: 1rem;
     border-radius: 1rem;
     font-weight: 700;
