@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useLoaderData } from 'react-router';
 
 import Panel from '../components/Learn/Panel';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
+import DataContext from '../context/DataContext';
 
 import classes from './styles/Learn.module.css';
 
@@ -11,7 +12,7 @@ const Learn = () => {
     const [ units, setUnits ] = useState([]);
     const [ showSpinner, setShowSpinner ] = useState(false);
 
-    console.log(units);
+    const { setData } = useContext(DataContext);
 
     useEffect(() => {
       setShowSpinner(true);
@@ -22,6 +23,10 @@ const Learn = () => {
       setUnits(unitsArray);
       setShowSpinner(false);
     }, [unitsData]);
+
+    useEffect(() => {
+      setData(units);
+    }, [units, setData]);
 
     return (
       <div className={classes.learn}>
