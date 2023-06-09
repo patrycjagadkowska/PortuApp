@@ -5,8 +5,8 @@
     transform: translateY(-50%);
     width: 90%;
     border-radius: 1rem;
-    background-color: #fdf3eb;
-    border: 4px solid #7EB77F;
+    background-color: #FFF;
+    border: 4px solid #4C9F70;
 }
 
 .modal__header {
@@ -40,13 +40,6 @@
     font-size: 1rem;
     border: none;
     margin: 0 0.25rem;
-}
-
-.modal__actions a:hover,
-.modal__actions a:active,
-.modal__actions button:hover,
-.modal__actions button:active {
-    background-color: #EE818A;
 }
 
 .backdrop {
