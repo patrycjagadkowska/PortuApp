@@ -1,24 +1,28 @@
 import { updateProfile } from 'firebase/auth';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { MdOutlineHttps } from 'react-icons/md';
+import { BiError } from 'react-icons/bi';
 
 import Modal from '../../UI/Modal';
 import { auth } from '../../../api/auth-api';
+import CustomButton from '../../UI/CustomButton';
+import CustomInput from '../../UI/CustomInput';
+import { useInput } from '../../../hooks/useInput';
+import SubmitButton from '../../UI/SubmitButton';
 
 import classes from './styles/UpdatePhotoModal.module.css';
 
 const UpdatePhotoModal = (props) => {
     const { openModal, toggleModal } = props;
-    const inputRef = useRef();
-    const messagesRef = useRef();
-    const [ displayUpdatedMessage, setDisplayUpdatedMessage ] = useState(false);
-    const [ displayErrorMessage, setDisplayErrorMessage ] = useState(false);
-    const [ errorMessage, setErrorMessage ] = useState('');
+    const url = useInput("");
+    const [ message, setMessage ] = useState({ display: false, value: ""});
+    const [ submitButtonClass, setSubmitButtonClass ] = useState("");
 
-    const verifyURL = (url) => {
+    const verifyURL = () => {
       if (
-        (url.split(".").length > 1 && url.startsWith("http://")) ||
-        url.startsWith("https://") ||
-        url.startsWith("www.")
+        (url.value.split(".").length > 1 && url.value.startsWith("http://")) ||
+        url.value.startsWith("https://") ||
+        url.value.startsWith("www.")
       ) {
         return true;
       }
@@ -27,64 +31,51 @@ const UpdatePhotoModal = (props) => {
 
     const handleUploadPhoto = (event) => {
         event.preventDefault()
-        setDisplayErrorMessage(false);
-        if (inputRef.current.value === "") {
-            setErrorMessage('Please enter a valid URL starting with "http://", "https://" or "www.".');
-            setDisplayErrorMessage(true);
-            messagesRef.current.style.visibility = "visible";
-        }else if (verifyURL(inputRef.current.value)) {
+        setSubmitButtonClass("spin");
+        resetMessages();
+        if (url.value === "") {
+            setSubmitButtonClass("error");
+            setMessage({display: true, value: 'Please enter a valid URL starting with "http://", "https://" or "www.".'});
+        }else if (verifyURL()) {
             updateProfile(auth.currentUser, {
-                photoURL: inputRef.current.value
+                photoURL: url.value
             }).then(() => {
-                setDisplayUpdatedMessage(true);
-                messagesRef.current.style.visibility = "visible";
+              setSubmitButtonClass("success");
             }).catch((err) => {
-                setErrorMessage(err.message);
-                setDisplayErrorMessage(true);
-                messagesRef.current.style.visibility = "visible";
+                setMessage({display: true, value: err.message});
+                setSubmitButtonClass("error");
             });
         } else {
-            setErrorMessage('Please enter a valid URL starting with "http://", "https://" or "www.".');
-            setDisplayErrorMessage(true);
-            messagesRef.current.style.visibility = "visible";
+            setMessage({display: true, value: 'Please enter a valid URL starting with "http://", "https://" or "www.".'});
         }
     };
 
     const resetMessages = () => {
-        setDisplayErrorMessage(false);
-        setDisplayUpdatedMessage(false);
+        setMessage({display: false, value: ""});
     };
 
     return (
       <Modal open={openModal} onClick={toggleModal} header="Edit your photo">
-        <form onSubmit={handleUploadPhoto} className={classes.form}>
-          <label htmlFor="photoInput">
-            Please enter a valid URL to you photo:
-          </label>
-          <input
+        <form className={classes.form} noValidate>
+          <CustomInput
             type="url"
             id="photoInput"
-            ref={inputRef}
+            value={url.value}
+            onChange={url.onChange}
             onFocus={resetMessages}
-            noValidate
+            label={<>
+            <MdOutlineHttps /> Please enter a valid URL to your photo:
+            </>}
+            error={ message.display && <>
+            <BiError /> {message.value} </>}
           />
-          <button className={classes.submitBtn} type="submit">
-            upload photo
-          </button>
+          <SubmitButton onClick={handleUploadPhoto} setClass={submitButtonClass} >
+            Upload photo
+          </SubmitButton>
         </form>
-        <div className={classes.messages} ref={messagesRef} >
-          {displayUpdatedMessage && (
-            <p className={classes["success-message"]}>
-              Your photo has been updated.
-            </p>
-          )}
-          {displayErrorMessage && (
-            <p className={classes["error-message"]}>{errorMessage}</p>
-          )}
-        </div>
-        <button className={classes.closeBtn} onClick={toggleModal}>
-          close
-        </button>
+        <CustomButton className={classes.closeBtn} onClick={toggleModal}>
+          Close
+        </CustomButton>
       </Modal>
     );
 };

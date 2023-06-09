@@ -8,6 +8,18 @@
     margin: 0.25rem 0;
 }
 
+.submitBtn, 
+.closeBtn {
+    color: #BB2649;
+}
+
+.submitBtn:hover,
+.submitBtn:active,
+.closeBtn:hover,
+.closeBtn:active {
+    color: #FFF;
+}
+
 .submitBtn {
     max-width: fit-content;
     margin: 1rem 0;
@@ -17,23 +29,7 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.submitBtn,
-.closeBtn {
-    padding: 0.25rem 1rem;
-    background-color: #7EB77F;
-    border: none;
-    border-radius: 1rem;
-    color: #fdf3eb;
-    font-size: 1rem;
-}
-
-.submitBtn:hover,
-.submitBtn:active,
-.closeBtn:hover,
-.closeBtn:active {
-    background-color: #EE818A;
+    margin: 1rem 0;
 }
 
 .messages {
