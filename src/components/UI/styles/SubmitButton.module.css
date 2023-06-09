@@ -1,0 +1,142 @@
+.submitBtn {
+    font-size: 2rem;
+    color: #BB2649;
+    background-color: transparent;
+    width: fit-content;
+    margin: 1rem auto 0;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    padding: 0 0.5rem;
+    cursor: pointer;
+}
+
+.submitBtn::before {
+    content: '';
+    width: 3rem;
+    height: 3rem;
+    display: inline-block;
+    background-color: rgba(187, 38, 73, 0.25);
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border-radius: 28px;
+    transition: all 0.3s ease;
+}
+
+.submitBtn:hover::before {
+    background-color: #BB2649;
+    width: 100%;
+}
+
+.submitBtn:hover {
+    color: #FFF;
+}
+
+.submitBtn.spin,
+.submitBtn.success,
+.submitBtn.error {
+    color: transparent;
+}
+
+.submitBtn.spin:hover::before,
+.submitBtn.success:hover::before,
+.submitBtn.error:hover::before {
+    width: 3rem;
+}
+
+.spin::before {
+    width: 3rem;
+    height: 3rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #BB2649;
+    transition: width 0.2s ease;
+}
+
+.spin::after {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 4px solid #FFF;
+    border-left-color: transparent;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 0.5s linear infinite;
+}
+
+.success::before,
+.error::before {
+    background-color: #4C9F70;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error::before {
+    background-color: #BB2649;
+}
+
+.submitBtn.success::after {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 0.5rem;
+    top: 33%;
+    left: 50%;
+    border: 4px solid #FFF;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    position: absolute;
+    transform: translate(-50%, -33%);
+    animation: success 0.3s linear forwards;
+    z-index: 2;
+}
+
+.submitBtn.success:hover::before {
+    background-color: #4C9F70;
+}
+
+.error::after {
+    content: 'X';
+    color: #FFF;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 2;
+    animation: error 0.3s forwards;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    } 100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes success {
+    0% {
+        transform: translate(-50%, -33%) rotate(0deg) scale(0);
+    } 100% {
+        transform: translate(-50%, -33%) rotate(-45deg) scale(1);
+    }
+}
+
+@keyframes error {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(0);
+    } 100% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(1);
+    }
+}
