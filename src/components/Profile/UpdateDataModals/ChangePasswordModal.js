@@ -1,59 +1,79 @@
-import { useRef, useState } from 'react';
+import {  useState } from 'react';
 import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
 
 import Modal from '../../UI/Modal';
 import { auth } from '../../../api/auth-api';
-import LoadingSpinner from '../../UI/LoadingSpinner';
 import CustomButton from '../../UI/CustomButton';
+import CustomInput from '../../UI/CustomInput';
+import SubmitButton from '../../UI/SubmitButton';
+import { useInput } from '../../../hooks/useInput';
+import { BiError } from 'react-icons/bi';
+import { RiLockPasswordLine } from 'react-icons/ri';
 
 import classes from './styles/ChangePasswordModal.module.css';
 
 const ChangePasswordModal = (props) => {
     const { openModal, toggleModal } = props;
-    const oldPass = useRef();
-    const newPass = useRef();
-    const repeatPass = useRef();
-    const [ showSpinner, setShowSpinner ] = useState(false);
+    const oldPass = useInput("");
+    const newPass = useInput("");
+    const repeatedPass = useInput("");
+    const [ submitButtonClass, setSubmitButtonClass ] = useState("");
+    const [ error, setError ] = useState(null);
 
     const getCredentials = () => {
         const email = auth.currentUser.email;
-        const password = oldPass.current.value;
+        const password = oldPass.value;
         const credential = EmailAuthProvider.credential(email, password);
         return credential;
     };
 
     const verifyPassword = () => {
-        if (newPass.current.value === repeatPass.current.value) {
+        if (newPass.value === repeatedPass.value) {
             return true;
         }
         return false;
     };
 
-    const handleChangePassword = (event) => {
+    const handlePasswordChange = (event) => {
       event.preventDefault();
-      setShowSpinner(true);
+      setError(null);
+      setSubmitButtonClass("spin");
+      
       const passwordIsOk = verifyPassword();
       if (passwordIsOk) {
         const credential = getCredentials();
         reauthenticateWithCredential(auth.currentUser, credential)
           .then(() => {
-            updatePassword(auth.currentUser, newPass.current.value)
+            updatePassword(auth.currentUser, newPass.value)
               .then(() => {
-                console.log("Password changed");
+                setSubmitButtonClass("success");
               })
               .catch((error) => {
-                console.log(error.message);
+                setSubmitButtonClass("error");
+                setError(error.code)
               });
           })
           .catch((error) => {
-            //error.message = Firebase: Error (auth/wrong-password).
-            //error.message = Firebase: Error (auth/missing-password).
-            console.log(error.message);
+            setSubmitButtonClass("error");
+            switch (error.code) {
+              case "auth/wrong-password": {
+                setError("Old password is invalid.");
+                break;
+              }
+              case "auth/missing-password": {
+                setError("You haven't provided the old password.");
+                break;
+              }
+              default: {
+                setError(error.message);
+                break;
+              }
+            }
           });
       } else {
-        console.log("Passwords are not equal");
+        setSubmitButtonClass("error");
+        setError("Passwords are not equal.");
       }
-      setShowSpinner(false);
     };
 
     return (
@@ -63,31 +83,41 @@ const ChangePasswordModal = (props) => {
         header="Change your password"
       >
         <form className={classes.form}>
-          <label htmlFor="oldPass">Old password:</label>
-          <input
+          <CustomInput
+            label={
+              <>
+                <RiLockPasswordLine /> Old password
+              </>
+            }
             type="password"
-            ref={oldPass}
-            name="oldPassword"
-            id="oldPass"
+            id="old-password"
+            value={oldPass.value}
+            onChange={oldPass.onChange}
           />
-          <label htmlFor="newPass">New password:</label>
-          <input
-            type="password"
-            ref={newPass}
-            name="newPassword"
-            id="newPass"
+          <CustomInput
+          label={<>
+          <RiLockPasswordLine /> New password:
+          </>}
+          type="password"
+          id="new-password"
+          value={newPass.value}
+          onChange={newPass.onChange}
           />
-          <label htmlFor="repeatedPass">Repeat new password:</label>
-          <input
-            type="password"
-            ref={repeatPass}
-            name="repeatedPassword"
-            id="repeatedPass"
-          />
-          <CustomButton className={classes["form__submitBtn"]} onClick={handleChangePassword}>
+          <CustomInput
+          label={<>
+          <RiLockPasswordLine /> Repeat new password:</>}
+          type="password"
+          id="repeated-password"
+          value={repeatedPass.value}
+          onChange={repeatedPass.onChange}
+          error={error &&<>
+          <BiError /> {error}</>} />
+          <SubmitButton
+            setClass={submitButtonClass}
+            onClick={handlePasswordChange}
+          >
             change password
-          </CustomButton>
-          {showSpinner && <LoadingSpinner />}
+          </SubmitButton>
         </form>
         <CustomButton
           onClick={toggleModal}
