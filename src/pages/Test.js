@@ -3,6 +3,9 @@ import { useState } from "react";
 
 import CustomButton from "../components/UI/CustomButton";
 import ButtonNavLink from "../components/UI/ButtonNavLink";
+import TestContainer from '../components/Test/TestContainer';
+
+import classes from './styles/Test.module.css';
 
 const Test = () => {
     const { unitId } = useParams();
@@ -15,7 +18,7 @@ const Test = () => {
     };
 
     return (
-      <section>
+      <section className={classes.test}>
         <h2>Test Unit {unitNum}</h2>
         {!quizStarted && (
           <>
@@ -29,6 +32,7 @@ const Test = () => {
             <ButtonNavLink to="/learn">go back</ButtonNavLink>
           </>
         )}
+        {quizStarted && <TestContainer />}
       </section>
     );
 };
