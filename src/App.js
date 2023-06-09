@@ -16,6 +16,7 @@ import Lesson from "./pages/Lesson";
 import Profile from "./pages/Profile";
 import ErrorPage from "./pages/ErrorPage";
 import { database } from "./api/database-api";
+import Test from "./pages/Test";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
@@ -41,6 +42,7 @@ const App = () => {
         {isLoggedIn && (
           <Route path="/learn/:unitId/:lessonId" element={<Lesson />} loader={fetchLessonData} />
         )}
+        {isLoggedIn && <Route path="/learn/:unitId/test" element={<Test />} loader={fetchLessonData} />}
         {isLoggedIn && <Route path="/profile" element={<Profile />} />}
         <Route path="*" element={<ErrorPage />} />
       </Route>
