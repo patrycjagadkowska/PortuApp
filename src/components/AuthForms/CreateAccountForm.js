@@ -6,7 +6,7 @@ import { BiError } from 'react-icons/bi';
 import { useNavigate } from 'react-router';
 
 import { auth } from '../../api/auth-api';
-import AuthInput from './AuthInput';
+import CustomInput from '../UI/CustomInput';
 import { useInput } from '../../hooks/useInput';
 
 import classes from './styles/AuthForm.module.css';
@@ -86,7 +86,7 @@ const CreateAccountForm = () => {
 
     return (
       <form className={classes.form}>
-        <AuthInput
+        <CustomInput
           value={email.value}
           onChange={email.onChange}
           label={
@@ -102,7 +102,7 @@ const CreateAccountForm = () => {
             </>
           }
         />
-        <AuthInput
+        <CustomInput
           value={password.value}
           onChange={password.onChange}
           label={
@@ -118,7 +118,7 @@ const CreateAccountForm = () => {
             </>
           }
         />
-        <AuthInput
+        <CustomInput
           value={repeatedPassword.value}
           onChange={repeatedPassword.onChange}
           label={

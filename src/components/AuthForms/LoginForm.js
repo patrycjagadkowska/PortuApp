@@ -8,7 +8,7 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 import { auth } from '../../api/auth-api';
 import AuthContext from '../../context/AuthContext';
 import { useInput } from '../../hooks/useInput';
-import AuthInput from './AuthInput';
+import CustomInput from '../UI/CustomInput';
 
 import classes from './styles/AuthForm.module.css';
 
@@ -74,7 +74,7 @@ const LoginForm = () => {
     
     return (
       <form className={classes.form}>
-        <AuthInput
+        <CustomInput
           type="email"
           value={email.value}
           onChange={email.onChange}
@@ -92,7 +92,7 @@ const LoginForm = () => {
             )
           }
         />
-        <AuthInput
+        <CustomInput
           type="password"
           value={password.value}
           onChange={password.onChange}

@@ -1,6 +1,6 @@
-import classes from './styles/AuthInput.module.css';
+import classes from './styles/CustomInput.module.css';
 
-const AuthInput = ({ label, type, error, id, value, onChange }) => {
+const CustomInput = ({ label, type, error, id, value, onChange }) => {
     return (
       <div className={classes["auth-input"]}>
         <label htmlFor={id}>{label}</label>
@@ -10,4 +10,4 @@ const AuthInput = ({ label, type, error, id, value, onChange }) => {
     );
 };
 
-export default AuthInput;
+export default CustomInput;
