@@ -2,94 +2,87 @@ import { useState } from "react";
 import { updateProfile, updateEmail } from "firebase/auth";
 
 import Modal from "../../UI/Modal";
-import UpdateName from "./UpdateName";
-import UpdateEmail from "./UpdateEmail";
 import { auth } from "../../../api/auth-api";
-import LoadingSpinner from '../../UI/LoadingSpinner';
 import CustomButton from '../../UI/CustomButton';
+import SubmitButton from '../../UI/SubmitButton';
+import CustomInput from '../../UI/CustomInput';
+import { useInput } from '../../../hooks/useInput';
+import { MdOutlineMailOutline } from 'react-icons/md';
+import { BsPerson } from "react-icons/bs";
+import { BiError } from "react-icons/bi";
+import { verifyEmail, verifyName } from "../../../utils/validationFunctions";
 
 import classes from './styles/UpdateDataModal.module.css';
 
 const UpdateDataModal = (props) => {
     const { openModal, toggleModal } = props;
-    const [ nameValue, setNameValue ] = useState({checked: false, value: ""});
-    const [ emailValue, setEmailValue ] = useState({checked: false, value: ""});
-    const [ nameError, setNameError ] = useState();
-    const [ emailError, setEmailError ] = useState();
-    const [ validationFeedback, setValidationFeedback] = useState();
-    const [ showSpinner, setShowSpinner ] = useState(false);
+    const [ nameError, setNameError ] = useState(null);
+    const [ emailError, setEmailError ] = useState(null);
+    const [ submitButtonClass, setSubmitButtonClass ] = useState("");
+
+    const name = useInput("");
+    const email = useInput("");
 
     const nameErrorMessage = "Please enter a valid name: no numbers, no special characters";
     const emailErrorMessage = "Please enter a valid email for example: name@domain.com";
 
-    const verifyEmail = (email) => {
-        const emailRegex = /^[A-Z0-9._-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-        return emailRegex.test(email);
+    const updateUserName = () => {
+      return updateProfile(auth.currentUser, {displayName: name.value});
     };
 
-    const verifyName = (name) => {
-        const nameRegex = /^[A-Za-z]+$/;
-        return nameRegex.test(name);
-    };
+    const updateUserEmail = () => {
+      return updateEmail(auth.currentUser, email.value);
+    }
 
     const handleUpdateData = (event) => {
         event.preventDefault();
-        setShowSpinner(true);
-        setEmailError();
-        setNameError();
-        setValidationFeedback();
-        if (emailValue.checked && nameValue.checked) {
-            if (verifyEmail(emailValue.value) && verifyName(nameValue.value)) {
-                updateProfile(auth.currentUser, {
-                  displayName: nameValue.value,
-                })
-                  .then(() => {
-                    updateEmail(auth.currentUser, emailValue.value);
-                  })
-                  .then(() => {
-                    setValidationFeedback("Your data has been sent!");
-                  })
-                  .catch((error) => {
-                    setValidationFeedback(error.message);
-                  });
-            } else if (verifyEmail(emailValue.value) && !verifyName(nameValue.value)) {
-                setNameError(nameErrorMessage);
-            } else if (!verifyEmail(emailValue.value) && verifyName(nameValue.value)) {
-                setEmailError(emailErrorMessage);
-            } else {
-                setEmailError(emailErrorMessage);
-                setNameError(nameErrorMessage);
-            }
-        }
+        setEmailError(null);
+        setNameError(null);
+        setSubmitButtonClass("spin");
 
-        if (emailValue.checked && !nameValue.checked) {
-            if (verifyEmail(emailValue.value)) {
-                updateEmail(auth.currentUser, emailValue.value).then(() => {
-                    setValidationFeedback("Your email has been updated!");
-                }).catch((error) => {
-                    setValidationFeedback(error.message);
-                });
-            } else {
-                setEmailError(emailErrorMessage);
-            }
-        }
+      //check if both are empty and display error
+      if (name.value === "" && email.value === "") {
+        setSubmitButtonClass("error");
+        setEmailError("You haven't chosen any data to update");
+      }
 
-        if (!emailValue.checked && nameValue.checked) {
-            if (verifyName(nameValue.value)) {
-                updateProfile(auth.currentUser, {
-                  displayName: nameValue.value,
-                }).then(() => {
-                    setValidationFeedback("Your name has been updated!");
-                }).catch((error) => setValidationFeedback(error.message));
-            } else {
-                setNameError(nameErrorMessage);
-            }
-        }
+      //check if name is invalid
+      if (name.value !== "" && !verifyName(name.value)) {
+        setSubmitButtonClass("error");
+        setNameError(nameErrorMessage);
+        return;
+      }
 
-        if (!emailValue.checked && !nameValue.checked) {
-            setValidationFeedback("You didn't choose any data to update");
-        }
-          setShowSpinner(false);
+      //check if email is invalid
+      if (email.value !== "" && !verifyEmail(email.value)) {
+        setSubmitButtonClass("error");
+        setEmailError(emailErrorMessage);
+        return;
+      }
+
+      let nameUpdatePromise = Promise.resolve();
+      let emailUpdatePromise = Promise.resolve();
+
+      if (name.value !== "") {
+        nameUpdatePromise = updateUserName().catch((error) => {
+          setSubmitButtonClass("error");
+          setNameError(error.code);
+        });
+      }
+
+      if (email.value !== "") {
+        emailUpdatePromise = updateUserEmail().catch((error) => {
+          setSubmitButtonClass("error");
+          setEmailError(error.code);
+        });
+      }
+
+      Promise.all([nameUpdatePromise, emailUpdatePromise]).then(() => {
+        setSubmitButtonClass("success");
+      }).catch((error) => {
+        setSubmitButtonClass("error");
+      });
+      
     };
 
     return (
@@ -99,13 +92,39 @@ const UpdateDataModal = (props) => {
         open={openModal}
       >
         <form className={classes["modal-form"]}>
-          <UpdateName setNameValue={setNameValue} nameValue={nameValue.value} />
-          <UpdateEmail setEmailValue={setEmailValue} emailValue={emailValue.value} />
-          {nameError && <span className={classes["modal-form__error"]}>{nameError}</span>}
-          {emailError && <span className={classes["modal-form__error"]}>{emailError}</span>}
-          <CustomButton className={classes["modal-form__submit"]} onClick={handleUpdateData} type="submit">Update data</CustomButton>
-          {validationFeedback && <span>{validationFeedback}</span>}
-          {showSpinner && <LoadingSpinner className={classes["modal-form__spinner"]} />}
+        <CustomInput
+          label={
+            <>
+              <BsPerson /> Name
+            </>
+          }
+          type="text"
+          error={nameError &&
+            <>
+              <BiError /> {nameError}
+            </>
+          }
+          id="update-name"
+          value={name.value}
+          onChange={name.onChange}
+        />
+        <CustomInput label={
+          <>
+          <MdOutlineMailOutline /> Email:</>
+        }
+        type="email"
+        error={emailError &&
+          <>
+            <BiError /> {emailError}
+          </>
+        }
+        id="update-email"
+        value={email.value}
+        onChange={email.onChange}
+        />
+          <SubmitButton onClick={handleUpdateData} setClass={submitButtonClass}>
+            Update data
+          </SubmitButton>
         </form>
         <CustomButton className={classes["modal-form__close"]} onClick={toggleModal} type="button">
           Go back

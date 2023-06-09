@@ -4,35 +4,27 @@
     justify-content: center;
 }
 
-.modal-form__submit {
-    width: fit-content;
-    margin: 1rem auto 0;
-}
-
-.modal-form__error {
-    font-size: 0.7rem;
-    color: red;
-    text-align: center;
-}
-
 .modal-form__close {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     margin-top: 1rem;
+    color: #BB2649;
+}
+
+.modal-form__close:hover,
+.modal-form__close:active {
+    color: #FFF;
 }
 
 @media (min-width: 576px) {
     .modal-form {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-column-gap: 1rem;
     }
 
-    .modal-form__submit {
-        grid-column: 1 / span 2;
-    }
-
-    .modal-form__spinner {
+    .modal-form button {
         grid-column: 1 / span 2;
     }
 }
