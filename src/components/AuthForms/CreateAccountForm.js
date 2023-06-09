@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router';
 import { auth } from '../../api/auth-api';
 import CustomInput from '../UI/CustomInput';
 import { useInput } from '../../hooks/useInput';
+import SubmitButton from '../UI/SubmitButton';
 
 import classes from './styles/AuthForm.module.css';
 
@@ -19,6 +20,7 @@ const CreateAccountForm = () => {
     const [ passError, setPassError ] = useState();
     const [ repeatedPassError, setRepeatedPassError ] = useState();
     const navigate = useNavigate();
+    const [ submitButtonClass, setSubmitButtonClass ] = useState("");
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -27,51 +29,34 @@ const CreateAccountForm = () => {
         setPassError();
         setRepeatedPassError();
 
-        const removeSpin = () => {
-          event.target.classList.remove(classes.spin)
-        };
-
-        const addErrorClass = () => {
-          event.target.classList.add(classes.error);
-        };
-
-        event.target.classList.remove(classes.error);
-        event.target.classList.remove(classes.success);
-        event.target.classList.add(classes.spin);
-
+        setSubmitButtonClass("spin");
 
         if (email.value.length === 0) {
-            removeSpin();
-            addErrorClass();
+            setSubmitButtonClass("error");
             setEmailError("Please enter your email");
             return;
         } else if (password.value.length === 0) {
-            removeSpin();
-            addErrorClass();
+            setSubmitButtonClass("error");
             setPassError("Please enter you password");
             return;
         } else if (repeatedPassword.value.length === 0) {
-          removeSpin();
-          addErrorClass();
+          setSubmitButtonClass("error")
           setRepeatedPassError("Please repeat your password");
             return;
         } else if (password.value !== repeatedPassword.value) {
-          removeSpin();
-          addErrorClass();
+          setSubmitButtonClass("error");
           setRepeatedPassError("Passwords are not equal");
             return;
         }
 
         createUserWithEmailAndPassword(auth, email.value, password.value)
             .then((userCredential) => {
-              removeSpin();
-              event.target.classList.add(classes.success);
+              setSubmitButtonClass("success");
               setTimeout(() => {
                 navigate("/login");
               }, 1000);
             }).catch(error => {
-              removeSpin();
-              event.target.classList.add(classes.error);
+              setSubmitButtonClass("error");
               if (error.code === "auth/email-already-in-use") {
                 setRepeatedPassError("This email is already registered");
               } else if (error.code === "auth/network-request-failed") {
@@ -96,10 +81,12 @@ const CreateAccountForm = () => {
           }
           type="email"
           id="email"
-          error={emailError &&
-            <>
-              <BiError /> {emailError}
-            </>
+          error={
+            emailError && (
+              <>
+                <BiError /> {emailError}
+              </>
+            )
           }
         />
         <CustomInput
@@ -112,10 +99,12 @@ const CreateAccountForm = () => {
           }
           type="password"
           id="password"
-          error={passError &&
-            <>
-              <BiError /> {passError}
-            </>
+          error={
+            passError && (
+              <>
+                <BiError /> {passError}
+              </>
+            )
           }
         />
         <CustomInput
@@ -128,15 +117,21 @@ const CreateAccountForm = () => {
           }
           type="password"
           id="repeated-password"
-          error={repeatedPassError && 
-            <>
-              <BiError /> {repeatedPassError}
-            </>
+          error={
+            repeatedPassError && (
+              <>
+                <BiError /> {repeatedPassError}
+              </>
+            )
           }
         />
-        <button onClick={submitHandler} className={`${classes["form__submit-btn"]} ${classes["create-account-button"]}`}>
+        <SubmitButton
+          onClick={submitHandler}
+          className={classes["create-account-button"]}
+          setClass={submitButtonClass}
+        >
           Create account
-        </button>
+        </SubmitButton>
       </form>
     );
 };

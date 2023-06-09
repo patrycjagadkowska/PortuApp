@@ -9,6 +9,7 @@ import { auth } from '../../api/auth-api';
 import AuthContext from '../../context/AuthContext';
 import { useInput } from '../../hooks/useInput';
 import CustomInput from '../UI/CustomInput';
+import SubmitButton from '../UI/SubmitButton';
 
 import classes from './styles/AuthForm.module.css';
 
@@ -19,45 +20,35 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const [ emailError, setEmailError ] = useState();
     const [ passwordError, setPasswordError ] = useState();
+    const [ submitButtonClass, setSubmitButtonClass ] = useState("");
 
     const submitHandler = (event) => {
         event.preventDefault();
         setEmailError();
         setPasswordError();
 
-        const removeSpin = ()=> {
-          event.target.classList.remove(classes.spin);
-        };
-        const addErrorClass = () => {
-          event.target.classList.add(classes.error);
-        };
-
-        event.target.classList.remove(classes.success);
-        event.target.classList.remove(classes.error);
-        event.target.classList.add(classes.spin);
+        setSubmitButtonClass("spin");
 
         if (email.value.length === 0) {
-          removeSpin();
-          addErrorClass();
+          setSubmitButtonClass("error");
           setEmailError("Please enter your email.");
           return;
         } else if (password.value.length === 0) {
-          removeSpin();
-          addErrorClass();
+          setSubmitButtonClass("error");
           setEmailError("Please enter your password.");
           return;
         }
 
         signInWithEmailAndPassword(auth, email.value, password.value)
             .then((userCredential) => {
-              event.target.classList.remove(classes.spin);
-              event.target.classList.add(classes.success);
+              setSubmitButtonClass("success");
                 const user = userCredential.user;
                 authCtx.login(user.uid);
-                navigate('/learn');
+                setTimeout(() => {
+                  navigate('/learn');
+                }, 1000);
             }).catch((error) => {
-              event.target.classList.remove(classes.spin);
-              event.target.classList.add(classes.error);
+              setSubmitButtonClass("error");
               if (error.code === "auth/wrong-password") {
                 setPasswordError("Password is incorrect.");
               } else if (error.code === "auth/invalid-email") {
@@ -110,9 +101,9 @@ const LoginForm = () => {
             )
           }
         />
-        <button onClick={submitHandler} className={classes["form__submit-btn"]}>
+        <SubmitButton onClick={submitHandler} setClass={submitButtonClass}>
           login
-        </button>
+        </SubmitButton>
       </form>
     );
 };
