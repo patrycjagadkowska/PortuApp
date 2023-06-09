@@ -44,9 +44,7 @@ const LoginForm = () => {
               setSubmitButtonClass("success");
                 const user = userCredential.user;
                 authCtx.login(user.uid);
-                setTimeout(() => {
-                  navigate('/learn');
-                }, 1000);
+                navigate('/learn');
             }).catch((error) => {
               setSubmitButtonClass("error");
               if (error.code === "auth/wrong-password") {
