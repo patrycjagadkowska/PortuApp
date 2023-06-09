@@ -1,5 +1,5 @@
 .unit {
-    background-color: #D6D5B3;
+    background-color: #D6EBDF;
     width: 80%;
     margin: 0 auto;
     border-radius: 1rem;
@@ -8,7 +8,8 @@
 .unit h3 {
     margin: 0;
     padding: 1rem 0.5rem;
-    background-color: #7EB77F;
+    color: #FFF;
+    background-color: #4C9F70;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 }

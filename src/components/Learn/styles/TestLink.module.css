@@ -1,6 +1,6 @@
 .test {
     padding: 0.5rem;
-    background-color: #7EB77F;
+    background-color: #4C9F70;
     display: -moz-box;
     display: -webkit-box;
     display: -webkit-flex;
@@ -11,14 +11,19 @@
 
 .test a {
     text-decoration: none;
-    color: #F5DBCB;
-    background-color: #EE818A;
+    color: #FFF;
+    background-color: #BB2649;
     padding: 0.375rem 0.75rem;
     border-radius: 1rem;
+    transition: transform 0.1s linear;
 }
 
 .test a:hover, 
 .test a:active {
-    background-color: #F5DBCB;
-    color: #EE818A;
+    background-color: #FFF;
+    color: #BB2649;
+}
+
+.test a:active {
+    transform: scale(0.9);
 }

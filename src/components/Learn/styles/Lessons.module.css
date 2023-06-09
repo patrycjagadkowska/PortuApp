@@ -25,8 +25,8 @@
 .lessons a:active .done,
 .lessons a:hover .todo,
 .lessons a:active .todo {
-    background-color: #EE818A;
-    color: #F5DBCB;
+    background-color: #BB2649;
+    color: #FFF;
 }
 
 .unit__item--title {
@@ -49,11 +49,11 @@
 }
 
 .done {
-    color: #7EB77F;
+    color: #4C9F70;
 }
 
 .todo {
-    color: #EE818A;
+    color: #BB2649;
 }
 
 @media (min-width: 576px) {

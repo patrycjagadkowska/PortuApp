@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import classes from './styles/Test.module.css';
+import classes from './styles/TestLink.module.css';
 
-const Test = (props) => {
+const TestLink = ({unitId, test}) => {
     return (
         <div className={classes.test}>
             <span>Final Test</span>
@@ -11,4 +11,4 @@ const Test = (props) => {
     );
 };
 
-export default Test;
+export default TestLink;
