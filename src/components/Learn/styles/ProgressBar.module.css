@@ -22,7 +22,11 @@
 .bar {
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
-    width: 40%;
     background-color: #7EB77F;
     height: 100%;
+    transition: width 1s linear;
+}
+
+.bar-full {
+    border-radius: 1rem;
 }

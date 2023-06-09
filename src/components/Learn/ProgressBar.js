@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import UserProgressContext from '../../context/UserProgressContext';
 
@@ -8,6 +8,8 @@ const ProgressBar = (props) => {
     const { numOfLessons, unitId, shorter } = props;
     const userCtx = useContext(UserProgressContext);
     const unitProgressData = userCtx.progressData[unitId];
+    const [ barWidth, setBarWidth ] = useState(0);
+     
    
     let totalProgress = 0;
     if (unitProgressData) {
@@ -18,12 +20,14 @@ const ProgressBar = (props) => {
         });
     }
 
-    const barWidth = totalProgress / numOfLessons * 100;
+    setTimeout(() => {
+        setBarWidth(totalProgress / numOfLessons * 100);
+    }, 500);
 
     return (
         <div className={`${classes['progress-bar']} ${shorter ? classes["progress-bar__shorter"] : ""}`}>
             <div className={classes['bar-container']}>
-            <div className={classes.bar} style={{width: `${barWidth}%`}}/>
+            <div className={`${classes.bar} ${barWidth === 100 ? classes["bar-full"] : ""}`} style={{width: `${barWidth}%`}}/>
             </div>
             <span className={classes['bar-badge']}>{totalProgress}/{numOfLessons}</span>
         </div>
