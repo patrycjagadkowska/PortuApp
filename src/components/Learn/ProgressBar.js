@@ -7,7 +7,7 @@ import classes from './styles/ProgressBar.module.css';
 const ProgressBar = (props) => {
     const { numOfLessons, unitId, shorter } = props;
     const userCtx = useContext(UserProgressContext);
-    const unitProgressData = userCtx.progressData[unitId];
+    const unitProgressData = unitId ? userCtx.progressData[unitId] : [];
     const [ barWidth, setBarWidth ] = useState(0);
      
    
