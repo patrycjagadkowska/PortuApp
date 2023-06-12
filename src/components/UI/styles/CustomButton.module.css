@@ -35,7 +35,7 @@ a.button {
     text-decoration: none;
 }
 
-button > * {
+.button > * {
     position: relative;
     line-height: 18px;
     vertical-align: middle;
