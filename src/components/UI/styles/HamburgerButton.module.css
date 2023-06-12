@@ -1,0 +1,67 @@
+.hamburger {
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    padding: 0;
+    transition: all 0.3s linear;
+    position: relative;
+    z-index: 2;
+}
+
+.hamburger::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    border-radius: 28px;
+    background-color: rgba(187, 38, 73, 0.5);
+    width: 3rem;
+    height: 3rem;
+    transition: all 0.3s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hamburger:hover::before,
+.hamburger.hamburger__open::before {
+    background-color: #BB2649 ;
+}
+
+.hamburger__line {
+    display: inline-block;
+    width: 80%;
+    height: 0.25rem;
+    background-color: #FFF;
+    border-radius: 1rem;
+    transition: all 0.3s linear;
+}
+
+.hamburger__line:first-child {
+    align-self: flex-start;
+}
+
+.hamburger__line:nth-child(2) {
+    align-self: flex-end;
+}
+
+.hamburger__open .hamburger__line:first-child {
+    transform: translatey(0.5625rem) rotate(45deg);
+    width: 100%;
+}
+
+.hamburger__open .hamburger__line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger__open .hamburger__line:last-child {
+    transform: translateY(-0.5rem) rotate(-45deg);
+    width: 100%;
+}
