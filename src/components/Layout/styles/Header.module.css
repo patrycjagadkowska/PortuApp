@@ -80,13 +80,16 @@
     transform: translateX(0);
 }
 
-.header__nav a {
+.header__nav a,
+.header__nav button {
     color: #BB2649;
     margin: 2rem 0;
 }
 
 .header__nav a:hover,
-.header__nav a:active {
+.header__nav a:active,
+.header__nav button:hover,
+.header__nav button:active {
     color: #FFF;
 }
 
