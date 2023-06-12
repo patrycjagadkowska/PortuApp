@@ -17,7 +17,7 @@ const Learn = () => {
     useEffect(() => {
       setShowSpinner(true);
       const unitsArray = [];
-      unitsData.forEach((unit) => {
+      unitsData && unitsData.forEach((unit) => {
         unitsArray.push(unit.data());
       });
       setUnits(unitsArray);
