@@ -1,9 +1,10 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import AuthContext from '../../context/AuthContext';
 import ButtonNavLink from '../UI/ButtonNavLink';
 import CustomButton from '../UI/CustomButton';
+import HamburgerButton from '../UI/HamburgerButton';
 
 import classes from './styles/Header.module.css';
 
@@ -11,10 +12,15 @@ const Header = () => {
     const authCtx = useContext(AuthContext);
     const isLoggedIn = authCtx.isLoggedIn;
     const navigate = useNavigate();
+    const [ openMenu, setOpenMenu ] = useState(false);
 
     const logoutHandler = () => {
         authCtx.logout();
         navigate('/');
+    };
+
+    const toggleMenu = () => {
+      setOpenMenu(openMenu => !openMenu);
     };
 
     return (
@@ -31,7 +37,7 @@ const Header = () => {
             <span>p</span>
           </NavLink>
         </div>
-        <nav className={classes["header__nav"]}>
+        <nav onClick={toggleMenu} className={`${classes["header__nav"]} ${openMenu ? classes["nav-open"] : ""}`}>
           {!isLoggedIn && (
             <ButtonNavLink to="/createAccount">Start learing</ButtonNavLink>
           )}
@@ -52,6 +58,7 @@ const Header = () => {
             </CustomButton>
           )}
         </nav>
+        <HamburgerButton openMenu={openMenu} toggleMenu={toggleMenu} />
       </header>
     );
 };
