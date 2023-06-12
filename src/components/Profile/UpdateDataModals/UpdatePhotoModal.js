@@ -34,19 +34,30 @@ const UpdatePhotoModal = (props) => {
         setSubmitButtonClass("spin");
         resetMessages();
         if (url.value === "") {
-            setSubmitButtonClass("error");
-            setMessage({display: true, value: 'Please enter a valid URL starting with "http://", "https://" or "www.".'});
-        }else if (verifyURL()) {
-            updateProfile(auth.currentUser, {
-                photoURL: url.value
-            }).then(() => {
+          setSubmitButtonClass("error");
+          setMessage({
+            display: true,
+            value:
+              'Please enter a valid URL starting with "http://", "https://" or "www.".',
+          });
+        } else if (verifyURL()) {
+          updateProfile(auth.currentUser, {
+            photoURL: url.value,
+          })
+            .then(() => {
               setSubmitButtonClass("success");
-            }).catch((err) => {
-                setMessage({display: true, value: err.message});
-                setSubmitButtonClass("error");
+            })
+            .catch((err) => {
+              setMessage({ display: true, value: err.message });
+              setSubmitButtonClass("error");
             });
         } else {
-            setMessage({display: true, value: 'Please enter a valid URL starting with "http://", "https://" or "www.".'});
+          setSubmitButtonClass("error");
+          setMessage({
+            display: true,
+            value:
+              'Please enter a valid URL starting with "http://", "https://" or "www.".',
+          });
         }
     };
 
