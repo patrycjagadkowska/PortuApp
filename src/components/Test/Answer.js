@@ -1,12 +1,12 @@
 import classes from './styles/Answer.module.css';
 
-const Answer = ({ answerData }) => {
+const Answer = ({ answerData, index, checkAnswer, id, correctClass }) => {
     return (
-        <div className={classes.answer}>
+        <button className={`${classes.answer} ${correctClass}`} onClick={(event) => {checkAnswer(event, index)}} id={id}>
             <p>
                 {answerData}
             </p>
-        </div>
+        </button>
     );
 };
 

@@ -32,3 +32,13 @@
     justify-items: center;
     margin: 1rem 0;
 }
+
+.incorrect {
+    background-color: #BB2649;
+    color: #FFF;
+}
+
+.correct {
+    background-color: #4C9F70;
+    color: #FFF;
+}

@@ -10,11 +10,13 @@
     box-shadow:  inset 2px 2px 4px #d2d2d2, inset -2px -2px 4px #6c6c6c;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
+    border: none;
 }
 
 .answer p {
     margin: 0;
     font-weight: bold;
+    pointer-events: none;
 }
 
 .answer:active {
