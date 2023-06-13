@@ -1,0 +1,43 @@
+.test {
+    padding: 1rem;
+}
+
+.test h2 {
+    text-align: center;
+    color: #BB2649;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.test__rules {
+    background-color: #BB2649;
+    color: #FFF;
+    font-size: 1.25rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem auto;
+}
+
+.test__rules,
+.test__actions {
+    max-width: 20rem;
+    margin: 2rem auto;
+}
+
+.test__actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.test__actions a,
+.test__actions button {
+    color: #BB2649;
+}
+
+.test__actions a:hover, 
+.test__actions a:active,
+.test__actions button:hover,
+.test__actions button:active {
+    color: #FFF;
+}
