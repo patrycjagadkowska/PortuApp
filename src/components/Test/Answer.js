@@ -1,10 +1,10 @@
 import classes from './styles/Answer.module.css';
 
-const Answer = () => {
+const Answer = ({ answerData }) => {
     return (
         <div className={classes.answer}>
             <p>
-                Here is answer.
+                {answerData}
             </p>
         </div>
     );
