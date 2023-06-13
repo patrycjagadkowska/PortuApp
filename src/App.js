@@ -23,11 +23,11 @@ const App = () => {
   const isLoggedIn = authCtx.isLoggedIn;
 
   const fetchAllUnitsData = async () => {
-    return getDocs(collection(database, "lessons"));
+    return await getDocs(collection(database, "lessons"));
   };
 
   const fetchLessonData = async ({ params }) => {
-        return getDoc(doc(database, "lessons", params.unitId));
+        return await getDoc(doc(database, "lessons", params.unitId));
   };
 
   const router = createBrowserRouter(
@@ -42,7 +42,7 @@ const App = () => {
         {isLoggedIn && (
           <Route path="/learn/:unitId/:lessonId" element={<Lesson />} loader={fetchLessonData} />
         )}
-        {isLoggedIn && <Route path="/learn/:unitId/test" element={<Test />} loader={fetchLessonData} />}
+        {isLoggedIn && <Route path="/learn/:unitId/test" element={<Test />}/>}
         {isLoggedIn && <Route path="/profile" element={<Profile />} />}
         <Route path="*" element={<ErrorPage />} />
       </Route>
