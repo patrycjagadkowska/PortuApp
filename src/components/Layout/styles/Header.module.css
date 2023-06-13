@@ -103,7 +103,8 @@
         flex-direction: row;
     }
 
-    .header__nav a {
+    .header__nav a,
+    .header__nav button {
         color: #FFF;
     }
 }
