@@ -2,6 +2,8 @@ import { useContext, useState, useEffect, useCallback } from 'react';
 
 import Question from './Question';
 import DataContext from '../../context/DataContext';
+import UserScore from './UserScore';
+import ButtonNavLink from '../UI/ButtonNavLink';
 
 import classes from './styles/TestContainer.module.css';
 
@@ -72,7 +74,10 @@ const TestContainer = ({ unitId }) => {
           <Question questionData={currentQuestion} onAnswer={updateAnswers} />
         )}
         {displayScore && (
-            <p>Your score: {correctAnswers}/{NUM_OF_QUESTIONS}</p>
+          <>
+          <UserScore score={correctAnswers} NUM_OF_QUESTIONS={NUM_OF_QUESTIONS} />
+          <ButtonNavLink className={classes["test__container--btn"]} to='/learn'>go back</ButtonNavLink>
+          </>
         )}
       </div>
     );

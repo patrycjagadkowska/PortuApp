@@ -1,0 +1,15 @@
+.test__container {
+    position: relative;
+}
+
+.test__container--btn {
+    position: relative;
+    left: 80%;
+    bottom: -2rem;
+    color: #BB2649;
+}
+
+.test__container--btn:hover,
+.test__container--btn:active {
+    color: #FFF;
+}
