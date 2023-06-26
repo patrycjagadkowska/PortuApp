@@ -5,10 +5,9 @@ import Answer from './Answer'
 import classes from './styles/Question.module.css';
 
 const Question = ({ questionData, onAnswer }) => {
-    const { question, id, answers, correct } = questionData;
+    const { question, id, answers, correct, answered } = questionData;
     const [ answersData, setAnswersData ] = useState([]);
     const [ shuffledAnswers, setShuffledAnswers ] = useState([]);
-    const [ isAnswered, setIsAnswered ] = useState(false);
 
     const shuffleArray = (array) => {
         return array.sort(() => Math.random() - 0.5);
@@ -22,10 +21,9 @@ const Question = ({ questionData, onAnswer }) => {
 
     const checkAnswer = useCallback((event, index) => {
         //prevent double clicking
-        if (isAnswered) {
+        if (answered) {
             return;
         }
-        setIsAnswered(true);
         if (index !== indexOfCorrectAnswer) {
             event.target.classList.add(classes.incorrect);
             onAnswer(false);
@@ -33,7 +31,7 @@ const Question = ({ questionData, onAnswer }) => {
         else {
             onAnswer(true);
         }
-    }, [indexOfCorrectAnswer, isAnswered, onAnswer]);
+    }, [indexOfCorrectAnswer, answered, onAnswer]);
 
     useEffect(() => {
         const answersArray = shuffledAnswers.map((answer, index) => {
@@ -42,13 +40,13 @@ const Question = ({ questionData, onAnswer }) => {
               answerData={answer}
               key={`${id}/${index}`}
               index={index}
-              correctClass={isAnswered && answer === correct ? classes.correct : ""}
+              correctClass={answered && answer === correct ? classes.correct : ""}
               checkAnswer={checkAnswer}
             />
           );
         });
         setAnswersData(answersArray);
-    }, [answers, id, shuffledAnswers, checkAnswer, correct, isAnswered]);
+    }, [answers, id, shuffledAnswers, checkAnswer, correct, answered]);
     return (
         <div className={classes.question}>
             <header className={classes["question__header"]}><h3>{question}</h3></header>
