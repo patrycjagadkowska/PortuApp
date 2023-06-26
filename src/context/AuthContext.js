@@ -1,12 +1,10 @@
 import { createContext, useState, useContext } from "react";
 import { signOut } from 'firebase/auth';
-import { doc, getDoc } from "firebase/firestore";
 
 import UserProgressContext from "./UserProgressContext";
 import DataContext from "./DataContext";
 
 import { auth } from '../api/auth-api';
-import { database } from "../api/database-api";
 
 const initialData = {
     isLoggedIn: false,
@@ -25,8 +23,7 @@ export const AuthContextProvider = props => {
     const { clearData } = useContext(DataContext);
 
     const login = async (token) => {
-        const progressData = await getDoc(doc(database, "users", token));
-        setUserData(progressData.data(), token);
+        setUserData(token);
         setUserToken(token);
         setIsLoggedIn(true);
     };
