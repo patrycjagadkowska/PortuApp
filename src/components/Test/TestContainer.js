@@ -21,7 +21,6 @@ const TestContainer = ({ unitId }) => {
   const currentQuestionIndexRef = useRef(currentQuestionIndex);
 
   const remainingTimeTimer = useRef();
-  console.log(remainingTime);
 
   const updateAnswers = useCallback((isCorrect) => {
     if (isCorrect) {
@@ -89,7 +88,7 @@ const TestContainer = ({ unitId }) => {
   return (
     <div className={classes['test__container']}>
       <CountdownBar remainingTime={remainingTime} />
-      {questions.length > 0 && currentQuestionIndex < questions.length && !displayScore && (
+      {questions.length > 0 && !displayScore && (
         <Question questionData={currentQuestion} onAnswer={updateAnswers} />
       )}
       {displayScore && (

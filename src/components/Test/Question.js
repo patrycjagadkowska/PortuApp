@@ -5,7 +5,7 @@ import Answer from './Answer'
 import classes from './styles/Question.module.css';
 
 const Question = ({ questionData, onAnswer }) => {
-    const { question, id, answers, correct, answered } = questionData;
+    const { question, id, answers, correct, answered } = questionData && questionData;
     const [ answersData, setAnswersData ] = useState([]);
     const [ shuffledAnswers, setShuffledAnswers ] = useState([]);
 
@@ -14,7 +14,7 @@ const Question = ({ questionData, onAnswer }) => {
     };
 
     useEffect(() => {
-        setShuffledAnswers(shuffleArray(answers));
+        answers && setShuffledAnswers(shuffleArray(answers));
     }, [answers]);
 
     const indexOfCorrectAnswer = shuffledAnswers.findIndex((answer) => answer === correct);
