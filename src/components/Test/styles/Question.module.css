@@ -42,3 +42,9 @@
     background-color: #4C9F70;
     color: #FFF;
 }
+
+@media (min-width: 576px) {
+    .question {
+        width: 60%;
+    }
+}

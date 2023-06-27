@@ -83,12 +83,12 @@ const TestContainer = ({ unitId }) => {
     }
   }, [isAnswered, remainingTime, updateAnswers, NUM_OF_QUESTIONS, testIsDone]);
 
-  const currentQuestion = !testIsDone && questions[currentQuestionIndex];
+  const currentQuestion = !testIsDone ? questions[currentQuestionIndex] : questions[NUM_OF_QUESTIONS - 1];
 
   return (
     <div className={classes['test__container']}>
       <CountdownBar remainingTime={remainingTime} />
-      {questions.length > 0 && !displayScore && (
+      {questions.length > 0 && currentQuestion && !displayScore && (
         <Question questionData={currentQuestion} onAnswer={updateAnswers} />
       )}
       {displayScore && (

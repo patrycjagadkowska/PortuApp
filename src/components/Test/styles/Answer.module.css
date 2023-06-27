@@ -22,3 +22,17 @@
 .answer:active {
     box-shadow: inset 2px 2px 4px #6c6c6c, inset -2px -2px 4px #d2d2d2;
 }
+
+@media (max-width: 320px) {
+    .answer {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 400px) {
+    .answer {
+        width: 6.5rem;
+        height: 6.5rem;
+    }
+}

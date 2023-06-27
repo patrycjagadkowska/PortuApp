@@ -4,9 +4,10 @@
 
 .test__container--btn {
     position: relative;
-    left: 80%;
+    left: 70%;
     bottom: -2rem;
     color: #BB2649;
+    margin-bottom: 1rem;
 }
 
 .test__container--btn:hover,

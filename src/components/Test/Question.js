@@ -5,7 +5,7 @@ import Answer from './Answer'
 import classes from './styles/Question.module.css';
 
 const Question = ({ questionData, onAnswer }) => {
-    const { question, id, answers, correct, answered } = questionData && questionData;
+    const { question = "", id = "", answers = [], correct = "", answered = false } = questionData;
     const [ answersData, setAnswersData ] = useState([]);
     const [ shuffledAnswers, setShuffledAnswers ] = useState([]);
 
