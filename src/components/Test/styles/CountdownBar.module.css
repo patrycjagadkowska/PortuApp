@@ -1,0 +1,14 @@
+.bar__outer {
+    border-radius: 1rem;
+    background-color: transparent;
+    height: 1rem;
+    border: 0.125rem #BB2649 solid;
+    margin: 1rem auto;
+    width: 90%;
+}
+
+.bar__inner {
+    height: 100%;
+    width: 100%;
+    background-color: #BB2649;
+}
