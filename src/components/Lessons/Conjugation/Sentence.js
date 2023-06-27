@@ -2,9 +2,9 @@ import { useRef, useState } from 'react';
 
 import classes from './styles/Sentence.module.css';
 
-const Sentence = (props) => {
-    const { sentence, correct, onCorrect } = props;
+const Sentence = ({ sentence, correct, onCorrect }) => {
     const inputRef = useRef();
+    const [ disabled, setDisabled ] = useState(false);
     const [ wrongAnswer, setWrongAnswer ] = useState(false);
 
     const dividedSentence = sentence.split('$');
@@ -13,7 +13,7 @@ const Sentence = (props) => {
         setWrongAnswer(false);
         if(inputRef.current.value === correct) {
             onCorrect();
-            inputRef.current.disabled = true;
+            setDisabled(true);
         }
     };
 
@@ -25,12 +25,25 @@ const Sentence = (props) => {
 
 
     return (
-        <li className={classes.sentence}>
-            {dividedSentence[0]}<input type="text" className={wrongAnswer ? classes["sentence__wrong"] : ""} ref={inputRef} onFocus={() => setWrongAnswer(false)} onBlur={checkWrongAnswer} onChange={checkAnswer} />{dividedSentence[1]}
-            {" "}
-            {wrongAnswer && <span className={classes['sentence__wrong']}>Correct answer is "{correct}"</span>}
-        </li>
+      <li className={classes.sentence}>
+        {dividedSentence[0]}
+        <input
+          disabled={disabled}
+          type="text"
+          className={wrongAnswer ? classes["sentence__wrong"] : ""}
+          ref={inputRef}
+          onFocus={() => setWrongAnswer(false)}
+          onBlur={checkWrongAnswer}
+          onChange={checkAnswer}
+        />
+        {dividedSentence[1]}{" "}
+        {wrongAnswer && (
+          <span className={classes["sentence__wrong"]}>
+            Correct answer is "{correct}"
+          </span>
+        )}
+      </li>
     );
 };
 
-export default Sentence
+export default Sentence;
