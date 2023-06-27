@@ -1,6 +1,8 @@
 import { useParams } from 'react-router';
 import { useState } from 'react';
 
+import CustomButton from '../../UI/CustomButton';
+
 import classes from './styles/DialogueExercise.module.css';
 
 const DialogueExercise = props => {
@@ -35,13 +37,19 @@ const DialogueExercise = props => {
 
 
     return (
-        <form className={classes.exercise} onSubmit={checkAnswer} style={{animationDelay: `${animationDelay}s`}}>
-            <h2>{title}</h2>
-            <div className={classes['exercise__radios']}>
-            {radios}
-            </div>
-            <button type="submit" className={classes['exercise__submitBtn']}>Check answer</button>
-        </form>
+      <form
+        className={classes.exercise}
+        style={{ animationDelay: `${animationDelay}s` }}
+      >
+        <h2>{title}</h2>
+        <div className={classes["exercise__radios"]}>{radios}</div>
+        <CustomButton
+          onClick={checkAnswer}
+          className={classes["exercise__submitBtn"]}
+        >
+          check answer
+        </CustomButton>
+      </form>
     );
 };
 

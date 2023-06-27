@@ -1,6 +1,6 @@
 .pair {
-    border: 1px solid #EE818A;
-    background-color: #fbf7f4;
+    border: 0.125rem solid #BB2649;
+    background-color: rgba(187, 38, 73, 0.2);
     border-radius: 1rem;
     display: inline-block;
     padding: 0.5rem;

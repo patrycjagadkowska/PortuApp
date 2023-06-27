@@ -30,6 +30,7 @@ const Sentence = props => {
           autoCorrect="off"
           spellCheck="off"
           className={wrongAnswer ? classes["sentence__wrong"] : ""}
+          rows={2}
         />
       </li>
     );

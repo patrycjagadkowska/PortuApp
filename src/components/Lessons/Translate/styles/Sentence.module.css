@@ -6,31 +6,39 @@
 
 .sentence label {
     margin-bottom: 0.25rem;
+    font-weight: 700;
+    color: #4C9F70;
 }
 
 .sentence textarea {
     font-family: inherit;
     resize: none;
+    font-size: 1rem;
+    border: none;
+    background-color: #D6EBDF;
+    border-radius: 1rem;
+    padding: 1rem;
 }
 
 .sentence textarea:focus-visible {
-    outline-color: #7EB77F;
+    outline-color: #4C9F70;
 }
 
 span.sentence__wrong {
-    color: red;
+    color: #BB2649;
     font-size: 0.7rem;
     padding: 0.25rem;
-    border: 2px solid red;
+    border: 2px solid #BB2649;
     border-radius: 1rem;
     margin-bottom: 0.5rem;
     align-self: flex-start;
 }
 
 .sentence textarea.sentence__wrong {
-    border: 2px solid red;
+    border: 2px solid #BB2649;
+    background-color: rgba(187, 38, 73, 0.2);
 }
 
 .sentence textarea:disabled {
-    border: 2px solid #7EB77F;
+    border: 2px solid #4C9F70;
 }

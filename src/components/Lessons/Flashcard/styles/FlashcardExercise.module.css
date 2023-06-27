@@ -5,12 +5,12 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     border-radius: 1rem;
-    background-color: #D6D5B3;
+    background-color: #D6EBDF;
 }
 
 .flashcardExercise__question {
     grid-column: 1 / span 2;
-    background-color: #7EB77F;
+    background-color: #4C9F70;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
 }
@@ -30,15 +30,15 @@
 }
 
 .flashcardExercise__answer:last-child {
-    border-left: 2px #7EB77F solid;
+    border-left: 2px #4C9F70 solid;
     border-bottom-right-radius: 1rem;
     border-bottom-left-radius: 0rem;
 }
 
 .flashcardExercise__answer:hover,
 .flashcardExercise__answer:active {
-    background-color: #EE818A;
-    color: #F5DBCB;
+    background-color: #BB2649;
+    color: #FFF;
 }
 
 .flashcardExercise__answer--incorrect {
@@ -48,9 +48,9 @@
 .flashcardExercise__answer--correct, 
 .flashcardExercise__answer--correct:hover,
 .flashcardExercise__answer--correct:active {
-    background-color: #7EB77F;
+    background-color: #4C9F70;
     color: #0B3954;
-    border-top: 2px solid #D6D5B3;
+    border-top: 2px solid #D6EBDF;
 }
 
 .flashcardExercise__done div {

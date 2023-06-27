@@ -18,21 +18,14 @@
 }
 
 .exercise__submitBtn {
-    min-width: 9rem;
+    width: fit-content;
     margin: 1rem;
-    border-radius: 1rem;
-    font-size: 1rem;
-    padding: 0.25rem 1rem;
-    border: 2px #EE818A solid;
-    background-color: #EE818A;
-    color: #F5DBCB;
-    cursor: pointer;
+    color: #BB2649;
 }
 
 .exercise__submitBtn:hover,
 .exercise__submitBtn:active {
-    border-color: #fdf3eb;
-    background-color: #7EB77F;
+    color: #FFF;
 }
 
 @keyframes exercise {

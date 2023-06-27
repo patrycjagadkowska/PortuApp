@@ -29,7 +29,9 @@ const TestContainer = ({ unitId }) => {
     setNumAnsweredQuestions((prevNum) => prevNum + 1);
     setIsAnswered(true);
     const updatedQuestions = [...questions];
-    updatedQuestions[currentQuestionIndex].answered = true;
+    if (updatedQuestions[currentQuestionIndex]) {
+      updatedQuestions[currentQuestionIndex].answered = true;
+    }
   }, [currentQuestionIndex, questions]);
 
   const testIsDone = numAnsweredQuestions === NUM_OF_QUESTIONS;
