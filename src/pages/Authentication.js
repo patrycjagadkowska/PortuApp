@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import CreateAccountForm from "../components/AuthForms/CreateAccountForm";
 import LoginForm from "../components/AuthForms/LoginForm";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 import classes from "./styles/Authentication.module.css";
 
@@ -10,6 +11,7 @@ const Authentication = () => {
   const { pathname } = useLocation();
   const navigate = useNavigation();
   const [renderLoginForm, setRenderLoginForm] = useState();
+  const { state } = useNavigation();
 
   useEffect(() => {
     if (pathname === "/login") {
@@ -23,6 +25,7 @@ const Authentication = () => {
 
   return (
     <section className={classes.auth}>
+      {renderLoginForm && state === "loading" && <LoadingSpinner />}
       {renderLoginForm !== undefined && (
         <h1 className={classes["auth__header"]}>
           Please enter your data to{" "}

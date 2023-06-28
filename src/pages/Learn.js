@@ -1,9 +1,11 @@
 import { useEffect, useState, useContext } from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigation } from "react-router";
+import { getDocs, collection } from 'firebase/firestore';
 
 import Panel from "../components/Learn/Panel";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import DataContext from "../context/DataContext";
+import { database } from "../api/database-api";
 
 import classes from "./styles/Learn.module.css";
 
@@ -13,6 +15,7 @@ const Learn = () => {
   const [showSpinner, setShowSpinner] = useState(false);
 
   const { setData } = useContext(DataContext);
+  const { state } = useNavigation();
 
   useEffect(() => {
     setShowSpinner(true);
@@ -28,6 +31,12 @@ const Learn = () => {
   useEffect(() => {
     setData(units);
   }, [units, setData]);
+
+  useEffect(() => {
+    if (state === "loading") {
+      setShowSpinner(true);
+    }
+  }, [state]);
 
   return (
     <div className={classes.learn}>
@@ -48,3 +57,7 @@ const Learn = () => {
 };
 
 export default Learn;
+
+export const fetchAllUnitsData = async () => {
+  return await getDocs(collection(database, "lessons"));
+};
