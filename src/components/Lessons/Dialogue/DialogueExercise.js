@@ -15,9 +15,9 @@ const DialogueExercise = (props) => {
     event.preventDefault();
     if (chosenAnswer === correct) {
       onCorrect();
-      toggleModal(good, true);
+      toggleModal("good", true);
     } else {
-      toggleModal(wrong, true);
+      toggleModal("wrong", true);
     }
   };
 
