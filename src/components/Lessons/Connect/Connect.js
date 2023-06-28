@@ -9,7 +9,7 @@ import { reducer } from "./reducerFn";
 import classes from "./styles/Connect.module.css";
 
 const initialState = {
-  ptShuffeled: [],
+  ptShuffled: [],
   engShuffled: [],
   foundPairs: [],
   firstClicked: undefined,

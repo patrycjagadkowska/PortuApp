@@ -10,7 +10,7 @@ const WordsList = props => {
     };
 
     const wordsList =
-      data.ptShuffled && data.engShuffled && lang === "pt"
+      lang === "pt"
         ? data.ptShuffled.map((word) => (
             <Word
               checkAnswer={checkAnswer}
