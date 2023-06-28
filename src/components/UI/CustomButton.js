@@ -1,11 +1,14 @@
-import classes from './styles/CustomButton.module.css';
+import classes from "./styles/CustomButton.module.css";
 
-const CustomButton = (props) => {
-    return (
-        <button onClick={props.onClick} className={`${classes.button} ${props.className ? props.className : ""}`}>
-            {props.children}
-        </button>
-    );
+const CustomButton = ({ onClick, className, children }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`${classes.button} ${className ? className : ""}`}
+    >
+      {children}
+    </button>
+  );
 };
 
 export default CustomButton;
