@@ -13,15 +13,17 @@ const Welcome = () => {
   return (
     <div className={classes.welcome}>
       <header className={classes["welcome__header"]}>
-            <h1>
-              Olá! Do you want to speak Portuguese but got only 10 minutes per
-              day?
-            </h1>
-            <h2>Don't worry, with us it's enough!</h2>
-          <ButtonNavLink to="/createAccount" className={classes["welcome__cta-btn"]}>
-            Start learning
-          </ButtonNavLink>
-        </header>
+        <h1>
+          Olá! Do you want to speak Portuguese but got only 10 minutes per day?
+        </h1>
+        <h2>Don't worry, with us it's enough!</h2>
+        <ButtonNavLink
+          to="/createAccount"
+          className={classes["welcome__cta-btn"]}
+        >
+          Start learning
+        </ButtonNavLink>
+      </header>
       <WelcomeSection title="Why you should learn with us?">
         <Card
           className={classes["welcome__section--info"]}
@@ -111,7 +113,10 @@ const Welcome = () => {
         </a>
       </WelcomeSection>
       <WelcomeSection title="Don't think more, just join us!">
-        <ButtonNavLink to="/" className={`${classes["welcome__cta-btn"]} ${classes["welcome__red-link"]}`}>
+        <ButtonNavLink
+          to="/"
+          className={`${classes["welcome__cta-btn"]} ${classes["welcome__red-link"]}`}
+        >
           Join PortuApp
         </ButtonNavLink>
       </WelcomeSection>
