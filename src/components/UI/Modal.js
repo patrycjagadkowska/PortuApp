@@ -1,22 +1,24 @@
-import { createPortal } from 'react-dom';
+import { createPortal } from "react-dom";
 
-import Backdrop from './Backdrop';
+import Backdrop from "./Backdrop";
 
-import classes from './styles/Modal.module.css';
+import classes from "./styles/Modal.module.css";
 
-const Modal = (props) => {
-    return createPortal(
-      <>
-        <dialog className={classes.modal} open={props.open}>
-          <section>
-            <header className={classes["modal__header"]}><h2>{props.header}</h2></header>
-            {props.children}
-          </section>
-        </dialog>
-        <Backdrop className={classes.backdrop} onClick={props.onClick} />
-      </>,
-      document.getElementById("modal-root")
-    );
+const Modal = ({ open, header, children, onClick }) => {
+  return createPortal(
+    <>
+      <dialog className={classes.modal} open={open}>
+        <section>
+          <header className={classes["modal__header"]}>
+            <h2>{header}</h2>
+          </header>
+          {children}
+        </section>
+      </dialog>
+      <Backdrop className={classes.backdrop} onClick={onClick} />
+    </>,
+    document.getElementById("modal-root")
+  );
 };
 
 export default Modal;
