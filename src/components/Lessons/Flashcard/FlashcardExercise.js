@@ -1,46 +1,52 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import classes from './styles/FlashcardExercise.module.css';
+import classes from "./styles/FlashcardExercise.module.css";
 
 const FlashcardExercise = (props) => {
-    const { question, answers, correct } = props.data;
-    const { onCorrect } = props;
-    const [ done, setDone ] = useState(false);
+  const { question, answers, correct } = props.data;
+  const { onCorrect } = props;
+  const [done, setDone] = useState(false);
 
-    let flashcardClass = done
-      ? `${classes.flashcardExercise} ${classes["flashcardExercise__done"]}`
-      : classes.flashcardExercise;
-    
-    const checkAnswer = event => {
-        if (event.target.textContent === correct) {
-            onCorrect();
-            setDone(true);
-            event.target.classList.add(classes['flashcardExercise__answer--correct']);
-        } else {
-            event.target.classList.add(classes['flashcardExercise__answer--incorrect']);
-            setTimeout(() => {
-                event.target.classList.remove(classes['flashcardExercise__answer--incorrect']);
-            }, 3000);
-        }
-    };
+  let flashcardClass = done
+    ? `${classes.flashcardExercise} ${classes["flashcardExercise__done"]}`
+    : classes.flashcardExercise;
 
-    return (
-      <div className={flashcardClass}>
-        <div className={classes["flashcardExercise__question"]}>{question}</div>
-        <div
-          className={classes["flashcardExercise__answer"]}
-          onClick={done ? () => {} : checkAnswer}
-        >
-          {answers[0]}
-        </div>
-        <div
-          className={classes["flashcardExercise__answer"]}
-          onClick={done ? () => {} : checkAnswer}
-        >
-          {answers[1]}
-        </div>
+  const checkAnswer = (event) => {
+    const selectedAnswer = event.target.textContent;
+
+    if (selectedAnswer === correct) {
+      onCorrect();
+      setDone(true);
+      event.target.classList.add(classes["flashcardExercise__answer--correct"]);
+    } else {
+      event.target.classList.add(
+        classes["flashcardExercise__answer--incorrect"]
+      );
+      setTimeout(() => {
+        event.target.classList.remove(
+          classes["flashcardExercise__answer--incorrect"]
+        );
+      }, 3000);
+    }
+  };
+
+  return (
+    <div className={flashcardClass}>
+      <div className={classes["flashcardExercise__question"]}>{question}</div>
+      <div
+        className={classes["flashcardExercise__answer"]}
+        onClick={done ? () => {} : checkAnswer}
+      >
+        {answers[0]}
       </div>
-    );
+      <div
+        className={classes["flashcardExercise__answer"]}
+        onClick={done ? () => {} : checkAnswer}
+      >
+        {answers[1]}
+      </div>
+    </div>
+  );
 };
 
 export default FlashcardExercise;
