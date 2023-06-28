@@ -19,8 +19,8 @@ const ProgressSummary = () => {
   }
 
   for (let key in progressData) {
-  // here you have to add validation if test is completed
-    const unitLessons = data.find(unit => {
+    // here you have to add validation if test is completed
+    const unitLessons = data.find((unit) => {
       return unit.id === key;
     });
     const totalLessons = unitLessons && unitLessons.lessons.length;
@@ -31,15 +31,18 @@ const ProgressSummary = () => {
     }
   }
 
-
   return (
     <section className={classes.progressSummary}>
       <h2>Your progress</h2>
       <div className={classes["progressSummary__allCompleted"]}>
         <h3>Total completed: </h3>
         <ul>
-          <li>{unitsCompleted} unit / {totalUnits} units</li>
-          <li>{lessonsCompleted} lesson / {totalLessons} lessons</li>
+          <li>
+            {unitsCompleted} unit / {totalUnits} units
+          </li>
+          <li>
+            {lessonsCompleted} lesson / {totalLessons} lessons
+          </li>
         </ul>
       </div>
     </section>
