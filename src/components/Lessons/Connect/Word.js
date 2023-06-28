@@ -1,7 +1,7 @@
 import classes from './styles/Word.module.css';
 
-const Word = ({ word, lang, checkAnswer, data }) => {
-    const { word, id } = word;
+const Word = ({ wordData, lang, checkAnswer, data }) => {
+    const { word, id } = wordData;
     const { foundPairs, firstClicked, firstLang, wrongAnswer } = data;
 
     let wordClasses;

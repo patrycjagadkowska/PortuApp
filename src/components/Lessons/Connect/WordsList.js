@@ -15,7 +15,7 @@ const WordsList = props => {
             <Word
               checkAnswer={checkAnswer}
               lang={lang}
-              word={word}
+              wordData={word}
               key={`${lang}/${word.id}`}
               data={data}
             />
@@ -24,7 +24,7 @@ const WordsList = props => {
             <Word
               checkAnswer={checkAnswer}
               lang={lang}
-              word={word}
+              wordData={word}
               key={`${lang}/${word.id}`}
               data={data}
             />
