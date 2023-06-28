@@ -6,8 +6,7 @@ import { useDoneExercise } from '../../../hooks/useDoneExercise';
 
 import classes from './styles/SentencesList.module.css';
 
-const SentencesList = props => {
-    const { sentences, toggleModal } = props;
+const SentencesList = ({ sentences, toggleModal }) => {
     const { unitId, lessonId } = useParams();
     const NUM_OF_EXERCISES = sentences.length;
     const { updateDoneExercises, numDone } = useDoneExercise(NUM_OF_EXERCISES, unitId, lessonId);

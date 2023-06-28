@@ -5,8 +5,8 @@ import LessonCompletedModal from '../LessonCompletedModal';
 
 import classes from './styles/Translate.module.css';
 
-const Translate = props => {
-    const { title, sentences } = props.data;
+const Translate = ({ data }) => {
+    const { title, sentences } = data;
     const [ openModal, setOpenModal ] = useState(false);
 
     const toggleModal = useCallback(
@@ -25,4 +25,4 @@ const Translate = props => {
     );
 };
 
-export default Translate
+export default Translate;
