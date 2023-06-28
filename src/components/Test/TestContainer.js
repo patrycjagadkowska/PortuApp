@@ -1,12 +1,12 @@
-import { useContext, useState, useEffect, useCallback, useRef } from 'react';
+import { useContext, useState, useEffect, useCallback, useRef } from "react";
 
-import Question from './Question';
-import DataContext from '../../context/DataContext';
-import UserScore from './UserScore';
-import ButtonNavLink from '../UI/ButtonNavLink';
-import CountdownBar from './CountdwownBar';
+import Question from "./Question";
+import DataContext from "../../context/DataContext";
+import UserScore from "./UserScore";
+import ButtonNavLink from "../UI/ButtonNavLink";
+import CountdownBar from "./CountdwownBar";
 
-import classes from './styles/TestContainer.module.css';
+import classes from "./styles/TestContainer.module.css";
 
 const TestContainer = ({ unitId }) => {
   const { data } = useContext(DataContext);
@@ -22,17 +22,20 @@ const TestContainer = ({ unitId }) => {
 
   const remainingTimeTimer = useRef();
 
-  const updateAnswers = useCallback((isCorrect) => {
-    if (isCorrect) {
-      setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
-    }
-    setNumAnsweredQuestions((prevNum) => prevNum + 1);
-    setIsAnswered(true);
-    const updatedQuestions = [...questions];
-    if (updatedQuestions[currentQuestionIndex]) {
-      updatedQuestions[currentQuestionIndex].answered = true;
-    }
-  }, [currentQuestionIndex, questions]);
+  const updateAnswers = useCallback(
+    (isCorrect) => {
+      if (isCorrect) {
+        setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
+      }
+      setNumAnsweredQuestions((prevNum) => prevNum + 1);
+      setIsAnswered(true);
+      const updatedQuestions = [...questions];
+      if (updatedQuestions[currentQuestionIndex]) {
+        updatedQuestions[currentQuestionIndex].answered = true;
+      }
+    },
+    [currentQuestionIndex, questions]
+  );
 
   const testIsDone = numAnsweredQuestions === NUM_OF_QUESTIONS;
 
@@ -85,18 +88,26 @@ const TestContainer = ({ unitId }) => {
     }
   }, [isAnswered, remainingTime, updateAnswers, NUM_OF_QUESTIONS, testIsDone]);
 
-  const currentQuestion = !testIsDone ? questions[currentQuestionIndex] : questions[NUM_OF_QUESTIONS - 1];
+  const currentQuestion = !testIsDone
+    ? questions[currentQuestionIndex]
+    : questions[NUM_OF_QUESTIONS - 1];
 
   return (
-    <div className={classes['test__container']}>
+    <div className={classes["test__container"]}>
       <CountdownBar remainingTime={remainingTime} />
       {questions.length > 0 && currentQuestion && !displayScore && (
         <Question questionData={currentQuestion} onAnswer={updateAnswers} />
       )}
       {displayScore && (
         <>
-          <UserScore score={correctAnswers} NUM_OF_QUESTIONS={NUM_OF_QUESTIONS} />
-          <ButtonNavLink className={classes['test__container--btn']} to='/learn'>
+          <UserScore
+            score={correctAnswers}
+            NUM_OF_QUESTIONS={NUM_OF_QUESTIONS}
+          />
+          <ButtonNavLink
+            className={classes["test__container--btn"]}
+            to="/learn"
+          >
             go back
           </ButtonNavLink>
         </>
