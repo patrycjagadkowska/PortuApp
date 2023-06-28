@@ -1,19 +1,13 @@
-import Unit from './Unit';
+import Unit from "./Unit";
 
-import classes from './styles/Panel.module.css';
+import classes from "./styles/Panel.module.css";
 
-const Panel  = (props) => {
-    const { data } = props;
-    
-    const content = data.map(unit => {
-        return <Unit key={unit.id} unit={unit} />
-    });
+const Panel = ({ data }) => {
+  const content = data.map((unit) => {
+    return <Unit key={unit.id} unit={unit} />;
+  });
 
-    return (
-        <div className={classes.panel}>
-            {content}
-        </div>
-    );
+  return <div className={classes.panel}>{content}</div>;
 };
 
 export default Panel;
