@@ -9,8 +9,7 @@ import WrongAnswerModal from "../WrongAnswerModal";
 
 import classes from "./styles/Dialogue.module.css";
 
-const Dialogue = (props) => {
-  const { data } = props;
+const Dialogue = ({ data }) => {
   const { unitId, lessonId } = useParams();
   const { updateDoneExercises } = useDoneExercise(
     data.length,

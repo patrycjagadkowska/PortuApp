@@ -5,9 +5,8 @@ import CustomButton from "../../UI/CustomButton";
 
 import classes from "./styles/DialogueExercise.module.css";
 
-const DialogueExercise = (props) => {
-  const { answers, correct, title } = props.exercise;
-  const { animationDelay, onCorrect, toggleModal } = props;
+const DialogueExercise = ({ animationDelay, onCorrect, toggleModal, exercise }) => {
+  const { answers, correct, title } = exercise;
   const { unitId, lessonId } = useParams();
   const [chosenAnswer, setChosenAnswer] = useState();
 
