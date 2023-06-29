@@ -1,4 +1,4 @@
-import { useLocation, useNavigation } from "react-router";
+import { useLocation, useNavigation, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 
 import CreateAccountForm from "../components/AuthForms/CreateAccountForm";
@@ -9,7 +9,7 @@ import classes from "./styles/Authentication.module.css";
 
 const Authentication = () => {
   const { pathname } = useLocation();
-  const navigate = useNavigation();
+  const navigate = useNavigate();
   const [renderLoginForm, setRenderLoginForm] = useState();
   const { state } = useNavigation();
 

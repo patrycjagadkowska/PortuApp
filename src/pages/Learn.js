@@ -58,6 +58,6 @@ const Learn = () => {
 
 export default Learn;
 
-export const fetchAllUnitsData = async () => {
+export const loader = async () => {
   return await getDocs(collection(database, "lessons"));
 };

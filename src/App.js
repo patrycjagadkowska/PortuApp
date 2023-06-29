@@ -1,53 +1,80 @@
 import {
   RouterProvider,
-  Route,
   createBrowserRouter,
-  createRoutesFromElements,
+  redirect
 } from "react-router-dom";
 import { useContext } from "react";
-import { getDocs, collection, getDoc, doc } from "firebase/firestore";
 
 import Welcome from "./pages/Welcome";
 import Layout from "./components/Layout/Layout";
 import Authentication from "./pages/Authentication";
-import AuthContext from "./context/AuthContext";
-import Learn from "./pages/Learn";
-import Lesson from "./pages/Lesson";
+import Learn, { loader as fetchAllUnitsData } from "./pages/Learn";
+import Lesson, { loader as fetchLessonData } from "./pages/Lesson";
 import Profile from "./pages/Profile";
 import ErrorPage from "./pages/ErrorPage";
-import { database } from "./api/database-api";
 import Test from "./pages/Test";
+import AuthContext from "./context/AuthContext";
 
 const App = () => {
-  const authCtx = useContext(AuthContext);
-  const isLoggedIn = authCtx.isLoggedIn;
+  const { isLoggedIn } = useContext(AuthContext);
 
-  const fetchAllUnitsData = async () => {
-    return await getDocs(collection(database, "lessons"));
+  const learnLoader = async () => {
+    if (isLoggedIn) {
+      return await fetchAllUnitsData();
+    } else {
+      return redirect("/login");
+    }
   };
 
-  const fetchLessonData = async ({ params }) => {
-        return await getDoc(doc(database, "lessons", params.unitId));
+  const lessonLoader = async ({ params }) => {
+    if (isLoggedIn) {
+      return await fetchLessonData({ params });
+    } else {
+      return redirect("/login");
+    }
   };
 
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Welcome />} />
-        {!isLoggedIn && <Route path="/login" element={<Authentication />} />}
-        {!isLoggedIn && (
-          <Route path="/createAccount" element={<Authentication />} />
-        )}
-        {isLoggedIn && <Route path="/learn" element={<Learn />} loader={fetchAllUnitsData} />}
-        {isLoggedIn && (
-          <Route path="/learn/:unitId/:lessonId" element={<Lesson />} loader={fetchLessonData} />
-        )}
-        {isLoggedIn && <Route path="/learn/:unitId/test" element={<Test />}/>}
-        {isLoggedIn && <Route path="/profile" element={<Profile />} />}
-        <Route path="*" element={<ErrorPage />} />
-      </Route>
-    )
-  );
+  const profileLoader = async () => {
+    if (isLoggedIn) {
+       return null;
+    } else {
+      return redirect("/login");
+    }
+  };
+
+  const authLoader = async () => {
+    if (!isLoggedIn) {
+      return null;
+    } else {
+      return redirect("/learn");
+    }
+  };
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      errorElement: <ErrorPage />,
+      children: [
+        { index: true, element: <Welcome /> },
+        { path: "login", element: <Authentication />, loader: authLoader  },
+        { path: "createAccount", element: <Authentication />, loader: authLoader },
+        {
+          path: "learn",
+          children: [
+            { index: true, element: <Learn />, loader: learnLoader },
+            {
+              path: ":unitId/:lessonId",
+              element: <Lesson />,
+              loader: lessonLoader
+            },
+          ],
+        },
+        { path: "learn/:unitId/test", element: <Test /> },
+        { path: "profile", element: <Profile />, loader: profileLoader },
+      ],
+    },
+  ]);
 
   return <RouterProvider router={router} />;
 };

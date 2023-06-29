@@ -44,6 +44,6 @@ const Lesson = () => {
 
 export default Lesson;
 
-export  const fetchLessonData = async ({ params }) => {
+export  const loader = async ({ params }) => {
   return await getDoc(doc(database, "lessons", params.unitId));
 };

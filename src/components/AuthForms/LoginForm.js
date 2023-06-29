@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { BsPerson } from "react-icons/bs";
@@ -16,11 +16,17 @@ import classes from "./styles/AuthForm.module.css";
 const LoginForm = () => {
   const email = useInput("");
   const password = useInput("");
-  const authCtx = useContext(AuthContext);
+  const { isLoggedIn, login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState();
   const [passwordError, setPasswordError] = useState();
   const [submitButtonClass, setSubmitButtonClass] = useState("");
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/learn")
+    }
+  }, [isLoggedIn, navigate]);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -43,8 +49,7 @@ const LoginForm = () => {
       .then((userCredential) => {
         setSubmitButtonClass("success");
         const user = userCredential.user;
-        authCtx.login(user.uid);
-        navigate("/learn");
+        login(user.uid);
       })
       .catch((error) => {
         setSubmitButtonClass("error");
