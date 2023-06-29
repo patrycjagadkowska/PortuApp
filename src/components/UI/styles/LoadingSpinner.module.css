@@ -10,7 +10,7 @@
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
-    background-color: #7EB77F;
+    background-color: #4C9F70;
     margin: 0 0.75rem;
     animation: load 1s ease-in-out infinite;
 }
@@ -34,9 +34,9 @@
 @keyframes load {
     50% {
         transform: scale(2);
-        background-color: #EE818A;
+        background-color: #BB2649;
     } 100% {
         transform: scale(1);
-        background-color: #7EB77F;
+        background-color: #4C9F70;
     }
 }

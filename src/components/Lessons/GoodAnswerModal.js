@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-
 import Modal from "../UI/Modal";
+import CustomButton from '../UI/CustomButton';
+import ButtonNavLink from "../UI/ButtonNavLink"
 
 import classes from "../UI/styles/Modal.module.css";
 
@@ -15,10 +15,10 @@ const GoodAnswerModal = ({ openModal, toggleModal }) => {
         Now you can read dialogue again to remember all the phrases or go back
         to choose another lesson.
         <div className={classes["modal__actions"]}>
-          <Link to="/learn">Go back</Link>
-          <button onClick={() => toggleModal("good", false)}>
-            Read dialogue
-          </button>
+          <ButtonNavLink to="/learn">go back</ButtonNavLink>
+          <CustomButton onClick={() => toggleModal("good", false)}>
+            read dialogue
+          </CustomButton>
         </div>
       </div>
     </Modal>
