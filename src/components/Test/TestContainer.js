@@ -5,6 +5,7 @@ import DataContext from "../../context/DataContext";
 import UserScore from "./UserScore";
 import ButtonNavLink from "../UI/ButtonNavLink";
 import CountdownBar from "./CountdwownBar";
+import UserProgressContext from "../../context/UserProgressContext";
 
 import classes from "./styles/TestContainer.module.css";
 
@@ -19,6 +20,7 @@ const TestContainer = ({ unitId }) => {
   const [remainingTime, setRemainingTime] = useState(1000);
   const NUM_OF_QUESTIONS = questions.length;
   const currentQuestionIndexRef = useRef(currentQuestionIndex);
+  const { updateData } = useContext(UserProgressContext);
 
   const remainingTimeTimer = useRef();
 
@@ -87,6 +89,15 @@ const TestContainer = ({ unitId }) => {
       }, 2000);
     }
   }, [isAnswered, remainingTime, updateAnswers, NUM_OF_QUESTIONS, testIsDone]);
+
+  useEffect(() => {
+    const score = correctAnswers / NUM_OF_QUESTIONS;
+    if (testIsDone && score >= 0.8) {
+      updateData(unitId, "test", true);
+    } else if (testIsDone && score < 0.8) {
+      updateData(unitId, "test", false);
+    };
+  }, [testIsDone, correctAnswers, NUM_OF_QUESTIONS, updateData, unitId]);
 
   const currentQuestion = !testIsDone
     ? questions[currentQuestionIndex]
