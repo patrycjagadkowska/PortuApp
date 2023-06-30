@@ -36,7 +36,7 @@ const App = () => {
 
   const profileLoader = async () => {
     if (isLoggedIn) {
-       return fetchAllUnitsData();
+       return await fetchAllUnitsData();
     } else {
       return redirect("/login");
     }

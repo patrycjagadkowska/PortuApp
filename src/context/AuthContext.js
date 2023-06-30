@@ -1,5 +1,5 @@
-import { createContext, useState, useContext } from "react";
-import { signOut } from "firebase/auth";
+import { createContext, useState, useContext, useEffect } from "react";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 
 import UserProgressContext from "./UserProgressContext";
 import DataContext from "./DataContext";
@@ -41,11 +41,20 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        login(user.uid);
+      }
+    });
+    // eslint-disable-next-line
+  }, []);
+
   const ctxValue = {
-    isLoggedIn: isLoggedIn,
-    userToken: userToken,
-    login: login,
-    logout: logout,
+    isLoggedIn,
+    userToken,
+    login,
+    logout,
   };
 
   return (

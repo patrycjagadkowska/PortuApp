@@ -1,4 +1,6 @@
-import { getAuth } from "firebase/auth";
+import { browserLocalPersistence, getAuth, setPersistence } from "firebase/auth";
 import { app } from "./firebase-config";
 
 export const auth = getAuth(app);
+
+setPersistence(auth, browserLocalPersistence);
