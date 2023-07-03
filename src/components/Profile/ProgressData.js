@@ -12,7 +12,7 @@ const ProgressData = () => {
     return (
       <UnitProgress
         unitId={unit.id}
-        numOfLessons={unit.lessons.length}
+        numOfLessons={unit.lessons.length + 1}
         key={unit.id}
       />
     );

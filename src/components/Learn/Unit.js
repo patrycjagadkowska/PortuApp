@@ -11,7 +11,7 @@ const Unit = ({ unit }) => {
       <h3>{title}</h3>
       <Lessons lessons={lessons} unitId={id} />
       <TestLink test={test} unitId={id} />
-      <ProgressBar unitId={id} numOfLessons={lessons.length} />
+      <ProgressBar unitId={id} numOfLessons={lessons.length + 1} />
     </div>
   );
 };

@@ -15,7 +15,7 @@ const ProgressSummary = () => {
   let unitsCompleted = 0;
 
   for (let i = 0; i < data.length; i++) {
-    totalLessons = totalLessons + data[i]["lessons"].length;
+    totalLessons = totalLessons + data[i]["lessons"].length + 1;
   }
 
   for (let key in progressData) {
@@ -38,10 +38,10 @@ const ProgressSummary = () => {
         <h3>Total completed: </h3>
         <ul>
           <li>
-            {unitsCompleted} unit / {totalUnits} units
+            {unitsCompleted} {unitsCompleted === 1 ? "unit" : "units"} / {totalUnits} units
           </li>
           <li>
-            {lessonsCompleted} lesson / {totalLessons} lessons
+            {lessonsCompleted} {lessonsCompleted === 1 ? "lesson" : "lessons"} / {totalLessons} lessons
           </li>
         </ul>
       </div>
