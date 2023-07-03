@@ -2,7 +2,7 @@ import classes from "./styles/CustomInput.module.css";
 
 const CustomInput = ({ label, type, error, id, value, onChange, onFocus, autoComplete }) => {
   return (
-    <div className={classes["auth-input"]}>
+    <div className={classes["auth-input"]} role="group">
       <label htmlFor={id}>{label}</label>
       <input
         type={type}
