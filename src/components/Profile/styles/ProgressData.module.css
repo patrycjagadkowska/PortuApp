@@ -12,6 +12,7 @@
 
 @media (min-width: 768px) {
     .progressData {
+        -ms-grid-column: 1 / span 2;
         grid-column: 1 / span 2;
     }
 

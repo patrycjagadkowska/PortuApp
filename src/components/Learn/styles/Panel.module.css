@@ -1,4 +1,5 @@
 .panel {
+    display: -ms-grid;
     display: grid;
     grid-template-columns: 100%;
     grid-gap: 1.5rem;
