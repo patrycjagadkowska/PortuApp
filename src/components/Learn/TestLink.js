@@ -7,7 +7,7 @@ import classes from "./styles/TestLink.module.css";
 
 const TestLink = ({ unitId }) => {
   const { progressData } = useContext(UserProgressContext);
-  const linkTextNode = progressData[unitId] && progressData[unitId].test ? "completed!" : "start";
+  const linkTextNode = progressData && progressData.hasOwnProperty(unitId) && progressData[unitId].test ? "completed!" : "start";
 
   return (
     <div className={classes.test}>
