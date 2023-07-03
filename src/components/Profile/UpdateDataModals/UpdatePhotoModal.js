@@ -66,7 +66,7 @@ const UpdatePhotoModal = ({ openModal, toggleModal }) => {
 
   return (
     <Modal open={openModal} onClick={toggleModal} header="Edit your photo">
-      <form className={classes.form} noValidate>
+      <form className={classes.form} noValidate autoComplete="on">
         <CustomInput
           type="url"
           id="photoInput"

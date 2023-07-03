@@ -81,7 +81,7 @@ const ChangePasswordModal = ({ openModal, toggleModal }) => {
 
   return (
     <Modal open={openModal} onClick={toggleModal} header="Change your password">
-      <form className={classes.form}>
+      <form className={classes.form} autoComplete="on">
         <CustomInput
           label={
             <>

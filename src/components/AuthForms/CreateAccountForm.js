@@ -73,7 +73,7 @@ const CreateAccountForm = () => {
   };
 
   return (
-    <form className={classes.form}>
+    <form className={classes.form} autoComplete="on">
       <CustomInput
         value={email.value}
         onChange={email.onChange}

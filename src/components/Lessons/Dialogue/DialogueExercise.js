@@ -42,6 +42,7 @@ const DialogueExercise = ({ animationDelay, onCorrect, toggleModal, exercise }) 
 
   return (
     <form
+    autoComplete="off"
       className={classes.exercise}
       style={{ animationDelay: `${animationDelay}s` }}
     >

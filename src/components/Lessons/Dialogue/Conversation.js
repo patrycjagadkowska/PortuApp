@@ -9,7 +9,7 @@ const Conversation = (props) => {
   const { unitId, lessonId } = useParams();
 
   if (conversation.length !== meaning.length) {
-    console.log("Data is wrong!");
+    throw new Error("Data is not correct");
   }
 
   const conversationContent = [];
