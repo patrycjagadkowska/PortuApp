@@ -7,6 +7,8 @@
     margin: 0.5rem 0;
     max-width: 50%;
     position: relative;
+    -webkit-transform: translateY(1rem);
+    -ms-transform: translateY(1rem);
     transform: translateY(1rem);
     visibility: hidden;
     -webkit-animation: pair 0.2s ease-in-out forwards;
@@ -25,22 +27,30 @@
 
 @-webkit-keyframes pair {
     80% {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
         transform: scale(1.1);
     }
 
     100% {
         visibility: visible;
+        -webkit-transform: scale(1) translateY(0);
+        -ms-transform: scale(1) translateY(0);
         transform: scale(1) translateY(0);
     }
 }
 
 @keyframes pair {
     80% {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
         transform: scale(1.1);
     }
 
     100% {
         visibility: visible;
+        -webkit-transform: scale(1) translateY(0);
+        -ms-transform: scale(1) translateY(0);
         transform: scale(1) translateY(0);
     }
 }

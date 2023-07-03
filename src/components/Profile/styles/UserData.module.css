@@ -67,6 +67,8 @@
     flex-direction: row;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-transform: translateX(-0.25rem);
+    -ms-transform: translateX(-0.25rem);
     transform: translateX(-0.25rem);
     justify-content: center;
 }

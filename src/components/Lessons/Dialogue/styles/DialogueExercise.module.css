@@ -8,6 +8,8 @@
     flex-direction: column;
     align-items: center;
     visibility: hidden;
+    -webkit-transform: translateY(1rem);
+    -ms-transform: translateY(1rem);
     transform: translateY(1rem);
     -webkit-animation: exercise 0.5s ease-in-out forwards;
     animation: exercise 0.5s ease-in-out forwards;
@@ -35,10 +37,14 @@
 
 @-webkit-keyframes exercise {
     80% {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
         transform: scale(1.1);
     }
 
     100% {
+        -webkit-transform: scale(1) translateY(0);
+        -ms-transform: scale(1) translateY(0);
         transform: scale(1) translateY(0);
         visibility: visible;
     }
@@ -46,10 +52,14 @@
 
 @keyframes exercise {
     80% {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
         transform: scale(1.1);
     }
 
     100% {
+        -webkit-transform: scale(1) translateY(0);
+        -ms-transform: scale(1) translateY(0);
         transform: scale(1) translateY(0);
         visibility: visible;
     }
