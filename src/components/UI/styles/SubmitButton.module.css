@@ -7,8 +7,9 @@
     font-family: inherit;
     border: none;
     position: relative;
-    padding: 0 0.5rem;
+    padding: 0.25rem 1rem;
     cursor: pointer;
+    text-transform: lowercase;
 }
 
 .submitBtn::before {
