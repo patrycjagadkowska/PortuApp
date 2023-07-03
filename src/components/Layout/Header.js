@@ -15,8 +15,16 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const logoutHandler = () => {
-    authCtx.logout();
-    navigate("/");
+    // Create a Promise that resolves after the navigation is complete
+    const navigatePromise = new Promise((resolve) => {
+      navigate("/");
+      setTimeout(resolve, 0); // Resolve after a minimal delay
+    });
+
+    // Wait for the navigatePromise to resolve, then perform the logout
+    navigatePromise.then(() => {
+      authCtx.logout();
+    });
   };
 
   const toggleMenu = () => {
