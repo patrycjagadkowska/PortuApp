@@ -29,7 +29,7 @@ export const UserProgressContextProvider = ({ children }) => {
   };
 
   const updateData = async (unitId, lessonId, value) => {
-    if (progressData.length === 0) {
+    if (!progressData) {
       await setDoc(doc(database, "users", userId), {
         [unitId]: {
           [lessonId]: {
