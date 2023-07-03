@@ -73,6 +73,7 @@ const LoginForm = () => {
         type="email"
         value={email.value}
         onChange={email.onChange}
+        autoComplete="on"
         label={
           <>
             <BsPerson /> Email
