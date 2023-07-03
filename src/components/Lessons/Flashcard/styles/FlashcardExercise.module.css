@@ -17,6 +17,9 @@
 
 .flashcardExercise__question,
 .flashcardExercise__answer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,10 +45,11 @@
 }
 
 .flashcardExercise__answer--incorrect {
+    -webkit-animation: incorrect 3s ease-in-out forwards;
     animation: incorrect 3s ease-in-out forwards;
 }
 
-.flashcardExercise__answer--correct, 
+.flashcardExercise__answer--correct,
 .flashcardExercise__answer--correct:hover,
 .flashcardExercise__answer--correct:active {
     background-color: #4C9F70;
@@ -69,12 +73,30 @@
     }
 }
 
+@-webkit-keyframes incorrect {
+    0% {
+        background-color: rgb(101, 23, 30);
+    }
+
+    40% {
+        background-color: rgba(238, 129, 138, 0.2);
+    }
+
+    100% {
+        background-color: rgba(238, 129, 138, 0);
+    }
+}
+
 @keyframes incorrect {
     0% {
         background-color: rgb(101, 23, 30);
-    } 40% {
+    }
+
+    40% {
         background-color: rgba(238, 129, 138, 0.2);
-    } 100% {
+    }
+
+    100% {
         background-color: rgba(238, 129, 138, 0);
     }
 }

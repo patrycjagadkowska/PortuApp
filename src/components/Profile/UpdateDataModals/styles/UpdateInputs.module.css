@@ -1,5 +1,9 @@
 .input-group {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
     justify-items: center;
     align-items: center;

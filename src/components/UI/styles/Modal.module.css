@@ -20,7 +20,11 @@
 }
 
 .modal__content {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
     justify-content: space-between;
     height: 50%;

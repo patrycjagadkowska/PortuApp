@@ -1,5 +1,8 @@
 .container {
     height: 2rem;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,30 +15,49 @@
     border-radius: 50%;
     background-color: #4C9F70;
     margin: 0 0.75rem;
+    -webkit-animation: load 1s ease-in-out infinite;
     animation: load 1s ease-in-out infinite;
 }
 
 .item:nth-child(2) {
+    -webkit-animation-delay: 0.1s;
     animation-delay: 0.1s;
 }
 
 .item:nth-child(3) {
+    -webkit-animation-delay: 0.3s;
     animation-delay: 0.3s;
 }
 
 .item:nth-child(4) {
+    -webkit-animation-delay: 0.5s;
     animation-delay: 0.5s;
 }
 
 .item:nth-child(5) {
+    -webkit-animation-delay: 0.7s;
     animation-delay: 0.7s;
+}
+
+@-webkit-keyframes load {
+    50% {
+        transform: scale(2);
+        background-color: #BB2649;
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: #4C9F70;
+    }
 }
 
 @keyframes load {
     50% {
         transform: scale(2);
         background-color: #BB2649;
-    } 100% {
+    }
+
+    100% {
         transform: scale(1);
         background-color: #4C9F70;
     }

@@ -10,7 +10,7 @@
 }
 
 .lesson {
-    display: -moz-box;
+    display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -35,6 +35,9 @@
 
 .unit__item--badge {
     height: 1.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     align-items: center;
 }

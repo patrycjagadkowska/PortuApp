@@ -26,6 +26,9 @@
 }
 
 .test__actions {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
     justify-content: space-evenly;
 }
@@ -35,7 +38,7 @@
     color: #BB2649;
 }
 
-.test__actions a:hover, 
+.test__actions a:hover,
 .test__actions a:active,
 .test__actions button:hover,
 .test__actions button:active {

@@ -1,7 +1,11 @@
 .userData {
     width: 90%;
     margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -55,8 +59,13 @@
 }
 
 .userData__data--actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     transform: translateX(-0.25rem);
     justify-content: center;
@@ -76,6 +85,7 @@
 
 @media (max-width: 300px) {
     .userData__data--actions {
+        -ms-flex-direction: column;
         flex-direction: column;
     }
 }
@@ -93,7 +103,11 @@
     }
 
     .userData__data {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
         display: flex;
+        -ms-flex-direction: column;
         flex-direction: column;
         justify-content: center;
         margin-left: 2rem;

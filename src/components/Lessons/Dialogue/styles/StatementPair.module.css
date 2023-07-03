@@ -9,12 +9,13 @@
     position: relative;
     transform: translateY(1rem);
     visibility: hidden;
+    -webkit-animation: pair 0.2s ease-in-out forwards;
     animation: pair 0.2s ease-in-out forwards;
 }
 
 .left {
     text-align: left;
-    
+
 }
 
 .right {
@@ -22,10 +23,23 @@
     text-align: right;
 }
 
+@-webkit-keyframes pair {
+    80% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        visibility: visible;
+        transform: scale(1) translateY(0);
+    }
+}
+
 @keyframes pair {
     80% {
         transform: scale(1.1);
-    } 100% {
+    }
+
+    100% {
         visibility: visible;
         transform: scale(1) translateY(0);
     }

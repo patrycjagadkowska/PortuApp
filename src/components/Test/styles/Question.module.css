@@ -12,6 +12,9 @@
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
     min-height: 6rem;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
     align-items: center;
     justify-content: center;

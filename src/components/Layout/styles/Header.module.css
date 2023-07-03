@@ -1,5 +1,5 @@
 .header {
-    display: -moz-box;
+    display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -61,7 +61,11 @@
 }
 
 .header__nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
     background-color: #FFF;
     position: fixed;
@@ -96,10 +100,11 @@
 @media (min-width: 768px) {
     .header__nav {
         position: static;
-        width:auto;
+        width: auto;
         height: auto;
         background-color: transparent;
         transform: translateX(0);
+        -ms-flex-direction: row;
         flex-direction: row;
     }
 

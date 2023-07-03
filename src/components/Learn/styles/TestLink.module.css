@@ -1,7 +1,7 @@
 .test {
     padding: 0.5rem;
     background-color: #4C9F70;
-    display: -moz-box;
+    display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -18,7 +18,7 @@
     transition: transform 0.1s linear;
 }
 
-.test a:hover, 
+.test a:hover,
 .test a:active {
     background-color: #FFF;
     color: #BB2649;
