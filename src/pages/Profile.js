@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { useContext, useEffect, useState } from "react";
 
 import ProgressSummary from "../components/Profile/ProgressSummary";
@@ -14,6 +14,13 @@ const Profile = () => {
   const [ units, setUnits ] = useState([]);
   const fetchedData = useLoaderData();
   const { data, setData } = useContext(DataContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (fetchedData === null) {
+      navigate("/login");
+    }
+  }, [fetchedData, navigate]);
 
   useEffect(() => {
     if (!data || data.length === 0) {

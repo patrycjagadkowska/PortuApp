@@ -42,11 +42,15 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscirbe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        login(user.uid);
+        await login(user.uid);
+      } else {
+        setIsLoggedIn(false);
       }
     });
+
+    return () => unsubscirbe();
     // eslint-disable-next-line
   }, []);
 

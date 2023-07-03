@@ -6,6 +6,7 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Layout = () => {
   const { state } = useNavigation();
+  console.log("looking for loop");
   return (
     <>
       <Header />

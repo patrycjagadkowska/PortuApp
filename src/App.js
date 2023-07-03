@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import ErrorPage from "./pages/ErrorPage";
 import Test from "./pages/Test";
 import AuthContext from "./context/AuthContext";
+import LoadingSpinner from "./components/UI/LoadingSpinner";
 
 const App = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -38,7 +39,7 @@ const App = () => {
     if (isLoggedIn) {
        return await fetchAllUnitsData();
     } else {
-      return redirect("/login");
+      return Promise.resolve(null);
     }
   };
 
@@ -75,6 +76,10 @@ const App = () => {
       ],
     },
   ]);
+
+  if (isLoggedIn === undefined) {
+    return <section id="loading-page" ><LoadingSpinner /></section>
+  }
 
   return <RouterProvider router={router} />;
 };
