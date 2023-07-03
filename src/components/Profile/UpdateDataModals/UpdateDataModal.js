@@ -93,7 +93,7 @@ const UpdateDataModal = ({ openModal, toggleModal }) => {
       onClick={toggleModal}
       open={openModal}
     >
-      <form className={classes["modal-form"]} autoComplete="on">
+      <form className={classes["modal-form"]} autoComplete="on" name="update-your-data">
         <CustomInput
           label={
             <>
