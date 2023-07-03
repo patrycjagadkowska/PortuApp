@@ -68,7 +68,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form className={classes.form} autoComplete="on">
+    <form className={classes.form} autoComplete="on" name="login-form">
       <CustomInput
         type="email"
         value={email.value}
