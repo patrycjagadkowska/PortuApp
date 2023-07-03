@@ -50,7 +50,8 @@ const Connect = (props) => {
       eng: shuffleArray(eng),
     });
     setNumOfExercises(pt.length);
-  }, [pt, eng, setNumOfExercises]);
+    // eslint-disable-next-line
+  }, []);
 
   const handleShowModal = useCallback(() => {
     setOpenModal(true);
