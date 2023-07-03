@@ -30,7 +30,7 @@ const ProgressBar = ({ numOfLessons, unitId, shorter }) => {
       }`}
     >
       <div className={classes["bar-container"]}>
-        <div
+        <div role="progressbar"
           className={`${classes.bar} ${
             barWidth === 100 ? classes["bar-full"] : ""
           }`}
