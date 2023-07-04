@@ -4,8 +4,7 @@ import StatementPair from "./StatementPair";
 
 import classes from "./styles/Conversation.module.css";
 
-const Conversation = (props) => {
-  const { conversation, meaning } = props;
+const Conversation = ({ conversation, meaning }) => {
   const { unitId, lessonId } = useParams();
 
   if (conversation.length !== meaning.length) {

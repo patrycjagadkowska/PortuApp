@@ -1,10 +1,9 @@
 import classes from "./styles/Statement.module.css";
 
-const Statement = (props) => {
-  const { lang } = props;
+const Statement = ({ lang, children }) => {
   return (
     <div className={`${classes.statement} ${classes[lang]}`}>
-      {props.children}
+      {children}
     </div>
   );
 };

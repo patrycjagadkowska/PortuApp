@@ -2,9 +2,7 @@ import Statement from "./Statement";
 
 import classes from "./styles/StatementPair.module.css";
 
-const StatementPair = (props) => {
-  const { portuguese, english, float, animationDelay } = props;
-
+const StatementPair = ({ portuguese, english, float, animationDelay }) => {
   return (
     <div
       className={`${classes.pair} ${classes[float ? "left" : "right"]}`}
