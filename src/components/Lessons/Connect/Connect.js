@@ -17,8 +17,8 @@ const initialState = {
   wrongAnswer: undefined,
 };
 
-const Connect = (props) => {
-  const { pt, eng, title } = props.data;
+const Connect = ({ data }) => {
+  const { pt, eng, title } = data;
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
     foundPairs,

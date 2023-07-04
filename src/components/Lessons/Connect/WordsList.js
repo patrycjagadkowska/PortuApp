@@ -2,9 +2,7 @@ import Word from './Word';
 
 import classes from './styles/WordsList.module.css';
 
-const WordsList = props => {
-    const { checkClickedWord, data, lang } = props;
-
+const WordsList = ({ checkClickedWord, data, lang }) => {
     const checkAnswer = (id) => {
         checkClickedWord(id, lang);
     };
