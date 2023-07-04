@@ -1,6 +1,7 @@
 import classes from './styles/VerbTable.module.css';
 
 const VerbTable = ({ verb, table }) => {
+  const { eu, tu, voce, nos, voces } = table;
   return (
     <table className={classes.table}>
       <thead>
@@ -13,26 +14,26 @@ const VerbTable = ({ verb, table }) => {
       <tbody>
         <tr>
           <td className={classes["table__cell"]} rowSpan={2}>
-            Eu <span>{table.eu}</span>
+            Eu <span>{eu}</span>
           </td>
           <td className={classes["table__cell"]} rowSpan={3}>
-            Nós <span>{table.nos}</span>
+            Nós <span>{nos}</span>
           </td>
         </tr>
         <tr />
         <tr>
           <td className={classes["table__cell"]} rowSpan={2}>
-            Tu <span>{table.tu}</span>
+            Tu <span>{tu}</span>
           </td>
         </tr>
         <tr>
           <td className={classes["table__cell"]} rowSpan={3}>
-            Eles/elas/vocês <span>{table.voces}</span>
+            Eles/elas/vocês <span>{voces}</span>
           </td>
         </tr>
         <tr>
           <td className={classes["table__cell"]} rowSpan={2}>
-            Ele/ela/você <span>{table.voce}</span>
+            Ele/ela/você <span>{voce}</span>
           </td>
         </tr>
         <tr />

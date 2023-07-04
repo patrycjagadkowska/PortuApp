@@ -6,8 +6,8 @@ import LessonCompletedModal from "../LessonCompletedModal";
 
 import classes from "./styles/Conjugation.module.css";
 
-const Conjugation = (props) => {
-  const { verb, table, exercises, title } = props.data;
+const Conjugation = ({ data }) => {
+  const { verb, table, exercises, title } = data;
   const [openModal, setOpenModal] = useState(false);
 
   const toggleModal = (bool) => {
