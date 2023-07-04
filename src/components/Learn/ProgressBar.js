@@ -4,7 +4,7 @@ import UserProgressContext from "../../context/UserProgressContext";
 
 import classes from "./styles/ProgressBar.module.css";
 
-const ProgressBar = ({ numOfLessons, unitId, shorter }) => {
+const ProgressBar = ({ numOfLessons, unitId, shorter = false }) => {
   const userCtx = useContext(UserProgressContext);
   const unitProgressData =
     userCtx.progressData && unitId ? userCtx.progressData[unitId] : [];
