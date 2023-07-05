@@ -11,7 +11,7 @@ import classes from "./styles/Profile.module.css";
 
 const Profile = () => {
   const user = auth.currentUser;
-  const [ units, setUnits ] = useState([]);
+  const [units, setUnits] = useState([]);
   const fetchedData = useLoaderData();
   const { data, setData } = useContext(DataContext);
   const navigate = useNavigate();
@@ -41,8 +41,10 @@ const Profile = () => {
       <h1>Welcome, {user.displayName ? user.displayName : "User"}!</h1>
       {data && data.length > 0 && (
         <>
-          <UserData />
-          <ProgressSummary />
+          <div className={classes["profile__row"]}>
+            <UserData />
+            <ProgressSummary />
+          </div>
           <ProgressData />
         </>
       )}

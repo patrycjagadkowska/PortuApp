@@ -98,6 +98,7 @@
         display: grid;
         grid-template-columns: 1fr 2fr;
         padding: 0 1rem;
+        flex: 2;
     }
 
     .userData h2 {

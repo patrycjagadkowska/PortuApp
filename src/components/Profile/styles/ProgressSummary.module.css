@@ -33,3 +33,9 @@
 .progressSummary__allCompleted h3 {
     margin: 0.5rem 0;
 }
+
+@media (min-width: 768px) {
+  .progressSummary {
+    flex: 1;
+  }
+}
