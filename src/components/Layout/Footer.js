@@ -16,10 +16,10 @@ const Footer = () => {
         </span>
       </div>
       <div className={classes["footer__links"]}>
-        <a href="https://www.linkedin.com" data-replace="linkedin">
+        <a href="https://www.linkedin.com/in/patrycja-gadkowska-600b34154/" data-replace="linkedin">
           linkedin
         </a>
-        <a href="https://www.github.com" data-replace="github">
+        <a href="https://github.com/patrycjagadkowska" data-replace="github">
           github
         </a>
         <a
