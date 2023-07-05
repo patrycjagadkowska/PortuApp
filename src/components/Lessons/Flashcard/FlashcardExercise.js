@@ -2,9 +2,8 @@ import { useState } from "react";
 
 import classes from "./styles/FlashcardExercise.module.css";
 
-const FlashcardExercise = (props) => {
-  const { question, answers, correct } = props.data;
-  const { onCorrect } = props;
+const FlashcardExercise = ({ data, onCorrect }) => {
+  const { question, answers, correct } = data;
   const [done, setDone] = useState(false);
 
   let flashcardClass = done

@@ -7,8 +7,7 @@ import LessonCompletedModal from "../LessonCompletedModal";
 
 import classes from "./styles/Flashcard.module.css";
 
-const Flashcard = (props) => {
-  const { data } = props;
+const Flashcard = ({ data }) => {
   const { unitId, lessonId } = useParams();
   const { updateDoneExercises, numDone } = useDoneExercise(
     data.length,
