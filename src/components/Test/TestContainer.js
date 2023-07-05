@@ -19,7 +19,6 @@ const TestContainer = ({ unitId }) => {
   const [displayScore, setDisplayScore] = useState(false);
   const [remainingTime, setRemainingTime] = useState(1000);
   const NUM_OF_QUESTIONS = questions.length;
-  const currentQuestionIndexRef = useRef(currentQuestionIndex);
   const { updateData } = useContext(UserProgressContext);
 
   const remainingTimeTimer = useRef();
@@ -51,8 +50,6 @@ const TestContainer = ({ unitId }) => {
   }, [data, unitId]);
 
   useEffect(() => {
-    currentQuestionIndexRef.current = currentQuestionIndex;
-
     if (!isAnswered) {
       remainingTimeTimer.current = setInterval(() => {
         setRemainingTime((prevRemainingTime) => prevRemainingTime - 1);
@@ -79,8 +76,7 @@ const TestContainer = ({ unitId }) => {
       clearInterval(remainingTimeTimer.current);
       updateAnswers(false);
       setTimeout(() => {
-        if (currentQuestionIndexRef.current < NUM_OF_QUESTIONS - 1) {
-          setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+        if (currentQuestionIndex < NUM_OF_QUESTIONS - 1) {
           setRemainingTime(1000);
         }
         if (testIsDone) {
@@ -88,7 +84,7 @@ const TestContainer = ({ unitId }) => {
         }
       }, 2000);
     }
-  }, [isAnswered, remainingTime, updateAnswers, NUM_OF_QUESTIONS, testIsDone]);
+  }, [isAnswered, updateAnswers, currentQuestionIndex, remainingTime, NUM_OF_QUESTIONS, testIsDone]);
 
   useEffect(() => {
     const score = correctAnswers / NUM_OF_QUESTIONS;
@@ -96,12 +92,14 @@ const TestContainer = ({ unitId }) => {
       updateData(unitId, "test", true);
     } else if (testIsDone && score < 0.8) {
       updateData(unitId, "test", false);
-    };
+    }
   }, [testIsDone, correctAnswers, NUM_OF_QUESTIONS, updateData, unitId]);
 
   const currentQuestion = !testIsDone
     ? questions[currentQuestionIndex]
     : questions[NUM_OF_QUESTIONS - 1];
+
+  console.log(currentQuestionIndex);
 
   return (
     <div className={classes["test__container"]}>
