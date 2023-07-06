@@ -1,49 +1,52 @@
 import {
   RouterProvider,
   createBrowserRouter,
-  redirect
+  redirect,
 } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, lazy, Suspense } from "react";
 
 import Welcome from "./pages/Welcome";
 import Layout from "./components/Layout/Layout";
-import Authentication from "./pages/Authentication";
-import Learn, { loader as fetchAllUnitsData } from "./pages/Learn";
-import Lesson, { loader as fetchLessonData } from "./pages/Lesson";
-import Profile from "./pages/Profile";
-import ErrorPage from "./pages/ErrorPage";
-import Test from "./pages/Test";
 import AuthContext from "./context/AuthContext";
-import LoadingSpinner from "./components/UI/LoadingSpinner";
+
+const Learn = lazy(() => import("./pages/Learn"));
+const Lesson = lazy(() => import("./pages/Lesson"));
+const Authentication = lazy(() => import("./pages/Authentication"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Test = lazy(() => import("./pages/Test"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+const LoadingSpinner = lazy(() => import("./components/UI/LoadingSpinner"));
 
 const App = () => {
   const { isLoggedIn } = useContext(AuthContext);
 
-  const learnLoader = async () => {
+  const learnLoader = () => {
     if (isLoggedIn) {
-      return await fetchAllUnitsData();
+      return import("./pages/Learn").then((module) => module.loader());
     } else {
       return redirect("/login");
     }
   };
 
-  const lessonLoader = async ({ params }) => {
+  const lessonLoader = ({ params }) => {
     if (isLoggedIn) {
-      return await fetchLessonData({ params });
+      return import("./pages/Lesson").then((module) =>
+        module.loader({ params })
+      );
     } else {
       return redirect("/login");
     }
   };
 
-  const profileLoader = async () => {
+  const profileLoader = () => {
     if (isLoggedIn) {
-       return await fetchAllUnitsData();
+      return import("./pages/Learn").then((module) => module.loader());
     } else {
       return Promise.resolve(null);
     }
   };
 
-  const authLoader = async () => {
+  const authLoader = () => {
     if (!isLoggedIn) {
       return null;
     } else {
@@ -58,27 +61,74 @@ const App = () => {
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <Welcome /> },
-        { path: "login", element: <Authentication />, loader: authLoader  },
-        { path: "createAccount", element: <Authentication />, loader: authLoader },
+        {
+          path: "login",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <Authentication />
+            </Suspense>
+          ),
+          loader: authLoader,
+        },
+        {
+          path: "createAccount",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <Authentication />
+            </Suspense>
+          ),
+          loader: authLoader,
+        },
         {
           path: "learn",
           children: [
-            { index: true, element: <Learn />, loader: learnLoader },
+            {
+              index: true,
+              element: (
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Learn />
+                </Suspense>
+              ),
+              loader: learnLoader,
+            },
             {
               path: ":unitId/:lessonId",
-              element: <Lesson />,
-              loader: lessonLoader
+              element: (
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Lesson />
+                </Suspense>
+              ),
+              loader: lessonLoader,
             },
           ],
         },
-        { path: "learn/:unitId/test", element: <Test /> },
-        { path: "profile", element: <Profile />, loader: profileLoader },
+        {
+          path: "learn/:unitId/test",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <Test />
+            </Suspense>
+          ),
+        },
+        {
+          path: "profile",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <Profile />
+            </Suspense>
+          ),
+          loader: profileLoader,
+        },
       ],
     },
   ]);
 
   if (isLoggedIn === undefined) {
-    return <section id="loading-page" ><LoadingSpinner /></section>
+    return (
+      <section id="loading-page">
+        <LoadingSpinner />
+      </section>
+    );
   }
 
   return <RouterProvider router={router} />;
