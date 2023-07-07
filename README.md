@@ -10,7 +10,7 @@ This project uses Firestore Database from Firebase to get units data and also to
 
 ## Demo
 
-Online demo will be soon available!
+Demo available <a href="https://portuapp.netlify.app">here!</a>
 
 ## Install
 
