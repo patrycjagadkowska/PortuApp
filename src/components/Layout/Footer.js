@@ -7,7 +7,7 @@ const Footer = () => {
         <span>
           &copy;Copyright{" "}
           <a
-            href="https://www.patrycjagadkowska.com"
+            href="https://patrycjagadkowska.netlify.app/"
             data-replace="Patrycja Gadkowska"
           >
             <span>Patrycja Gadkowska</span>
