@@ -18,16 +18,13 @@
     "webpack": "^5.86.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "x.x.x",
-    "gh-pages": "^5.0.0"
+    "@babel/plugin-proposal-private-property-in-object": "x.x.x"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
