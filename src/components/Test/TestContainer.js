@@ -99,8 +99,6 @@ const TestContainer = ({ unitId }) => {
     ? questions[currentQuestionIndex]
     : questions[NUM_OF_QUESTIONS - 1];
 
-  console.log(currentQuestionIndex);
-
   return (
     <div className={classes["test__container"]}>
       <CountdownBar remainingTime={remainingTime} />
