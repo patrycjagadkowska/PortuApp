@@ -1,6 +1,6 @@
 import {
   RouterProvider,
-  createBrowserRouter,
+  createHashRouter,
   redirect
 } from "react-router-dom";
 import { useContext } from "react";
@@ -51,7 +51,7 @@ const App = () => {
     }
   };
 
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: <Layout />,
