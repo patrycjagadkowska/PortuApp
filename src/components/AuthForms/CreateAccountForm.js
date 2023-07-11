@@ -58,16 +58,30 @@ const CreateAccountForm = () => {
       })
       .catch((error) => {
         setSubmitButtonClass("error");
-        if (error.code === "auth/email-already-in-use") {
-          setRepeatedPassError("This email is already registered");
-        } else if (error.code === "auth/network-request-failed") {
-          setRepeatedPassError("Network error occured");
-        } else if (error.code === "auth/too-many-requests") {
-          setRepeatedPassError(
-            "We're sorry, we got too many requests. Please try again later."
-          );
-        } else {
+        switch (error.code) {
+          case ("auth/invalid-email"):
+            setEmailError("Please enter a valid email.");
+            break;
+          case ("auth/email-already-in-use" || "auth/email-already-exists"):
+            setRepeatedPassError("This email is already registered");
+            break;
+          case ("auth/network-request-failed"):
+            setRepeatedPassError("Network error occured");
+            break;
+          case ("auth/too-many-requests"):
+            setRepeatedPassError(
+              "We're sorry, we got too many requests. Please try again later."
+            );
+            break;
+          case ("auth/internal-error"):
+            setRepeatedPassError("Internal error occured. Please try again later.");
+            break;
+          case ("auth/invalid-password"):
+            setRepeatedPassError("Invalid password. Must contain at least 6 characters.");
+            break;
+          default: 
           setRepeatedPassError(error.message);
+          break;
         }
       });
   };

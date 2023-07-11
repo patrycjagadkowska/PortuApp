@@ -53,16 +53,24 @@ const LoginForm = () => {
       })
       .catch((error) => {
         setSubmitButtonClass("error");
-        if (error.code === "auth/wrong-password") {
-          setPasswordError("Password is incorrect.");
-        } else if (error.code === "auth/invalid-email") {
-          setPasswordError("Email is incorrect or not registered yet.");
-        } else if (error.code === "auth/user-disabled") {
-          setPasswordError(
-            "Your account has been disabled. Please contact us for more information"
-          );
-        } else {
-          setPasswordError(error.message);
+        switch (error.code) {
+          case "auth/wrong-password":
+            setPasswordError("Password is incorrect.");
+            break;
+          case "auth/invalid-email":
+            setPasswordError("Email is incorrect or not registered yet.");
+            break;
+          case "auth/user-disabled":
+            setPasswordError(
+              "Your account has been disabled. Please contact us for more information"
+            );
+            break;
+          case "auth/user-not-found":
+            setEmailError("Email is not registered yet.");
+            break;
+          default:
+            setPasswordError(error.message);
+            break;
         }
       });
   };

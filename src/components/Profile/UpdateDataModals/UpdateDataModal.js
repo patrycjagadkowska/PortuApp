@@ -45,6 +45,7 @@ const UpdateDataModal = ({ openModal, toggleModal }) => {
     if (name.value === "" && email.value === "") {
       setSubmitButtonClass("error");
       setEmailError("You haven't chosen any data to update");
+      return;
     }
 
     //check if name is invalid
@@ -67,14 +68,34 @@ const UpdateDataModal = ({ openModal, toggleModal }) => {
     if (name.value !== "") {
       nameUpdatePromise = updateUserName().catch((error) => {
         setSubmitButtonClass("error");
-        setNameError(error.code);
+        switch(error.code) {
+          case ("auth/internal-error"):
+            setNameError("An internal error occured. Please try again later.");
+            break;
+          case ("auth/invalid-display-name"):
+            setNameError("Please enter a valid name");
+            break;
+          default:
+            setNameError(error.code);
+            break;
+        }
       });
     }
 
     if (email.value !== "") {
       emailUpdatePromise = updateUserEmail().catch((error) => {
         setSubmitButtonClass("error");
-        setEmailError(error.code);
+        switch (error.code) {
+          case ("auth/email-already-exists"):
+            setEmailError("Email is already registered.");
+            break;
+          case ("auth/internal-error"):
+            setEmailError("An internal error occured. Please try again later.");
+            break;
+          default:
+            setEmailError(error.code);
+            break;
+        }
       });
     }
 

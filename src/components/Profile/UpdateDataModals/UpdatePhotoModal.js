@@ -47,7 +47,13 @@ const UpdatePhotoModal = ({ openModal, toggleModal }) => {
           setSubmitButtonClass("success");
         })
         .catch((err) => {
-          setMessage({ display: true, value: err.message });
+          setMessage({
+            display: true,
+            value:
+              err.code === "auth/invalid-photo-url"
+                ? 'Please enter a valid URL starting with "http://", "https://" or "www.".'
+                : err.code,
+          });
           setSubmitButtonClass("error");
         });
     } else {
