@@ -77,7 +77,7 @@ const Welcome = () => {
       </WelcomeSection>
       <WelcomeSection
         className={classes["welcome__stats"]}
-        title="PortuApp in nubmers"
+        title="PortuApp in numbers"
       >
         <div className={classes["stats-wrapper"]}>
           <StatsItem
