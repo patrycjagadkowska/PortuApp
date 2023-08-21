@@ -12,6 +12,8 @@ This project uses Firestore Database from Firebase to get units data and also to
 
 Demo available <a href="https://portuapp.netlify.app">here!</a>
 
+Please note that you don't have to use real data to sign up and access the content of the app. Feel free to use a fake email, as I won't be sending any verification emails. I've included this approach for the purpose of my portfolio.
+
 ## Install
 
 ```
